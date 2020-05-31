@@ -10,7 +10,7 @@
     // decode lobby string and verify
     $lobby = json_decode($report);
     if(!isset($lobby->ObserveToken) || !isset($lobby->ID)|| !isset($lobby->ServerID)) {
-        $result = '{"Status":"Unauthorized report"}';
+        $result = '{"Status":"Unauthorized report", "Verify": }';
         return;
     }
     $jsonOutput="";
@@ -20,7 +20,7 @@
 
     $authenticatedGuild = json_decode($jsonOutput);
     if($lobby->ServerID != $authenticatedGuild->AuthGuildID) {
-        $result = '{"Status":"Unauthorized report"}';
+        $result = '{"Status":"Unauthorized report", "Verify": '.$jsonOutput.'}';
         return;
     }
 

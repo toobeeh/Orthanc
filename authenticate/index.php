@@ -16,7 +16,7 @@
         }
 
         if(isset($authentificatedPalantir))
-            echo '{"AuthGuildName": "'.$authentificatedPalantir->ServerName.'", "AuthGuildID": "'.$authentificatedPalantir->GuildID.'", "ObserveToken": "'.$authentificatedPalantir->ObserverToken.'"}';
+            echo '{"AuthGuildName": "'.$authentificatedPalantir->ServerName.'", "AuthGuildID": "'.$authentificatedPalantir->GuildID.'", "ObserveToken": "'.$authentificatedPalantir->ObserveToken.'"}';
         else echo '{"AuthGuildName": "none", "AuthGuildID": "none", "ObserveToken": "' . $_POST['ObserveToken'] . '"}';
     }
     else echo '{"AuthGuildName": "none", "AuthGuildID": "none", "ObserveToken": "none"}';

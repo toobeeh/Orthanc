@@ -25,6 +25,6 @@
     }
 
     file_put_contents('reportID' . $lobby->ID . '.json', $report);
-    rename('reportID' . $lobby->ID . '.json', $path . 'reportID' . $lobby->ID . '.json')
+    rename('reportID' . $lobby->ID . '.json', $path . 'reportID' . $lobby->ID . '.json');
     $result = '{"Status":"Successful report", "ID":'.$lobby->ID.', "ServerID":'.$lobby->ServerID.', "Verify": '.$jsonOutput.'}';
 ?>

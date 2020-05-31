@@ -1,3 +1,3 @@
 <?php 
-    if(isset($_GET['ObserverToken'])) echo 'ObserverToken: ' . $_GET['ObserverToken'];
+    if(isset($_POST['ObserveToken'])) echo 'ObserveToken: ' . $_POST['ObserveToken'];
 ?>

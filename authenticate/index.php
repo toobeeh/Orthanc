@@ -1,6 +1,6 @@
 <?php 
     // path to guild list
-    $guildDirectory = '/home/pi/Palantir/';
+    $guildDirectory = '/home/pi/JsonShared/';
 
     // Authenticate server by token
     if(isset($_POST['ObserveToken'])){

@@ -5,7 +5,7 @@
 
     if(isset($_GET['ObserveToken'])) $token = $_GET['ObserveToken'];
 
-    include verify.php;
+    include 'verify.php';
 
     echo $jsonOutput;   
 ?>

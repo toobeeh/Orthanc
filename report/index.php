@@ -5,6 +5,7 @@
     error_reporting(E_ALL);
 
     if(isset($_POST['lobbyReport'])) $report = $_POST['lobbyReport'];
+    else $report="";
 
     include 'report.php';
 

@@ -9,6 +9,10 @@
 
     // decode lobby string and verify
     $lobby = json_decode($report);
+    if(!isset($lobby->ObserveToken) || !isset($lobby->ID)|| !isset($lobby->ServerID)) {
+        $result = '{"Status":"Unauthorized report"}';
+        return;
+    }
     $jsonOutput="";
     $token = $lobby->ObserveToken;
     

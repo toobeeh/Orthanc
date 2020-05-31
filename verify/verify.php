@@ -21,8 +21,8 @@
 
         if(isset($authentificatedPalantir))
             $jsonOutput = '{"Valid": true, "AuthGuildName": "'.$authentificatedPalantir->ServerName.'", "AuthGuildID": '.$authentificatedPalantir->GuildID.', "ObserveToken": "'.$authentificatedPalantir->ObserveToken.'"}';
-        else $jsonOutput = '{"Valid": false, "AuthGuildName": "none", "AuthGuildID": 0, "ObserveToken": "'.$token.'"}';
+        else $jsonOutput = '{"Valid": false, "AuthGuildName": "", "AuthGuildID": 0, "ObserveToken": "'.$token.'"}';
     }
-    else $jsonOutput = '{"Valid": false, "AuthGuildName": "none", "AuthGuildID": 0, "ObserveToken": "none"}';
+    else $jsonOutput = '{"Valid": false, "AuthGuildName": "", "AuthGuildID": 0, "ObserveToken": ""}';
 
 ?>

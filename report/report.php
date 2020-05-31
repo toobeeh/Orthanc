@@ -19,11 +19,11 @@
     include '/home/pi/Webroot/Orthanc/verify/verify.php';
 
     $authenticatedGuild = json_decode($jsonOutput);
-    if($lobby->ServerID != $authenticatedGuild->AuthGuildID) {
+    if(!$authenticatedGuild->Valid) {
         $result = '{"Status":"Unauthorized report", "Verify": '.$jsonOutput.'}';
         return;
     }
 
     file_put_contents($path . "reportID" . $lobby->ID, $report);
-    $result = '{"Status":"Successful report", "ID":'.$lobby->ID.', "ServerID":'.$lobby->ServerID.'}';
+    $result = '{"Status":"Successful report", "ID":'.$lobby->ID.', "ServerID":'.$lobby->ServerID.', "Verify": '.$jsonOutput.'}';
 ?>

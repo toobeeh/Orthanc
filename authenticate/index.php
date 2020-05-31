@@ -3,7 +3,7 @@
     ini_set('display_startup_errors', 1); 
     error_reporting(E_ALL);
 
-    if(isset($_GET['ObserveToken'])) $ token = $_GET['ObserveToken'];
+    if(isset($_GET['ObserveToken'])) $token = $_GET['ObserveToken'];
 
     include verify.php;
 

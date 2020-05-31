@@ -25,4 +25,4 @@
     }
     else $jsonOutput = '{"Valid": false, "AuthGuildName": "none", "AuthGuildID": 0, "ObserveToken": "none"}';
 
->
+?>

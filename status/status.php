@@ -11,7 +11,7 @@ include '/home/pi/Webroot/Orthanc/verify/verify.php';
 
 $authenticatedGuild = json_decode($jsonOutput);
 if(!$authenticatedGuild->Valid) {
-    $result = '{"Status":"Unauthorized status request", "Verify": '.$jsonOutput.'}';
+    $lobbies = '{"Status":"Unauthorized status request", "Verify": '.$jsonOutput.'}';
     return;
 }
 

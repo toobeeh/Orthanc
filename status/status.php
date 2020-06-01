@@ -15,9 +15,7 @@ if(!$authenticatedGuild->Valid) {
     return;
 }
 
-$files = scandir($path);
-echo $files[0];
-echo $path;
+$files = array_diff( scandir($path), array(".", "..") );
 foreach($files as $file){
     if(basename($file) == "statusGuild".$authenticatedGuild.'.json') $lobbies = file_get_contents($file);
 }

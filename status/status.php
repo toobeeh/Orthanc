@@ -1,4 +1,4 @@
-<<?php
+<?php
 
 // checks a $token string and searches for fitting lobbies
 

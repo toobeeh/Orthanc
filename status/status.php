@@ -5,7 +5,7 @@
 $lobbies = "[]";
 
 // path to report directory
-$path ='/home/pi/JsonShared/';
+$path ='/home/pi/JsonShared';
 
 include '/home/pi/Webroot/Orthanc/verify/verify.php';
 

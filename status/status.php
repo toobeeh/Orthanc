@@ -18,7 +18,7 @@ if(!$authenticatedGuild->Valid) {
 $files = array_diff( scandir($path,1), array(".", "..") );
 foreach($files as $file){
     $name = basename($file);
-    if($name == "statusGuild".$authenticatedGuild->AuthGuildName.'.json') $lobbies = file_get_contents($file);
+    if($name == "statusGuild".$authenticatedGuild->AuthGuildID.'.json') $lobbies = file_get_contents($file);
 }
 
 $lobbies = '{"Status": "Successful status request", "Lobbies":'.$lobbies.', "Verify":'.$jsonOutput.'}';

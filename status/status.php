@@ -18,6 +18,8 @@ if(!$authenticatedGuild->Valid) {
 $files = array_diff( scandir($path,1), array(".", "..") );
 foreach($files as $file){
     $name = basename($file);
+    echo $name;
+    echo "statusGuild".$authenticatedGuild->AuthGuildID.'.json';
     if($name == "statusGuild".$authenticatedGuild->AuthGuildID.'.json') $lobbies = file_get_contents($file);
 }
 

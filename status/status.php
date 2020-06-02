@@ -20,7 +20,7 @@ foreach($files as $file){
     $name = basename($file);
     echo $name;
     echo "statusGuild".$authenticatedGuild->AuthGuildID.'.json';
-    if($name == "statusGuild".$authenticatedGuild->AuthGuildID.'.json') $lobbies = file_get_contents($file);
+    if($name == "statusGuild".strval($authenticatedGuild->AuthGuildID).'.json') $lobbies = file_get_contents($file);
 }
 
 $lobbies = '{"Status": "Successful status request", "Lobbies":'.$lobbies.', "Verify":'.$jsonOutput.'}';

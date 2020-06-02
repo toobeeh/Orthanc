@@ -1,5 +1,5 @@
 <?php
-ini_set('precision',30);
+
 // checks a $token string and searches for fitting lobbies
 
 $lobbies = "[]";

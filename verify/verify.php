@@ -1,5 +1,5 @@
 <?php
-    ini_set('precision',30);
+    
     // processes a $token number including the ObserveToken
     // outputs a $jsonOutput string including guild information
 
@@ -20,7 +20,7 @@
         }
 
         if(isset($authentificatedPalantir))
-            $jsonOutput = '{"Valid": true, "AuthGuildName": "'.$authentificatedPalantir->ServerName.'", "AuthGuildID": '.$authentificatedPalantir->GuildID.', "ObserveToken": "'.$authentificatedPalantir->ObserveToken.'"}';
+            $jsonOutput = '{"Valid": true, "AuthGuildName": "'.$authentificatedPalantir->ServerName.'", "AuthGuildID": "'.$authentificatedPalantir->GuildID.'", "ObserveToken": "'.$authentificatedPalantir->ObserveToken.'"}';
         else $jsonOutput = '{"Valid": false, "AuthGuildName": "", "AuthGuildID": 0, "ObserveToken": "'.$token.'"}';
     }
     else $jsonOutput = '{"Valid": false, "AuthGuildName": "", "AuthGuildID": 0, "ObserveToken": ""}';

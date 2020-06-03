@@ -25,8 +25,8 @@
         return;
     }
 
-    file_put_contents('player' . $onlinePlayer->Name . $onlinePlayer->ID . '.json', $player);
-    rename('player' . $onlinePlayer->Name . $onlinePlayer->ID . '.json', $path . 'OnlinePlayers/player' . $onlinePlayer->Name . $onlinePlayer->ID . '.json');
+    file_put_contents('server' . $lobby->ServerID . 'player' . $onlinePlayer->Name . $onlinePlayer->ID . '.json', $player);
+    rename('server' . $lobby->ServerID . 'player' . $onlinePlayer->Name . $onlinePlayer->ID . '.json', $path . 'OnlinePlayers/' . 'server' . $lobby->ServerID . 'player' . $onlinePlayer->Name . $onlinePlayer->ID . '.json');
 
     file_put_contents($lobby->ServerID .'reportID' . $lobby->ID . '.json', $report);
     rename($lobby->ServerID .'reportID' . $lobby->ID . '.json', $path . $lobby->ServerID . 'reportID' . $lobby->ID . '.json');

@@ -18,6 +18,6 @@
         if($member->UserLogin == $login)  $validUser = $member;
     }
 
-    if(isset($validUser)) $valid = '{"Valid":true, "User":' . json_encode($validUser) . "}";
+    if(isset($validUser)) $valid = '{"Valid":true, "Member":' . json_encode($validUser) . "}";
     else  $valid = '{"Valid":false}';
 ?>

@@ -5,5 +5,5 @@
 
     if(!isset($tag))return;
 
-    file_put_contents('/home/pi/JsonShared/Members' . $tag .'.login', $tag);
+    file_put_contents('/home/pi/JsonShared/Members/' . $tag .'.login', $tag);
 ?>

@@ -4,7 +4,7 @@
     ini_set('display_startup_errors', 1); 
     error_reporting(E_ALL);
 
-    if(isset($_POST['ObserveToken'])) $token = $_POST['ObserveToken'];
+    if(isset($_POST['observeToken'])) $token = $_POST['observeToken'];
     else $token="";
 
     include 'status.php';

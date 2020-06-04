@@ -9,7 +9,7 @@
 
     // decode lobby string and verify
     $lobby = json_decode($report);
-    if(!isset($lobby->ObserveToken) || !isset($lobby->ID)|| !isset($lobby->ServerID)) {
+    if(!isset($lobby->ObserveToken) || !isset($lobby->ID)|| !isset($lobby->GuildID)) {
         $result = '{"Status":"Unauthorized report", "Verify": }';
         return;
     }
@@ -24,7 +24,7 @@
         return;
     }
 
-    file_put_contents($lobby->ServerID .'reportID' . $lobby->ID . '.json', $report);
-    rename($lobby->ServerID .'reportID' . $lobby->ID . '.json', $path . $lobby->ServerID . 'reportID' . $lobby->ID . '.json');
-    $result = '{"Status":"Successful report", "ID":'.$lobby->ID.', "ServerID":"'.$lobby->ServerID.'", "Verify": '.$jsonOutput.'}';
+    file_put_contents($lobby->GuildID .'reportID' . $lobby->ID . '.json', $report);
+    rename($lobby->GuildID .'reportID' . $lobby->ID . '.json', $path . $lobby->GuildID . 'reportID' . $lobby->ID . '.json');
+    $result = '{"Status":"Successful report", "ID":'.$lobby->ID.', "GuildID":"'.$lobby->GuildID.'", "Verify": '.$jsonOutput.'}';
 ?>

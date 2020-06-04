@@ -34,7 +34,11 @@
             
         foreach($members as $savedMember){
             if ($savedMember == $authenticatedMember) {
-                array_push($savedMember->Guilds, $authentificatedPalantir); 
+                $unique = true;
+                foreach($savedMember->Guilds as $guild){
+                    if($guild == $authentificatedPalantir) $unique = false;
+                }
+                if($unique) array_push($savedMember->Guilds, $authentificatedPalantir); 
                 $authenticatedMember = $savedMember;
             }
         }

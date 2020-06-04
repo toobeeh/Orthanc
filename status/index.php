@@ -6,7 +6,7 @@
 
     if(isset($_POST['observeToken'])) $token = $_POST['observeToken'];
     else $token="";
-    if(isset($_POST['member'])) $token = $_POST['member'];
+    if(isset($_POST['member'])) $member = $_POST['member'];
     else $member="";
 
     include 'status.php';

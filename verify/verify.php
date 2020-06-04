@@ -24,7 +24,7 @@
 
         $authenticatedMember;
         foreach($members as $savedMember){
-            if ($savedMember->UserID == $sender->UserID && $savedMember->UserLogin == $sender->USerLogin) $authenticatedMember = $savedMember;
+            if ($savedMember->UserID == $sender->UserID && $savedMember->UserLogin == $sender->UserLogin) $authenticatedMember = $savedMember;
         }
 
         if(!isset($authentificatedPalantir) || !isset($authenticatedMember)){

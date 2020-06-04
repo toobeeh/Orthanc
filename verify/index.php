@@ -4,6 +4,7 @@
     error_reporting(E_ALL);
 
     if(isset($_POST['observeToken'])) $token = $_POST['observeToken'];
+    if(isset($_POST['member'])) $member = $_POST['member'];
 
     include 'verify.php';
 

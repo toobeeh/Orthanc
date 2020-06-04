@@ -36,7 +36,7 @@
             if ($savedMember == $authenticatedMember) {
                 $unique = true;
                 foreach($savedMember->Guilds as $guild){
-                    if($guild == $authentificatedPalantir) $unique = false;
+                    if($guild->GuildID == $authentificatedPalantir->GuildID) $unique = false;
                 }
                 if($unique) array_push($savedMember->Guilds, $authentificatedPalantir); 
                 $authenticatedMember = $savedMember;

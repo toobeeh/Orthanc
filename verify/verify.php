@@ -33,11 +33,14 @@
         }
             
         foreach($members as $savedMember){
-            if ($savedMember == $authenticatedMember) array_push($savedMember->Guilds, $authentificatedPalantir);
+            if ($savedMember == $authenticatedMember) {
+                array_push($savedMember->Guilds, $authentificatedPalantir); 
+                $authenticatedMember = $savedMember;
+            }
         }
         
         file_put_contents($guildDirectory . 'members.json', json_encode($members));
-        $jsonOutput = '{"Valid": true, "AuthGuildName": "'.$authentificatedPalantir->GuildName.'", "AuthGuildID": '.$authentificatedPalantir->GuildID.', "ObserveToken": '.$token.', "Member":'.$member.'}';
+        $jsonOutput = '{"Valid": true, "AuthGuildName": "'.$authentificatedPalantir->GuildName.'", "AuthGuildID": '.$authentificatedPalantir->GuildID.', "ObserveToken": '.$token.', "Member":'.json_encode($authenticatedMember).'}';
     }
     else $jsonOutput = '{"Valid": false, "AuthGuildName": "", "AuthGuildID": 0, "ObserveToken": "", "Member":null}';
 

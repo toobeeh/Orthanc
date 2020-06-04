@@ -44,7 +44,7 @@
         }
         
         file_put_contents($guildDirectory . 'members.json', json_encode($members));
-        $jsonOutput = '{"Valid": true, "AuthGuildName": "'.$authentificatedPalantir->GuildName.'", "AuthGuildID": '.$authentificatedPalantir->GuildID.', "ObserveToken": '.$token.', "Member":'.json_encode($authenticatedMember).'}';
+        $jsonOutput = '{"Valid": true, "AuthGuildName": "'.$authentificatedPalantir->GuildName.'", "AuthGuildID": "'.$authentificatedPalantir->GuildID.'", "ObserveToken": '.$token.', "Member":'.json_encode($authenticatedMember).'}';
     }
     else $jsonOutput = '{"Valid": false, "AuthGuildName": "", "AuthGuildID": 0, "ObserveToken": "", "Member":null}';
 

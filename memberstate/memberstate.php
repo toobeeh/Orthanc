@@ -27,4 +27,10 @@
     if( $status->Status == "searching") $filename = 'statusMember' . $status->PlayerMember->UserID . '.json';
     else  $filename = 'statusMember' . $status->PlayerMember->UserID . 'Lobby' . $status->lobbyID . '.json';
 
+
+    file_put_contents($filename, json_encode($status));
+    rename($filename, $guildDirectory . '/OnlinePlayers/' . $filename);
+
+    $jsonOutput = '{"Status":"Valid", "Member":' . json_encode($status->PlayerMember) . ', "Status":' . json_encode($status->Status) .'}'; 
+
 ?>

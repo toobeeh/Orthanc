@@ -15,8 +15,14 @@
             $authMember = $savedMember;
     }
 
-    if(!isset($authMember)) return;
-    if(!($status->Status == "playing" || $status->Status == "searching" || $status->Status == "waiting")) return;
+    if(!isset($authMember)) {
+        $jsonOutput = '{"Status":"No valid member", "Member":' . json_encode($status->PlayerMember) . ', "Status":' . json_encode($status->Status) . '}'; 
+        return; 
+    }
+    if(!($status->Status == "playing" || $status->Status == "searching" || $status->Status == "waiting")) {
+        $jsonOutput = '{"Status":"No valid status", "Member":' . json_encode($status->PlayerMember) . ', "Status":' . json_encode($status->Status) .'}'; 
+        return;
+    }
 
     if( $status->Status == "searching") $filename = 'statusMember' . $status->PlayerMember->UserID . '.json';
     else  $filename = 'statusMember' . $status->PlayerMember->UserID . 'Lobby' . $status->lobbyID . '.json';

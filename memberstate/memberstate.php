@@ -25,7 +25,8 @@
     }
 
     if( $status->Status == "searching") $filename = 'statusMember' . $status->PlayerMember->UserID . '.json';
-    else  $filename = 'statusMember' . $status->PlayerMember->UserID . 'Lobby' . $status->LobbyID . '.json';
+    if( $status->Status == "waiting") $filename = 'statusMember' . $status->PlayerMember->UserID . 'Lobby' . $status->LobbyID . '.json';
+    if( $status->Status == "playing") $filename = 'statusMember' . $status->PlayerMember->UserID . 'Lobby' . $status->LobbyID . 'Player' . $status->LobbyPlayerID. '.json';
 
 
     file_put_contents($filename, json_encode($status));

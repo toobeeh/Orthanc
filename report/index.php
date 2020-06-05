@@ -6,6 +6,8 @@
 
     if(isset($_POST['lobbyReport'])) $report = $_POST['lobbyReport'];
     else $report="";
+    if(isset($_POST['member'])) $member = $_POST['member'];
+    else $member="";
 
     include 'report.php';
 

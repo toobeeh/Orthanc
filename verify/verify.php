@@ -1,6 +1,6 @@
 <?php
     
-    // processes a $token number including the ObserveToken
+    // processes a $token number including the ObserveToken and a $member wwhich is compared in the members.json file
     // outputs a $jsonOutput string including guild information
 
     // path to guild list

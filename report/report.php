@@ -24,8 +24,8 @@
         return;
     }
 
-    $filename = 
-    file_put_contents($lobby->GuildID .'reportID' . $lobby->ID . '.json', $report);
-    rename($lobby->GuildID .'reportID' . $lobby->ID . '.json', $path . $lobby->GuildID . 'reportID' . $lobby->ID . '.json');
+    $filename = $lobby->GuildID .'reportID' . $lobby->ID . '.json';
+    file_put_contents($filename, $report);
+    rename($filename, $path . $filename);
     $result = '{"Status":"Successful report", "ID":'.$lobby->ID.', "GuildID":"'.$lobby->GuildID.'", "Verify": '.$jsonOutput.'}';
 ?>

@@ -6,8 +6,13 @@
 
     // processes a lobby $key, if not present generate a $id 
 
-    if(!isset($member) || !isset($key)) {
+    if(!isset($member)) {
         $result = '{"Valid": false, "Member":null}';
+        return;
+    }
+
+    if(!isset($key)) {
+        $result = '{"Valid": false, "Key":null}';
         return;
     }
 

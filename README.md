@@ -26,10 +26,10 @@ Checks if a member object is valid and creates either a new lobby or updates an 
 Lobby keys are dynamic and represent a value which every player in a lobby can generate by an algorithm, whereas the ID is static and always assigned to a lobby key.
 If the lobby hanges (player leave etc) the key is updated.
 
-###Player
+### Player
 Early version of Report, not used anymore
 
 
 
 
-###Probably, the json stuff should be replaced with any kind of database to avoid concurrent write/read
+### Probably, the json stuff should be replaced with any kind of database to avoid concurrent write/read

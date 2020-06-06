@@ -1,5 +1,5 @@
 # Orthanc
-A php webdirectory which enables communcication between skribbtlypo/js and Palantir/c# discord bot.
+A php webdirectory which enables communication between skribbtlypo/js and Palantir/c# discord bot.
 
 Most querystrings are processed as json, as well as the return values are json to enable easy js processing.
 

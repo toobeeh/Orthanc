@@ -32,7 +32,7 @@
 
     // if id is not set, search for lobbies with same key
     if(!isset($id)){
-        $lobbies = json_decode($guildDirectory . "lobbies.json");
+        $lobbies = json_decode(file_get_contents( $guildDirectory . "lobbies.json"));
 
         foreach($lobbies as $lobby){
             if ($lobby->Key == $key) $id=$lobby->ID;
@@ -47,7 +47,7 @@
         $result = '{"Valid": true, "Member":' . json_encode($member) . ', "Lobby":' . json_encode($jsonLobby) . '}';
     }
     else{
-        $lobbies = json_decode($guildDirectory . "lobbies.json");
+        $lobbies = json_decode(file_get_contents($guildDirectory . "lobbies.json"));
 
         $match;
         foreach($lobbies as $lobby){

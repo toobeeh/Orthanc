@@ -30,8 +30,6 @@
         return;
     }
 
-    echo $key . " " . $id;
-
     // if id is not set, search for lobbies with same key
     if(!isset($id)){
         $lobbies = json_decode(file_get_contents( $guildDirectory . "lobbies.json"));
@@ -42,8 +40,7 @@
 
         // if no lobby with same key is present, generate new id
         if(!isset($id)) $id =  str_pad(mt_rand(1,99999999),8,'0',STR_PAD_LEFT);
-        echo $key . " " . $id;
-        $jsonLobby = json_decode('{"ID":"' . $id . ', "Key":"' . $key . '"}');
+        $jsonLobby = json_decode('{"ID":"' . $id . '", "Key":"' . $key . '"}');
         array_push($lobbies, $jsonLobby);
         file_put_contents("lobbies.json", json_encode($lobbies));
         rename("lobbies.json", $guildDirectory . "lobbies.json");

@@ -9,6 +9,4 @@
     echo $id;
 
     include 'provider.php';
-
-    echo $result;   
 ?>

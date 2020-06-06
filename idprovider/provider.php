@@ -37,11 +37,14 @@
         foreach($lobbies as $lobby){
             if ($lobby->Key == $key) $id=$lobby->ID;
         }
-
         // if no lobby with same key is present, generate new id
-        if(!isset($id)) $id =  str_pad(mt_rand(1,99999999),8,'0',STR_PAD_LEFT);
-        $jsonLobby = json_decode('{"ID":"' . $id . '", "Key":"' . $key . '"}');
-        array_push($lobbies, $jsonLobby);
+        if(!isset($id)) {
+            $id =  str_pad(mt_rand(1,99999999),8,'0',STR_PAD_LEFT);
+            $jsonLobby = json_decode('{"ID":"' . $id . '", "Key":"' . $key . '"}');
+            array_push($lobbies, $jsonLobby);
+        }
+        else $jsonLobby = json_decode('{"ID":"' . $id . '", "Key":"' . $key . '"}');
+
         file_put_contents("lobbies.json", json_encode($lobbies));
         rename("lobbies.json", $guildDirectory . "lobbies.json");
         $result = '{"Valid": true, "Member":' . json_encode($member) . ', "Lobby":' . json_encode($jsonLobby) . '}';

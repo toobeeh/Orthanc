@@ -1,25 +1,17 @@
 <?php
 
-// checks a $token string and searches for fitting lobbies
-
-$lobbies = "[]";
-
-// path to report directory
-$path ='/home/pi/JsonShared';
+// verifies a token and member string and searches for fitting lobbies
 
 include '/home/pi/Webroot/Orthanc/verify/verify.php';
 
-$authenticatedGuild = json_decode($jsonOutput);
-if(!$authenticatedGuild->Valid) {
+$verify = json_decode($jsonOutput);
+if(!$verify->Valid) {
     $lobbies = '{"Status":"Unauthorized status request", "Verify": '.$jsonOutput.'}';
     return;
 }
 
-$files = array_diff( scandir($path,1), array(".", "..") );
+$guildLobbies = getGuildLobbiesJSON($verify->AuthGuildID);
+if($guildLobbies === false) $guildLobbies = "[]";
 
-foreach($files as $file){
-    if(basename($file) == "statusGuild".$authenticatedGuild->AuthGuildID.'.json') $lobbies = file_get_contents($path.'/'.$file);
-}
-
-$lobbies = '{"Status": "Successful status request", "Lobbies":'.$lobbies.', "Verify":'.$jsonOutput.'}';
+$lobbies = '{"Status": "Successful status request", "Lobbies":'.$guildLobbies.', "Verify":'.$jsonOutput.'}';
 ?>

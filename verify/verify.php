@@ -27,7 +27,7 @@
         // check if guild is new for member
         $has = false;
         foreach($authenticatedMember->Guilds as $guild){
-            if($guild->ID == $authentificatedPalantir->ID) $has = true;
+            if($guild->GuildID == $authentificatedPalantir->GuildID) $has = true;
         }
 
         if($has === false) {

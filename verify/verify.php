@@ -11,8 +11,7 @@
         $authentificatedPalantir = getPalantirJSON($token);
 
         // get matching member
-        $member = json_decode($member);
-        $authenticatedMember = getMemberJSON($member->UserLogin);
+        $authenticatedMember = getMemberJSON((json_decode($member))->UserLogin);
 
         // any not valid?
         if($authentificatedPalantir === false || $authenticatedMember === false){

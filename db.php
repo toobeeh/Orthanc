@@ -1,4 +1,6 @@
 <?php 
+// Functions to access palantir DB (SQLite3)
+// statements are prepared to prevent sql injection
 
 // -------------------------------------
 //              Table: Members
@@ -54,7 +56,50 @@ function getPalantirJSON($_observeToken){
     else return false;
 }
 
+// -------------------------------------
+//              Table: Lobbies
+// -------------------------------------
 
+// Find a lobby by a lobby key
+function getLobbyJSONByKey($_lobbyKey){
+    $_db = new SQlite3('/home/pi/Database/palantir.db');
+    $_sql = $_db->prepare('SELECT * FROM Lobbies WHERE Lobby LIKE ?');
+    $lobbyKey = "%" . $lobbyKey . "%";
+    $_sql->bindParam(1, $_lobbyKey);
+    $_result = $_sql->execute();
+    if($_row = $_result->fetchArray()) return $_row['Lobby'];
+    else return false;
+}
+
+// Find a lobby by a lobby id
+function getLobbyJSONByID($_lobbyID){
+    $_db = new SQlite3('/home/pi/Database/palantir.db');
+    $_sql = $_db->prepare('SELECT * FROM Lobbies WHERE LobbyID = ?');
+    $_sql->bindParam(1, $_lobbyID);
+    $_result = $_sql->execute();
+    if($_row = $_result->fetchArray()) return $_row['Lobby'];
+    else return false;
+}
+
+// update the lobby data for a lobby id
+function updateLobbyJSON($_lobbyID, $_lobbyJson){
+    $_db = new SQlite3('/home/pi/Database/palantir.db');
+    $_sql = $_db->prepare('UPDATE Lobbies SET Lobby = ? WHERE LobbyID = ?');
+    $_sql->bindParam(1, $_lobbyJson);
+    $_sql->bindParam(2, $_lobbyID);
+    $_result = $_sql->execute();
+    return $result;
+}
+
+// add a new lobby
+function addLobby($_lobbyID, $_lobbyJson){
+    $_db = new SQlite3('/home/pi/Database/palantir.db');
+    $_sql = $_db->prepare('INSERT INTO Lobbies VALUES (?, ?)');
+    $_sql->bindParam(1, $_lobbyID);
+    $_sql->bindParam(2, $_lobbyJson);
+    $_result = $_sql->execute();
+    return $result;
+}
 
 
 ?>

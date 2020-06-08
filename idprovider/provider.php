@@ -1,62 +1,46 @@
 <?php 
 
-    $guildDirectory = '/home/pi/JsonShared/';
-
     // processes a lobby $key, if not present generate a $id 
 
-    if(!isset($member)) {
-        $result = '{"Valid": false, "Member":null}';
-        return;
-    }
+    include '/home/pi/Webroot/Orthanc/db.php';
 
-    if(!isset($key)) {
-        $result = '{"Valid": false, "Key":null}';
+    if(!isset($member) || !isset($key)) {
+        $result = '{"Valid": false, "Key":null, "Member":null}';
         return;
     }
 
     // verify member
-    $members = json_decode(file_get_contents($guildDirectory . 'members.json'));
     $sender = json_decode($member);
-
-    $authenticatedMember;
-    foreach($members as $savedMember){
-        if ($savedMember->UserID == $sender->UserID && $savedMember->UserLogin == $sender->UserLogin) $authenticatedMember = $savedMember;
-    }
-
-    if(!isset($authenticatedMember)) {
-        $result = '{"Valid": false, "Member":' . json_decode($member) . '}';
+    $authenticatedMember = getMemberJSON($sender->UserLogin);
+    if($authenticatedMember === false) {
+        $result = '{"Valid": false, "Member":' . $member . '}';
         return;
     }
 
     // if id is not set, search for lobbies with same key
     if(!isset($id)){
-        
-        $lobbies = json_decode(file_get_contents( $guildDirectory . "lobbies.json"));
 
-        foreach($lobbies as $lobby){
-            if ($lobby->Key == $key) $id=$lobby->ID;
-        }
-        // if no lobby with same key is present, generate new id
-        if(!isset($id)) {
+        $existing = getLobbyJSONByKey($key);
+
+        // If no lobby with that key is found add new lobby
+        if($existing === false){
             $id =  str_pad(mt_rand(1,99999999),8,'0',STR_PAD_LEFT);
-            $jsonLobby = json_decode('{"ID":"' . $id . '", "Key":"' . $key . '"}');
-            array_push($lobbies, $jsonLobby);
+            $lobby = '{"ID":"' . $id . '", "Key":"' . $key . '"}';
+            addLobby($id, $lobby);
+            $result = '{"Valid": true, "Member":' . json_encode($member) . ', "Lobby":' . $lobby . '}';
+            return;
         }
-        else $jsonLobby = json_decode('{"ID":"' . $id . '", "Key":"' . $key . '"}');
-
-        file_put_contents("lobbies.json", json_encode($lobbies));
-        rename("lobbies.json", $guildDirectory . "lobbies.json");
-        $result = '{"Valid": true, "Member":' . json_encode($member) . ', "Lobby":' . json_encode($jsonLobby) . '}';
+        // if a lobby with that key is found, return lobby
+        else{
+            $result = '{"Valid": true, "Member":' . json_encode($member) . ', "Lobby":' . $existing . '}';
+            return;
+        }
     }
+    // if the id is known and the key has changed, update the key
     else{
-        $lobbies = json_decode(file_get_contents($guildDirectory . "lobbies.json"));
-
-        $match;
-        foreach($lobbies as $lobby){
-            if ($lobby->ID == $id) {$lobby->Key = $key; $match = $lobby;}
-        }
-        file_put_contents("lobbies.json", json_encode($lobbies));
-        rename("lobbies.json", $guildDirectory . "lobbies.json");
-        $result = '{"Valid": true, "Member":' . json_encode($member) . ', "Lobby":' . json_encode($match) . '}';
+        $lobby = '{"ID":"' . $id . '", "Key":"' . $key . '"}';
+        updateLobbyJSON($id, $lobby);
+        $result = '{"Valid": true, "Member":' . json_encode($member) . ', "Lobby":' . $lobby . '}';
+        return;
     }
 ?>

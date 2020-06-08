@@ -17,5 +17,5 @@
     }
 
     if(isset($validUser)) $valid = '{"Valid":true, "Member":' . json_encode($validUser) . "}";
-    else  $valid = '{"Valid":false, "Error": "' . json_last_error_msg() . '", "Content": "' . $cont . '"}';
+    else  $valid = '{"Valid":false, "Error": "' . json_last_error_msg() . '", "!==NULL": "' . $cont!==NULL . '"}';
 ?>

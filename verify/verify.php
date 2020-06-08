@@ -15,7 +15,7 @@
         $authenticatedMember = getMemberJSON($member->UserLogin);
 
         // any not valid?
-        if($authentificatedPalantir === false || $authenticatedMember === false)){
+        if($authentificatedPalantir === false || $authenticatedMember === false){
             $jsonOutput = '{"Valid": false, "AuthGuildName": "", "AuthGuildID": "0", "ObserveToken": "'.$token.'","Member":'. $member . '}';
             return;
         }

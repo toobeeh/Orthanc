@@ -64,7 +64,7 @@ function getPalantirJSON($_observeToken){
 function getLobbyJSONByKey($_lobbyKey){
     $_db = new SQlite3('/home/pi/Database/palantir.db');
     $_sql = $_db->prepare('SELECT * FROM Lobbies WHERE Lobby LIKE ?');
-    $lobbyKey = "%" . $lobbyKey . "%";
+    $_lobbyKey = "%" . $_lobbyKey . "%";
     $_sql->bindParam(1, $_lobbyKey);
     $_result = $_sql->execute();
     if($_row = $_result->fetchArray()) return $_row['Lobby'];
@@ -98,7 +98,7 @@ function addLobby($_lobbyID, $_lobbyJson){
     $_sql->bindParam(1, $_lobbyID);
     $_sql->bindParam(2, $_lobbyJson);
     $_result = $_sql->execute();
-    return $result;
+    return $_result;
 }
 
 

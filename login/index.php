@@ -8,5 +8,4 @@
     include 'login.php';
 
     echo $valid;
-
 ?>

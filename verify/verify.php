@@ -1,50 +1,43 @@
 <?php
     
-    // processes a $token number including the ObserveToken and a $member wwhich is compared in the members.json file
+    // processes a $token number including the ObserveToken and a $member wwhich is compared in the members db
     // outputs a $jsonOutput string including guild information
 
-    // path to guild list
-    $guildDirectory = '/home/pi/JsonShared/';
-
-    
+    include '/home/pi/Webroot/Orthanc/db.php';
 
     // Authenticate server by token
     if(isset($token) && isset($member)){
-        $authenticatedGuilds = file_get_contents($guildDirectory . "palantiri.json");
-        $palantiri = json_decode($authenticatedGuilds);
-        $members = json_decode(file_get_contents($guildDirectory . 'members.json'));
-        $sender = json_decode($member);
+        // get matching palantir
+        $authentificatedPalantir = getPalantir($token);
 
-        $authentificatedPalantir;
-        foreach($palantiri as $palantir){
-            if($palantir->ObserveToken == $token){
-                $authentificatedPalantir = $palantir;
-            }
-        }
+        // get matching member
+        $member = json_decode($member);
+        $authenticatedMember = getMemberJSON($member->UserLogin)
 
-        $authenticatedMember;
-        foreach($members as $savedMember){
-            if ($savedMember->UserID == $sender->UserID && $savedMember->UserLogin == $sender->UserLogin) $authenticatedMember = $savedMember;
-        }
-
-        if(!isset($authentificatedPalantir) || !isset($authenticatedMember)){
-            $jsonOutput = '{"Valid": false, "AuthGuildName": "", "AuthGuildID": "0", "ObserveToken": "'.$token.'","Member":null}';
+        // any not valid?
+        if($authentificatedPalantir === false || $authenticatedMember === false)){
+            $jsonOutput = '{"Valid": false, "AuthGuildName": "", "AuthGuildID": "0", "ObserveToken": "'.$token.'","Member":'. $member . '}';
             return;
         }
             
-        foreach($members as $savedMember){
-            if ($savedMember == $authenticatedMember) {
-                $unique = true;
-                foreach($savedMember->Guilds as $guild){
-                    if($guild->GuildID == $authentificatedPalantir->GuildID) $unique = false;
-                }
-                if($unique) array_push($savedMember->Guilds, $authentificatedPalantir); 
-                $authenticatedMember = $savedMember;
-            }
+        // parse to object
+        $authenticatedMember = json_decode($authenticatedMember);
+        $authentificatedPalantir = json_decode($authentificatedPalantir);
+
+        // check if guild is new for member
+        $has = false;
+        foreach($authenticatedMember->Guilds as $guild){
+            if($guild->ID == $authentificatedPalantir->ID) $has = true;
         }
-        
-        file_put_contents($guildDirectory . 'members.json', json_encode($members));
-        $jsonOutput = '{"Valid": true, "AuthGuildName": "'.$authentificatedPalantir->GuildName.'", "AuthGuildID": "'.$authentificatedPalantir->GuildID.'", "ObserveToken": '.$token.', "Member":'.json_encode($authenticatedMember).'}';
+
+        if($has === false) {
+            array_push($authenticatedMember->Guilds, $authentificatedPalantir);
+            $newMemberJson = json_encode($authenticatedMember);
+            setMemberJSON($authenticatedMember->UserLogin, $newMemberJson);
+        }
+        else $newMemberJson = json_encode($authenticatedMember);
+
+        $jsonOutput = '{"Valid": true, "AuthGuildName": "'.$authentificatedPalantir->GuildName.'", "AuthGuildID": "'.$authentificatedPalantir->GuildID.'", "ObserveToken": '.$token.', "Member":'.$newMemberJson.'}';
     }
     else $jsonOutput = '{"Valid": false, "AuthGuildName": "", "AuthGuildID": 0, "ObserveToken": "", "Member":null}';
 

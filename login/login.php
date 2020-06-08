@@ -1,26 +1,17 @@
 <?php 
-
-    $membersPath = "/home/pi/JsonShared/members.json";
-
-
+    // login token set?
     if(!isset($login)){
         $valid = '{"Valid":false}';
         return;
     }
 
-    // $validUser;
-    // $cont = file_get_contents($membersPath);
-
-    // $members = json_decode($cont);
-    // foreach($members as $member){
-    //     if($member->UserLogin == $login)  $validUser = $member;
-    // }
-
+    // include db functions
     include '/home/pi/Webroot/Orthanc/db.php';
 
+    // get matching member from db
     $member = getMemberJSON($login);
 
-
+    // evaluate member
     if($member !== false) $valid = '{"Valid":true, "Member":' . $member . "}";
-    else  $valid = '{"Valid":false, "Error": "' . $_db->lastErrorMsg() . '", "Login: "' . $login . '"}';
+    else  $valid = '{"Valid":false, "Login: "' . $login . '"}';
 ?>

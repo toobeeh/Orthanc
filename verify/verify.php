@@ -8,7 +8,7 @@
     // Authenticate server by token
     if(isset($token) && isset($member)){
         // get matching palantir
-        $authentificatedPalantir = getPalantir($token);
+        $authentificatedPalantir = getPalantirJSON($token);
 
         // get matching member
         $member = json_decode($member);

@@ -88,7 +88,7 @@ function updateLobbyJSON($_lobbyID, $_lobbyJson){
     $_sql->bindParam(1, $_lobbyJson);
     $_sql->bindParam(2, $_lobbyID);
     $_result = $_sql->execute();
-    return $result;
+    return $_result;
 }
 
 // add a new lobby

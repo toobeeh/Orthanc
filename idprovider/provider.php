@@ -30,6 +30,7 @@
 
     // if id is not set, search for lobbies with same key
     if(!isset($id)){
+        
         $lobbies = json_decode(file_get_contents( $guildDirectory . "lobbies.json"));
 
         foreach($lobbies as $lobby){

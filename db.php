@@ -113,9 +113,23 @@ function writeReport($_lobbyID, $_reportJson){
     $_result = $_sql->execute();
 
     // remove entries older than 10s
-
+    $db->execute("DELETE FROM Reports WHERE Date < datetime('now', '-10 seconds')");
     return $_result;
 }
 
+// -------------------------------------
+//              Table: Status
+// -------------------------------------
+
+function writeStatus($_statusJSON){
+    $_db = new SQlite3('/home/pi/Database/palantir.db');
+    $_sql = $_db->prepare("INSERT INTO Status VALUES(?, datetime('now'))");
+    $_sql->bindParam(1, $_statusJSON);
+    $_result = $_sql->execute();
+
+    // remove entries older than 5s
+    $db->execute("DELETE FROM Status WHERE Date < datetime('now', '-5 seconds')");
+    return $_result;
+}
 
 ?>

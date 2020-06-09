@@ -20,13 +20,7 @@
         return;
     }
 
-    if( $status->Status == "searching") $filename = 'statusMember' . $status->PlayerMember->UserID . '.json';
-    if( $status->Status == "waiting") $filename = 'statusMember' . $status->PlayerMember->UserID . 'Lobby' . $status->LobbyID . '.json';
-    if( $status->Status == "playing") $filename = 'statusMember' . $status->PlayerMember->UserID . 'Lobby' . $status->LobbyID . 'Player' . $status->LobbyPlayerID. '.json';
-
-
-    file_put_contents($filename, json_encode($status));
-    rename($filename, $guildDirectory . 'OnlinePlayers/' . $filename);
+    writeStatus($playerstatus);
 
     $jsonOutput = '{"Status":"Valid", "Member":' . json_encode($status->PlayerMember) . ', "Status":' . json_encode($status->Status) .'}'; 
 

@@ -21,6 +21,6 @@
         return;
     }
 
-    writeReport($lobby->ID, $report);
+    writeReport($lobby->ID, $lobby->ObserveToken, $report);
     $result = '{"Status":"Successful report", "ID":'.$lobby->ID.', "GuildID":"'.$lobby->GuildID.'", "Verify": '.$jsonOutput.'}';
 ?>

@@ -8,7 +8,7 @@
     $status = json_decode($playerstatus);
 
     // verify member
-    $member = getMemberJSON($status->PlayerMember->UserID);
+    $member = getMemberJSON($status->PlayerMember->UserLogin);
     if($member === false) {
         $jsonOutput = '{"Status":"No valid member", "Member":' . json_encode($status->PlayerMember) . ', "Status":' . json_encode($status->Status) . '}'; 
         return; 

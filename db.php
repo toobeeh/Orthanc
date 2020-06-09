@@ -13,6 +13,7 @@ function getMemberJSON($_login){
     $_sql->bindParam(1, $_login);
     $_result = $_sql->execute();
     if($_row = $_result->fetchArray()) return $_row['Member'];
+    $db->close();
     else return false;
 }
 
@@ -23,6 +24,7 @@ function setMemberJSON($_login, $_json){
     $_sql->bindParam(1, $_json);
     $_sql->bindParam(2, $_login);
     $_result = $_sql->execute();
+    $db->close();
     return $_result;
 }
 
@@ -38,6 +40,7 @@ function getGuildLobbiesJSON($_guildID){
     $_sql->bindParam(1, $_guildID);
     $_result = $_sql->execute();
     if($_row = $_result->fetchArray()) return $_row['Lobbies'];
+    $db->close();
     else return false;
 }
 
@@ -53,6 +56,7 @@ function getPalantirJSON($_observeToken){
     $_sql->bindParam(1, $_observeToken);
     $_result = $_sql->execute();
     if($_row = $_result->fetchArray()) return $_row['Palantir'];
+    $db->close();
     else return false;
 }
 
@@ -68,6 +72,7 @@ function getLobbyJSONByKey($_lobbyKey){
     $_sql->bindParam(1, $_lobbyKey);
     $_result = $_sql->execute();
     if($_row = $_result->fetchArray()) return $_row['Lobby'];
+    $db->close();
     else return false;
 }
 
@@ -78,6 +83,7 @@ function getLobbyJSONByID($_lobbyID){
     $_sql->bindParam(1, $_lobbyID);
     $_result = $_sql->execute();
     if($_row = $_result->fetchArray()) return $_row['Lobby'];
+    $db->close();
     else return false;
 }
 
@@ -88,6 +94,7 @@ function updateLobbyJSON($_lobbyID, $_lobbyJson){
     $_sql->bindParam(1, $_lobbyJson);
     $_sql->bindParam(2, $_lobbyID);
     $_result = $_sql->execute();
+    $db->close();
     return $_result;
 }
 
@@ -98,6 +105,7 @@ function addLobby($_lobbyID, $_lobbyJson){
     $_sql->bindParam(1, $_lobbyID);
     $_sql->bindParam(2, $_lobbyJson);
     $_result = $_sql->execute();
+    $db->close();
     return $_result;
 }
 
@@ -114,6 +122,7 @@ function writeReport($_lobbyID, $_reportJson){
 
     // remove entries older than 10s
     ($db->prepare("DELETE FROM Reports WHERE Date < datetime('now', '-10 seconds')"))->execute();
+    $db->close();
     return $_result;
 }
 
@@ -129,6 +138,7 @@ function writeStatus($_statusJSON){
 
     // remove entries older than 5s
     ($_db->prepare("DELETE FROM Status WHERE Date < datetime('now', '-5 seconds')"))->execute();
+    $db->close();
     return $_result;
 }
 

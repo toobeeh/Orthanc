@@ -21,8 +21,6 @@
         return;
     }
 
-    include '/home/pi/Webroot/Orthanc/db.php';
-
     writeReport($lobby->LobbyID, $report);
     $result = '{"Status":"Successful report", "ID":'.$lobby->ID.', "GuildID":"'.$lobby->GuildID.'", "Verify": '.$jsonOutput.'}';
 ?>

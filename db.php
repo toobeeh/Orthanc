@@ -113,7 +113,7 @@ function writeReport($_lobbyID, $_reportJson){
     $_result = $_sql->execute();
 
     // remove entries older than 10s
-    $db->exec("DELETE FROM Reports WHERE Date < datetime('now', '-10 seconds')");
+    ($db->prepare("DELETE FROM Reports WHERE Date < datetime('now', '-10 seconds')"))->execute();
     return $_result;
 }
 

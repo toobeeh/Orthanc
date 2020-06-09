@@ -113,7 +113,7 @@ function writeReport($_lobbyID, $_reportJson){
     $_result = $_sql->execute();
 
     // remove entries older than 10s
-    $db->execute("DELETE FROM Reports WHERE Date < datetime('now', '-10 seconds')");
+    $db->exec("DELETE FROM Reports WHERE Date < datetime('now', '-10 seconds')");
     return $_result;
 }
 
@@ -128,7 +128,7 @@ function writeStatus($_statusJSON){
     $_result = $_sql->execute();
 
     // remove entries older than 5s
-    $_db->execute("DELETE FROM Status WHERE Date < datetime('now', '-5 seconds')");
+    $_db->exec("DELETE FROM Status WHERE Date < datetime('now', '-5 seconds')");
     return $_result;
 }
 

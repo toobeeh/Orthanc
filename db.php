@@ -12,9 +12,10 @@ function getMemberJSON($_login){
     $_sql = $_db->prepare('SELECT * FROM Members WHERE Login = ?');
     $_sql->bindParam(1, $_login);
     $_result = $_sql->execute();
+    if($_row = $_result->fetchArray()) $_return = $_row['Member'];
+    else $_return = false;
     $_db->close();
-    if($_row = $_result->fetchArray()) return $_row['Member'];
-    else return false;
+    return $_return;
 }
 
 // Set member Json (for example to add new guild)
@@ -39,9 +40,10 @@ function getGuildLobbiesJSON($_guildID){
     $_sql = $_db->prepare('SELECT * FROM GuildLobbies WHERE GuildID = ?');
     $_sql->bindParam(1, $_guildID);
     $_result = $_sql->execute();
+    if($_row = $_result->fetchArray()) $_return = $_row['Lobbies'];
+    else $_return = false;
     $_db->close();
-    if($_row = $_result->fetchArray()) return $_row['Lobbies'];
-    else return false;
+    return $_return;
 }
 
 // -------------------------------------
@@ -55,9 +57,10 @@ function getPalantirJSON($_observeToken){
     $_sql = $_db->prepare('SELECT * FROM Palantiri WHERE Token = ?');
     $_sql->bindParam(1, $_observeToken);
     $_result = $_sql->execute();
+    if($_row = $_result->fetchArray()) $_return = $_row['Palantir'];
+    else $_return = false;
     $_db->close();
-    if($_row = $_result->fetchArray()) return $_row['Palantir'];
-    else return false;
+    return $_return;
 }
 
 // -------------------------------------
@@ -71,9 +74,10 @@ function getLobbyJSONByKey($_lobbyKey){
     $_lobbyKey = "%" . $_lobbyKey . "%";
     $_sql->bindParam(1, $_lobbyKey);
     $_result = $_sql->execute();
+    if($_row = $_result->fetchArray()) $_return = $_row['Lobby'];
+    else $_return = false;
     $_db->close();
-    if($_row = $_result->fetchArray()) return $_row['Lobby'];
-    else return false;
+    return $_return;
 }
 
 // Find a lobby by a lobby id
@@ -82,9 +86,10 @@ function getLobbyJSONByID($_lobbyID){
     $_sql = $_db->prepare('SELECT * FROM Lobbies WHERE LobbyID = ?');
     $_sql->bindParam(1, $_lobbyID);
     $_result = $_sql->execute();
+    if($_row = $_result->fetchArray()) $_return = $_row['Lobby'];
+    else $_return = false;
     $_db->close();
-    if($_row = $_result->fetchArray()) return $_row['Lobby'];
-    else return false;
+    return $_return;
 }
 
 // update the lobby data for a lobby id

@@ -14,4 +14,5 @@ $guildLobbies = getGuildLobbiesJSON($verify->AuthGuildID);
 if($guildLobbies === false) $guildLobbies = "[]";
 
 $lobbies = '{"Status": "Successful status request", "Lobbies":'.$guildLobbies.', "Verify":'.$jsonOutput.'}';
+
 ?>

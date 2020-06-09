@@ -101,5 +101,18 @@ function addLobby($_lobbyID, $_lobbyJson){
     return $_result;
 }
 
+// -------------------------------------
+//              Table: Reports
+// -------------------------------------
+
+function writeReport($_lobbyID, $_reportJson){
+    $_db = new SQlite3('/home/pi/Database/palantir.db');
+    $_sql = $_db->prepare('REPLACE INTO Reports VALUES(?, ?)');
+    $_sql->bindParam(1, $_lobbyID);
+    $_sql->bindParam(2, $_reportJson);
+    $_result = $_sql->execute();
+    return $_result;
+}
+
 
 ?>

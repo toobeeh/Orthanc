@@ -6,7 +6,7 @@
 //              Table: Members
 // -------------------------------------
 
-// Check if members have row with login
+// Check if members has row with login
 function getMemberJSON($_login){
     $_db = new SQlite3('/home/pi/Database/palantir.db');
     $_sql = $_db->prepare('SELECT * FROM Members WHERE Login = ?');
@@ -107,12 +107,13 @@ function addLobby($_lobbyID, $_lobbyJson){
 
 function writeReport($_lobbyID, $_reportJson){
     $_db = new SQlite3('/home/pi/Database/palantir.db');
-    $_sql = $_db->prepare('REPLACE INTO Reports VALUES(?, ?, ?)');
-    $_date = date('Y-m-d H:i:s');
+    $_sql = $_db->prepare("REPLACE INTO Reports VALUES(?, ?, datetime('now'))");
     $_sql->bindParam(1, $_lobbyID);
     $_sql->bindParam(2, $_reportJson);
-    $_sql->bindParam(3, $_date);
     $_result = $_sql->execute();
+
+    // remove entries older than 10s
+
     return $_result;
 }
 

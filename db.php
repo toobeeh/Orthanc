@@ -122,7 +122,7 @@ function writeReport($_lobbyID, $_observeToken, $_reportJson){
     $_db = new SQlite3('/home/pi/Database/palantir.db');
     $_sql = $_db->prepare("REPLACE INTO Reports VALUES(?, ?, ?, datetime('now'))");
     $_sql->bindParam(1, $_lobbyID);
-    $_sql->bindParam(1, $_observeToken);
+    $_sql->bindParam(2, $_observeToken);
     $_sql->bindParam(3, $_reportJson);
     $_result = $_sql->execute();
 

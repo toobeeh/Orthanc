@@ -20,8 +20,8 @@
         return;
     }
 
-    writeStatus($playerstatus);
+    $res = writeStatus($playerstatus);
 
-    $jsonOutput = '{"Status":"Valid", "Member":' . json_encode($status->PlayerMember) . ', "Status":' . json_encode($status->Status) .'}'; 
+    $jsonOutput = '{"Status":"Valid", "Member":' . json_encode($status->PlayerMember) . ', "Status":' .$res .'}'; //json_encode($status->Status) .'}'; 
 
 ?>

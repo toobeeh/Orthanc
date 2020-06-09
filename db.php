@@ -12,8 +12,8 @@ function getMemberJSON($_login){
     $_sql = $_db->prepare('SELECT * FROM Members WHERE Login = ?');
     $_sql->bindParam(1, $_login);
     $_result = $_sql->execute();
-    if($_row = $_result->fetchArray()) return $_row['Member'];
     $db->close();
+    if($_row = $_result->fetchArray()) return $_row['Member'];
     else return false;
 }
 
@@ -39,8 +39,8 @@ function getGuildLobbiesJSON($_guildID){
     $_sql = $_db->prepare('SELECT * FROM GuildLobbies WHERE GuildID = ?');
     $_sql->bindParam(1, $_guildID);
     $_result = $_sql->execute();
-    if($_row = $_result->fetchArray()) return $_row['Lobbies'];
     $db->close();
+    if($_row = $_result->fetchArray()) return $_row['Lobbies'];
     else return false;
 }
 
@@ -55,8 +55,8 @@ function getPalantirJSON($_observeToken){
     $_sql = $_db->prepare('SELECT * FROM Palantiri WHERE Token = ?');
     $_sql->bindParam(1, $_observeToken);
     $_result = $_sql->execute();
-    if($_row = $_result->fetchArray()) return $_row['Palantir'];
     $db->close();
+    if($_row = $_result->fetchArray()) return $_row['Palantir'];
     else return false;
 }
 
@@ -71,8 +71,8 @@ function getLobbyJSONByKey($_lobbyKey){
     $_lobbyKey = "%" . $_lobbyKey . "%";
     $_sql->bindParam(1, $_lobbyKey);
     $_result = $_sql->execute();
-    if($_row = $_result->fetchArray()) return $_row['Lobby'];
     $db->close();
+    if($_row = $_result->fetchArray()) return $_row['Lobby'];
     else return false;
 }
 
@@ -82,8 +82,8 @@ function getLobbyJSONByID($_lobbyID){
     $_sql = $_db->prepare('SELECT * FROM Lobbies WHERE LobbyID = ?');
     $_sql->bindParam(1, $_lobbyID);
     $_result = $_sql->execute();
-    if($_row = $_result->fetchArray()) return $_row['Lobby'];
     $db->close();
+    if($_row = $_result->fetchArray()) return $_row['Lobby'];
     else return false;
 }
 

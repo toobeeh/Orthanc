@@ -126,8 +126,8 @@ function writeReport($_lobbyID, $_observeToken, $_reportJson){
     $_sql->bindParam(3, $_reportJson);
     $_result = $_sql->execute();
 
-    // remove entries older than 10s
-    //($_db->prepare("DELETE FROM Reports WHERE Date < datetime('now', '-10 seconds')"))->execute();
+    // remove entries older than 20s to avoid big data
+    ($_db->prepare("DELETE FROM Reports WHERE Date < datetime('now', '-30 seconds')"))->execute();
     $_db->close();
     return $_result;
 }
@@ -142,8 +142,8 @@ function writeStatus($_statusJSON){
     $_sql->bindParam(1, $_statusJSON);
     $_result = $_sql->execute();
 
-    // remove entries older than 5s
-    //($_db->prepare("DELETE FROM Status WHERE Date < datetime('now', '-5 seconds')"))->execute();
+    // remove entries older than 20s to avoid big data
+    ($_db->prepare("DELETE FROM Status WHERE Date < datetime('now', '-30 seconds')"))->execute();
     $_db->close();
     return $_result;
 }

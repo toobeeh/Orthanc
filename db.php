@@ -128,7 +128,7 @@ function writeStatus($_statusJSON){
     $_result = $_sql->execute();
 
     // remove entries older than 5s
-    $db->execute("DELETE FROM Status WHERE Date < datetime('now', '-5 seconds')");
+    $_db->execute("DELETE FROM Status WHERE Date < datetime('now', '-5 seconds')");
     return $_result;
 }
 

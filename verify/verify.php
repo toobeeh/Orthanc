@@ -36,7 +36,7 @@
         }
         else $newMemberJson = json_encode($authenticatedMember);
 
-        $jsonOutput = '{"Valid": true, "AuthGuildName": "'.$authentificatedPalantir->GuildName.'", "AuthGuildID": "'.$authentificatedPalantir->GuildID.'", "ObserveToken": '.$token.', "Member":'.$newMemberJson.'}';
+        $jsonOutput = '{"Valid": true, "AuthGuildName": "'.$authentificatedPalantir->GuildName.'", "AuthGuildID": "'.$authentificatedPalantir->GuildID.'", "ObserveToken": "'.$token.'", "Member":'.$newMemberJson.'}';
     }
     else $jsonOutput = '{"Valid": false, "AuthGuildName": "", "AuthGuildID": 0, "ObserveToken": "", "Member":null}';
 

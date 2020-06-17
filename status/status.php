@@ -5,7 +5,6 @@
 include '/home/pi/Webroot/Orthanc/verify/verify.php';
 
 $verify = json_decode($jsonOutput);
-print_r($jsonOutput);
 if(!$verify->Valid) {
     $lobbies = '{"Status":"Unauthorized status request", "Verify": '.$jsonOutput.'}';
     return;

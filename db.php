@@ -163,13 +163,14 @@ function writeReport($_lobbyID, $_observeToken, $_reportJson){
 //              Table: Status
 // -------------------------------------
 
-function writeStatus($_statusJSON){
+function writeStatus( $_sessionID, $_statusJSON){
     $_db = new SQlite3('/home/pi/Database/palantir.db');
     $_db->busyTimeout(1000);
     $_db->exec('PRAGMA journal_mode = wal;');
 
-    $_sql = $_db->prepare("REPLACE INTO Status VALUES(?, datetime('now'))");
-    $_sql->bindParam(1, $_statusJSON);
+    $_sql = $_db->prepare("REPLACE INTO Status VALUES(?, ?, datetime('now'))");
+    $_sql->bindParam(1, $_sessionID);
+    $_sql->bindParam(2, $_statusJSON);
     $_result = $_sql->execute();
 
     // remove entries older than 20s to avoid big data

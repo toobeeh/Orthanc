@@ -4,6 +4,7 @@
     error_reporting(E_ALL);
 
     if(isset($_POST['playerStatus'])) $playerstatus = $_POST['playerStatus'];
+    if(isset($_POST['session'])) $session = $_POST['session'];
 
     include 'memberstate.php';
 

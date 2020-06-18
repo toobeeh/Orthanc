@@ -5,6 +5,7 @@
     include '/home/pi/Webroot/Orthanc/db.php';
 
     if(!isset($playerstatus)) return;
+    if(!isset($session)) return;
     $status = json_decode($playerstatus);
 
     // verify member

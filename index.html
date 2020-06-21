@@ -32,7 +32,11 @@
     </style>
 </head>
 <body>
-    <h1>Skribbltypo Manual</h1>
+    <h1>
+        <button type="button" class="skribbl" id="github">GitHub</button>
+        <button type="button" class="skribbl active" id="">Skribbltypo Manual</button>
+        <button type="button" class="skribbl" id="bot">Discord Bot Manual</button>
+    </h1>
     <br>
     <div class=prevContainer>
         <div class="dummy">
@@ -246,6 +250,12 @@
                 info.innerHTML = "Random Interval <br><br>"
                 info.innerHTML += "Sets the interval of random color switches.<br>";
                 info.innerHTML += "Minimum is 10ms, maximum 500ms.<br>";
+            }
+            if(this.id == 'github'){
+                window.location.href = 'https://github.com/toobeeh/skribbltypo';
+            }
+            if(this.id == 'bot'){
+                window.location.href = 'bot';
             }
         }
 

@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <style id="sliderThumbColorStyle"></style>
     <link rel="stylesheet" type="text/css" href="popup.css">
+    <title>Skribbl typo</title>
     <style>
         body{
             min-height: 100%;
@@ -19,7 +20,7 @@
 
         .prevContainer > div{
             width:250px;
-            border: 2px solid black;
+            border: 2px solid #7289da;
             border-radius:6px;
         }
         .prevContainer{
@@ -31,7 +32,8 @@
     </style>
 </head>
 <body>
-    <h1>Skribbltypo How-To</h1>
+    <h1>Skribbltypo How-To: Click any button to get informations about it!</h1>
+    <br>
     <div class=prevContainer>
         <div class="dummy">
             <h1>Dashboard</h1>
@@ -131,7 +133,7 @@
                         </div>
                     </div>
         
-                    <div id="server" style="display:none">
+                    <div id="server">
                         <div id="loginName" class="label">Tobeh#7437</div>
                         <div class="label back">Connected Discord Servers</div><br />
         
@@ -162,8 +164,91 @@
                 </div>
         </div>
         <div class="info">
-            Hie steht dann die info
+            Click any button!
         </div>
     </div>
+    <script>
+
+        document.querySelectorAll("button, input[type='range']").forEach((o)=>{
+            o.addEventListener("click", setInfo);
+            o.addEventListener("input", setInfo);
+        });
+
+        function setInfo(e){
+            let info = document.querySelector(".info");
+            if(this.id == 'imageagent'){
+                info.innerHTML = "ImageAgent <br><br>"
+                info.innerHTML += "When it's your turn to draw, you can choose to display a small picture of the term to draw above the chat.";
+                info.innerHTML += "<br>You can choose between topics (logo, flag, or just the term) or enter your own term to search.<br><br>"
+                info.innerHTML += "Click on the image to show the next search result."
+            }
+            if(this.id == 'tablet'){
+                info.innerHTML = "Tablet <br><br>"
+                info.innerHTML += "Tablet support! Enable pressure sensitivity of your graphics tablet.<br>";
+            }
+            if(this.id == 'markup'){
+                info.innerHTML = "Markup <br><br>"
+                info.innerHTML += "Changes the background color of your chat messages so it's easier for you to keep view.<br>";
+            }
+            if(this.id == 'holy'){
+                info.innerHTML = "Holy <br><br>"
+                info.innerHTML += "Nothing except a small ego boost :D.<br>";
+            }
+            if(this.id == 'backbutton'){
+                info.innerHTML = "BackButton <br><br>"
+                info.innerHTML += "Shows a beta-backbutton.<br>This is kinda hacky and just redraws the whole image.";
+                info.innerHTML += "<br>Sadly also still buggy.";
+            }
+            if(this.id == 'charbar'){
+                info.innerHTML = "CharBar <br><br>"
+                info.innerHTML += "Displays a small field under the chat input. The color indicates if the typed text matches the word length/hints.";
+            }
+            if(this.id == 'randomToggle'){
+                info.innerHTML = "Random Color <br><br>"
+                info.innerHTML += "Switches the brush color automatically (VERY fast). Doesn't set white.<br>";
+                info.innerHTML += "<br>Click the dice in the color field to activate and click any color to deactivate.";
+            }
+            if(this.id == 'palantirToggle'){
+                info.innerHTML = "Discord Lobbies <br><br>"
+                info.innerHTML += "If activated, your lobby will show up in the bot message of any of your added discord servers.<br>";
+                info.innerHTML += "If you want to stay inconito, turn this off - especially in private lobbies.";
+            }
+            if(this.id == 'help'){
+                info.innerHTML = "Hold on! <br><br>"
+                info.innerHTML += "Pls gift me discord nitro <3";
+            }
+            if(this.id == 'loginSubmit'){
+                info.innerHTML = "Login <br><br>"
+                info.innerHTML += "Connect to the discord bot to show and send active lobbies.<br>";
+                info.innerHTML += "Message the Palantir bot '>login' and enter the login number here.<br>";
+            }
+            if(this.id == 'loginSubmit'){
+                info.innerHTML = "Login <br><br>"
+                info.innerHTML += "Connect to the discord bot to show and send active lobbies.<br>";
+                info.innerHTML += "Message the Palantir bot '>login' and enter the login number here.<br>";
+            }
+            if(this.id == 'verifyToken'){
+                info.innerHTML = "verify <br><br>"
+                info.innerHTML += "Add a discord server which you would like to send and see active lobbies.<br>";
+                info.innerHTML += "Copy the server token from the bot message or ask your server admin about it.<br>";
+            }
+            if(this.parentElement.id == 'sensSlider'){
+                info.innerHTML = "Sensitivity <br><br>"
+                info.innerHTML += "Set the pressure sensitivity of the tablet.<br>";
+                info.innerHTML += "Very low will probably fit best; check out your graphics tablet driver for deeper control.<br>";
+            }
+            if(this.parentElement.id == 'markupSlider'){
+                info.innerHTML = "Markup Color <br><br>"
+                info.innerHTML += "Set color of the markup for your chat messages.<br>";
+                info.innerHTML += "The slider thumb indicates the selected color.<br>";
+            }
+            if(this.parentElement.id == 'randomSlider'){
+                info.innerHTML = "Random Interval <br><br>"
+                info.innerHTML += "Sets the interval of random color switches.<br>";
+                info.innerHTML += "Minimum is 10ms, maximum 500ms.<br>";
+            }
+        }
+
+    </script>
 </body>
 </html>

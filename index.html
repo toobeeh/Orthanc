@@ -20,14 +20,24 @@
         }
 
         .prevContainer > div{
+            margin:2em;
             width:250px;
             border: 2px solid #7289da;
             border-radius:6px;
         }
         .prevContainer{
             display:flex;
+            flex-wrap:wrap;
             align-items: center;
             justify-content: space-around;
+        }
+        .flexcenter{
+            justify-content: center;
+        }
+
+
+        .img{
+            max-height:20em; width: auto; margin:1em;object-fit:contain;
         }
 
     </style>
@@ -35,11 +45,16 @@
 <body>
     <h1>
         <button type="button" class="skribbl" id="github">GitHub</button>
-        <button type="button" class="skribbl active" id="">Skribbltypo Manual</button>
-        <button type="button" class="skribbl" id="bot">Discord Bot Manual</button>
+        <button type="button" class="skribbl" id="store">Install</button>
+        <button type="button" class="skribbl active" id="">Manual</button>
+        <button type="button" class="skribbl" id="admin">Admin</button>
     </h1>
     <br>
-    <div class=prevContainer>
+    <div class="flexcenter flexrow">
+        <button type="button" class="skribbl active" id="interface">Extension interface</button>
+        <button type="button" class="skribbl" id="bot">Connect the  Discord bot</button>
+    </div>
+    <div class="prevContainer" id="manualInterface">
         <div class="dummy">
             <h1>Dashboard</h1>
                 <hr class="skribbl" />
@@ -172,6 +187,34 @@
             Click any button!
         </div>
     </div>
+    <div class="prevContainer flexcol" style="display:none" id="manualBot">
+        <div class="flexcol" style="width:auto" >
+            <h1>How it works</h1>
+            <div class="flexrow">
+                <div class="flexcol">
+                    <img class="img" src='d1.png' >
+                    <div class="label">Online players on skribbl will show up in discord.</div>
+                </div>
+                <div class="flexcol">
+                    <img class="img" src='d2.png' >
+                    <div class="label">Skribbl is enabled to directly search the lobby.</div>
+                </div>
+            </div>
+        </div>
+        <div class="flexcol" style="width:auto" >
+            <h1>Connect the bot</h1>
+            <div class="flexrow">
+                <div class="flexcol">
+                    <img class="img" src='d4.png' >
+                    <div class="label">Message the bot in DM to get your login.</div>
+                </div>
+                <div class="flexcol">
+                    <img class="img" src='https://media.giphy.com/media/UuviRqel88ryGaL8cg/giphy.gif' >
+                    <div class="label">Enter your login and the server token in the popup.</div>
+                </div>
+            </div>
+        </div>
+    </div>
     <script>
 
         document.querySelectorAll("button, input[type='range']").forEach((o)=>{
@@ -253,10 +296,25 @@
                 info.innerHTML += "Minimum is 10ms, maximum 500ms.<br>";
             }
             if(this.id == 'github'){
-                window.location.href = 'https://github.com/toobeeh/skribbltypo';
+                window.location.href = 'https://github.com/toobeeh/';
+            }
+            if(this.id == 'admin'){
+                window.location.href = 'bot';
+            }
+            if(this.id == 'store'){
+                window.location.href = 'https://chrome.google.com/webstore/detail/skribbl-typo/bpcilmjlpebjklinlbdjhfkkgmmfghfj';
+            }
+            if(this.id == 'interface'){
+                document.querySelector("#bot").classList.toggle("active");
+                document.querySelector("#interface").classList.toggle("active");
+                document.querySelector("#manualInterface").style.display="flex";
+                document.querySelector("#manualBot").style.display="none";
             }
             if(this.id == 'bot'){
-                window.location.href = 'bot';
+                document.querySelector("#bot").classList.toggle("active");
+                document.querySelector("#interface").classList.toggle("active");
+                document.querySelector("#manualInterface").style.display="none";
+                document.querySelector("#manualBot").style.display="flex";
             }
         }
 

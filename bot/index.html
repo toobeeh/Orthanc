@@ -37,7 +37,7 @@
 
 
         .img{
-            max-height:20em; width: auto; margin:1em;object-fit:contain;
+            max-height:18em; width: auto; margin:1em;object-fit:contain;
         }
 
     </style>
@@ -59,54 +59,168 @@
             <h1>Invite & setup the bot</h1>
             <div class="flexrow">
                 <div class="flexcol">
-                    <button type="button" class="skribbl" id="github">Invite here.</button>
-                    <div class="label">Invite Palantir and choose your server. It only takes the write messages permission.</div>
+                    <button type="button" class="skribbl active" id="github">Invite the bot here.</button>
+                    <div class="label">Invite Palantir and choose your server. 
+                        <br>
+                        Make sure to grant the bot a role with read and write permissions in the channels you plan to use it.<br>
+                        The bot will modify a single message repeatedly, so make sure to have  a channel where the message stays on top.<br><br>
+                        Finally, initialize the bot with the command '>observe #channel'.<br>
+                        If the prefix > is already used, you can call commands also by mentioning the bot, like '@Palantir observe #channel'.
+                    </div>
                 </div>
                 <div class="flexcol">
                     <img src='d3.png' style='height:auto;width:100%'>
-                    <div class="label">Set a channel where members can't write.</div>
+                    <br>
                 </div>
             </div>
         </div>
        
         <div class="flexcol" style="width:auto" >
-            <h1>Connect the bot</h1>
-            <div class="flexrow">
-                <div class="flexcol">
-                    <img class="img" src='d4.png' >
-                    <div class="label">Message the bot in DM to get your login.</div>
+            <h1>Basic troubleshoot</h1>
+            <div class="flexcol">
+                <div class="">
+                    <div class="label back">Which commands are usable?</div>
+                    <div class="label">
+                        Get available commands with '>help'.<br>
+                        Only commands which can be executed by the author are shown.<br>
+                        Every command to change bot settings requires the administrator role permission.
+                    </div>
+                   
                 </div>
-                <div class="flexcol">
-                    <img class="img" src='https://media.giphy.com/media/UuviRqel88ryGaL8cg/giphy.gif' >
-                    <div class="label">Enter your login and the server token in the popup.</div>
+                <br>
+                <div class="">
+                    <div class="label back">What is the server token?</div>
+                    <div class="label">
+                        The server token is a unique key which lets users see and send lobbies to this server.<br>
+                        This ensures that the lobbies are only visible to users in the server.<br>
+                        If the token is changed, users need to enter the new token to be verified again.
+                    </div>
                 </div>
+                <br>
+                <div class="">
+                    <div class="label back">How to change the channel?</div>
+                    <div class="label">
+                        The channel can always be set with the command '>observe #channel'<br>
+                        If existing, the current bot message will be left as it is and a new one will be created.<br>
+                        By default, the server token will change. If you want to keep the token as it is, call the command '>observe #channel keep'.
+                    </div>
+                </div>
+                <br>
+                <div class="">
+                    <div class="label back">The bot does not edit the message.</div>
+                    <div class="label">
+                        Try to set the channel again.<br>
+                        If this does not help, contact me on discord on tobeh#7437.
+                    </div>
+                </div>
+                <br>
+                
             </div>
         </div>
     </div><div class="prevContainer flexcol" style="display:none" id="manualConfig">
         <div class="flexcol" style="width:auto" >
-            <h1>How it works</h1>
-            <div class="flexrow">
-                <div class="flexcol">
-                    <img class="img" src='d1.png' >
-                    <div class="label">Online players on skribbl will show up in discord.</div>
+            <h1>Commands documentation</h1>
+            <div class="flexcol">
+                <div class="">
+                    <div class="label back">>manual</div>
+                    <div class="label">
+                        Usable by anyone plus in DM.<br>
+                        Takes no arguments.<br>
+                        Responds a message with a manual text how to connect the bot with the extension.<br>
+                        Example: >manual
+                    </div>
                 </div>
-                <div class="flexcol">
-                    <img class="img" src='d2.png' >
-                    <div class="label">Skribbl is enabled to directly search the lobby.</div>
+                <br>
+                <div class="">
+                    <div class="label back">>help</div>
+                    <div class="label">
+                        Usable by anyone plus in DM.<br>
+                        Optionally takes a command name as argument for further details.<br>
+                        Responds a message with details about all comands or the specified command.<br>
+                        Example: >help observe
+                    </div>
                 </div>
-            </div>
-        </div>
-        <div class="flexcol" style="width:auto" >
-            <h1>Connect the bot</h1>
-            <div class="flexrow">
-                <div class="flexcol">
-                    <img class="img" src='d4.png' >
-                    <div class="label">Message the bot in DM to get your login.</div>
+                <br>
+                <div class="">
+                    <div class="label back">>observe</div>
+                    <div class="label">
+                        Usable by roles with administrator permission and server-only.<br>
+                        Takes the channel name and the keep option as arguments.<br>
+                        Sets the channel for the bot message and optionally keeps an existing token.<br>
+                        Example: >observe #channel keep
+                    </div>
                 </div>
-                <div class="flexcol">
-                    <img class="img" src='https://media.giphy.com/media/UuviRqel88ryGaL8cg/giphy.gif' >
-                    <div class="label">Enter your login and the server token in the popup.</div>
+                <br>
+                <div class="">
+                    <div class="label back">>header</div>
+                    <div class="label">
+                        Usable by roles with administrator permission and server-only.<br>
+                        Enter the header text after the command name as argument.<br>
+                        Sets the headline of the bot message. You can also use formatting, like code blocks or emojis.<br>
+                        Example: >header ***Nice header***
+                    </div>
                 </div>
+                <br>
+                <div class="">
+                    <div class="label back">>idle</div>
+                    <div class="label">
+                        Usable by roles with administrator permission and server-only.<br>
+                        Enter the idle text after the command name as argument.<br>
+                        Sets the idle status message of the bot message when no lobbies are active. Same formatting applies as for header.<br>
+                        Example: >idle *No lobbies atm*
+                    </div>
+                </div>
+                <br>
+                <div class="">
+                    <div class="label back">>token</div>
+                    <div class="label">
+                        Usable by roles with administrator permission and server-only.<br>
+                        Takes 'on' or 'off' as argument.<br>
+                        Sets wether the server token should be displayed in the bot message.<br>
+                        Example: >token off
+                    </div>
+                </div>
+                <br>
+                <div class="">
+                    <div class="label back">>refreshed</div>
+                    <div class="label">
+                        Usable by roles with administrator permission and server-only.<br>
+                        Takes 'on' or 'off' as argument.<br>
+                        Sets weether it should be shown when the message was last edited. Useful if the bot should lag somehow.<br>
+                        Example: >refreshed on
+                    </div>
+                </div>
+                <br>
+                <div class="">
+                    <div class="label back">>timezone</div>
+                    <div class="label">
+                        Usable by roles with administrator permission and server-only.<br>
+                        Takes an integer as argument.<br>
+                        Sets the timezone for the refreshed status. The argument represents the UTC offset.<br>
+                        Example: >timezone -2
+                    </div>
+                </div>
+                <br>
+                <div class="">
+                    <div class="label back">>animated</div>
+                    <div class="label">
+                        Usable by roles with administrator permission and server-only.<br>
+                        Takes 'on' or 'off' as argument.<br>
+                        Sets wether the random animated emojis should be displayed in lobbies losting. 'on' is recommended ;)<br>
+                        Example: >animated on
+                    </div>
+                </div>
+                <br>
+                <div class="">
+                    <div class="label back">>login</div>
+                    <div class="label">
+                        Usable by anyone ONLY in DM.<br>
+                        No arguments.<br>
+                        Generates a login for a new user or sends a existing login.<br>
+                        Example: >help
+                    </div>
+                </div>
+                <br>
             </div>
         </div>
     </div>

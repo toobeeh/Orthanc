@@ -60,7 +60,7 @@
             <h1>Invite & setup the bot</h1>
             <div class="flexrow">
                 <div class="flexcol">
-                    <button type="button" class="skribbl active" id="github">Invite the bot here.</button>
+                    <button type="button" class="skribbl active" id="invite">Invite the bot here.</button>
                     <div class="label">Invite Palantir and choose your server. 
                         <br>
                         Make sure to grant the bot a role with read and write permissions in the channels you plan to use it.<br>
@@ -208,7 +208,7 @@
                     <div class="label">
                         Usable by roles with administrator permission and server-only.<br>
                         Takes 'on' or 'off' as argument.<br>
-                        Sets whether the random animated emojis should be displayed in lobbies losting. 'on' is recommended ;)<br>
+                        Sets whether the random animated emojis should be displayed in the lobbies listing. 'on' is recommended ;)<br>
                         Example: >animated on
                     </div>
                 </div>
@@ -238,6 +238,9 @@
             
             if(this.id == 'github'){
                 window.location.href = 'https://github.com/toobeeh/';
+            }
+            if(this.id == 'invite'){
+                window.location.href = 'https://discord.com/oauth2/authorize?client_id=715874397025468417&scope=bot&permissions=2048';
             }
             if(this.id == 'manual'){
                 window.location.href = '../';

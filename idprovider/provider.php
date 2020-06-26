@@ -6,7 +6,7 @@
 
     if(!isset($member) || !isset($key)) {
         if(!isset($member) && !isset($key) && isset($id)){
-            $result= '{"Valid":true, "Lobby":"' . getLobbyJSONByID($id) . '"}';
+            $result= '{"Valid":true, "Lobby":' . getLobbyJSONByID($id) . '}';
         }
         else $result = '{"Valid": false, "Key":null, "Member":null}';
         return;

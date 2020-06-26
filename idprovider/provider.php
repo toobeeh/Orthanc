@@ -5,7 +5,10 @@
     include '/home/pi/Webroot/Orthanc/db.php';
 
     if(!isset($member) || !isset($key)) {
-        $result = '{"Valid": false, "Key":null, "Member":null}';
+        if(!isset($member) && !isset($key) && isset($id)){
+            $result= '{"Valid":true, "Lobby":"' . getLobbyJSONByID($id) . '"}';
+        }
+        else $result = '{"Valid": false, "Key":null, "Member":null}';
         return;
     }
 

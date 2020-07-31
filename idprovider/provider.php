@@ -28,6 +28,7 @@
         // If no lobby with that key is found add new lobby
         if($existing === false){
             $id =  str_pad(mt_rand(1,99999999),8,'0',STR_PAD_LEFT);
+            if(!isset($description)) $description = "";
             $lobby = '{"ID":"' . $id . '", "Key":"' . $key . '", "Description": "' . $description . '"}';
             addLobby($id, $lobby);
             $result = '{"Valid": true, "Member":' . json_encode($member) . ', "Lobby":' . $lobby . '}';
@@ -38,9 +39,10 @@
             $result = '{"Valid": true, "Member":' . json_encode($member) . ', "Lobby":' . $existing . '}';
             $lobbyObj = json_decode($existing);
             // if lobby has no description and description is given, set description
-            if($lobbyObj->Description == "" && $description != "") {
+            if($lobbyObj->Description == "" && isset($description)) {
                 $lobbyObj->Description = $description;
-                updateLobbyJSON($lobbyObj->ID, json_encode($description));
+                updateLobbyJSON($lobbyObj->ID, json_encode($lobbyObj));
+                $result = getLobbyJSONByKey($key);
             }
             return;
         }

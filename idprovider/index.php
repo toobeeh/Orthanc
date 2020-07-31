@@ -7,7 +7,6 @@
     if(isset($_POST['lobbyID'])) $id = $_POST['lobbyID'];
     if(isset($_POST['member'])) $member = $_POST['member'];
     if(isset($_POST['description'])) $description = $_POST['description'];
-    else $description = "";
 
     include 'provider.php';
 

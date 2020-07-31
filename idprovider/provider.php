@@ -36,6 +36,12 @@
         // if a lobby with that key is found, return lobby
         else{
             $result = '{"Valid": true, "Member":' . json_encode($member) . ', "Lobby":' . $existing . '}';
+            $lobbyObj = json_decode($existing);
+            // if lobby has no description and description is given, set description
+            if($lobbyObj->Description == "" && $description != "") {
+                $lobbyObj->Description = $description;
+                updateLobbyJSON($lobbyObj->ID, json_encode($description));
+            }
             return;
         }
     }

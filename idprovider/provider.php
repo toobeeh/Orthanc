@@ -50,6 +50,7 @@
     // if the id is known and the key has changed, update the key
     else{
         $desc = getDescriptionByID($id);
+        if($desc == "" && isset($description)) $desc = $description;
         $lobby = '{"ID":"' . $id . '", "Key":"' . $key . '", "Description": "' . $desc . '"}';
         updateLobbyJSON($id, $lobby);
         $result = '{"Valid": true, "Member":' . json_encode($member) . ', "Lobby":' . $lobby . '}';

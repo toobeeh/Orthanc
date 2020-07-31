@@ -6,6 +6,7 @@
     if(isset($_POST['lobbyKey'])) $key = $_POST['lobbyKey'];
     if(isset($_POST['lobbyID'])) $id = $_POST['lobbyID'];
     if(isset($_POST['member'])) $member = $_POST['member'];
+    if(isset($_POST['description'])) $description = $_POST['description'];
 
     include 'provider.php';
 

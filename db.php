@@ -110,6 +110,21 @@ function getLobbyJSONByID($_lobbyID){
     return $_return;
 }
 
+// Find a lobby description a lobby id
+function getDescriptionByID($_lobbyID){
+    $_db = new SQlite3('/home/pi/Database/palantir.db');
+    $_db->busyTimeout(1000);
+    $_db->exec('PRAGMA journal_mode = wal;');
+
+    $_sql = $_db->prepare('SELECT * FROM Lobbies WHERE LobbyID = ?');
+    $_sql->bindParam(1, $_lobbyID);
+    $_result = $_sql->execute();
+    if($_row = $_result->fetchArray()) $_return = isset(json_decode($_row['Lobby'])->Description) ? json_decode($_row['Lobby'])->Description : "";
+    else $_return = '';
+    $_db->close();
+    return $_return;
+}
+
 // update the lobby data for a lobby id
 function updateLobbyJSON($_lobbyID, $_lobbyJson){
     $_db = new SQlite3('/home/pi/Database/palantir.db');

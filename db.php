@@ -188,10 +188,37 @@ function writeStatus( $_sessionID, $_statusJSON){
     $_sql->bindParam(2, $_statusJSON);
     $_result = $_sql->execute();
 
-    // remove entries older than 20s to avoid big data
+    // remove entries older than 30s to avoid big data
     ($_db->prepare("DELETE FROM Status WHERE Date < datetime('now', '-30 seconds')"))->execute();
     $_db->close();
     return $_result;
+}
+
+// -------------------------------------
+//              Table: Sprites
+// -------------------------------------
+
+function getSprites(){
+    // get all online sprites
+    // sprites are written into the db by palantir. the member table stores the sprites
+    $_db = new SQlite3('/home/pi/Database/palantir.db');
+    $_db->busyTimeout(1000);
+    $_db->exec('PRAGMA journal_mode = wal;');
+
+    // remove entries older than 10s to avoid big data
+    ($_db->prepare("DELETE FROM Status WHERE Date < datetime('now', '-10 seconds')"))->execute();
+
+    $_sql = $_db->prepare("SELECT * FROM OnlineSprites");
+    $_result = $_sql->execute();
+    
+    $_return = array();
+    while($_row = $_result->fetchArray()) 
+        array_push($_return, 
+            array("LobbyKey"=>row["lobbyKey"],"LobbyPlayerID"=>row["LobbyPlayerID"],"Sprite"=>row["Sprite"])
+        );
+
+    $_db->close();
+    return json_encode($return);
 }
 
 ?>

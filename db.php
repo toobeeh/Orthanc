@@ -214,11 +214,11 @@ function getSprites(){
     $_return = array();
     while($_row = $_result->fetchArray()) 
         array_push($_return, 
-            array("LobbyKey"=>row["lobbyKey"],"LobbyPlayerID"=>row["LobbyPlayerID"],"Sprite"=>row["Sprite"])
+            array("LobbyKey"=>$_row["lobbyKey"],"LobbyPlayerID"=>$_row["LobbyPlayerID"],"Sprite"=>$_row["Sprite"])
         );
 
     $_db->close();
-    return json_encode($return);
+    return json_encode($_return);
 }
 
 ?>

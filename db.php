@@ -214,7 +214,7 @@ function getSprites(){
     $_return = array();
     while($_row = $_result->fetchArray()) 
         array_push($_return, 
-            array("LobbyKey"=>$_row["lobbyKey"],"LobbyPlayerID"=>$_row["LobbyPlayerID"],"Sprite"=>$_row["Sprite"])
+            array("LobbyKey"=>$_row["LobbyKey"],"LobbyPlayerID"=>$_row["LobbyPlayerID"],"Sprite"=>$_row["Sprite"])
         );
 
     $_db->close();

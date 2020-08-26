@@ -206,7 +206,7 @@ function getSprites(){
     $_db->exec('PRAGMA journal_mode = wal;');
 
     // remove entries older than 10s to avoid big data
-    ($_db->prepare("DELETE FROM Status WHERE Date < datetime('now', '-10 seconds')"))->execute();
+    ($_db->prepare("DELETE FROM OnlineSprites WHERE Date < datetime('now', '-10 seconds')"))->execute();
 
     $_sql = $_db->prepare("SELECT * FROM OnlineSprites");
     $_result = $_sql->execute();

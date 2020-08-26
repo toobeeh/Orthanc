@@ -221,4 +221,22 @@ function getSprites(){
     return json_encode($_return);
 }
 
+function getAvailableSprites(){
+    $_db = new SQlite3('/home/pi/Database/palantir.db');
+    $_db->busyTimeout(1000);
+    $_db->exec('PRAGMA journal_mode = wal;');
+
+    $_sql = $_db->prepare("SELECT * FROM Sprites");
+    $_result = $_sql->execute();
+    
+    $_return = array();
+    while($_row = $_result->fetchArray()) 
+        array_push($_return, 
+            array("ID"=>$_row["ID"],"Name"=>$_row["Name"],"URL"=>$_row["Url"],"Cost"=>$_row["Cost"])
+        );
+
+    $_db->close();
+    return json_encode($_return);
+}
+
 ?>

@@ -1,5 +1,5 @@
 <?php
     // gets all online sprite maps
     include '/home/pi/Webroot/Orthanc/db.php';
-    $result = getSprites();
+    $result = "{'OnlineSprites' : " . getSprites() . ", 'Sprites': " . getAvailableSprites() . "}";
 ?>

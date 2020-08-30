@@ -258,7 +258,7 @@ function getNextDrop(){
     $_return = '{"DropID":null}';
     if($_row = $_result->fetchArray()) $_return =  '{"DropID":"'.$_row["DropID"].'","ValidFrom":"'.$_row["ValidFrom"].'"}';
     $_db->close();
-    return json_encode($_return);
+    return $_return;
 }
 
 function claimDrop($_dropID, $_lobbyKey, $_lobbyPlayerID){

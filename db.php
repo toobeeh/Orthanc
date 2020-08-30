@@ -284,7 +284,7 @@ function claimDrop($_dropID, $_lobbyKey, $_lobbyPlayerID){
         else $_return = '{"Caught":false}';
     }
     $_db->close();
-    return json_encode($_return);
+    return $_return;
 }
 
 ?>

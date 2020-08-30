@@ -4,5 +4,5 @@
     if(getMemberJSON($login) != false){
         $result = getNextDrop();
     }
-    else $result = '{"Valid":false, "Login: "' . $login . '"}';
+    else $result = '{"Valid":false, "Login": ' . $login . '"}';
 ?>

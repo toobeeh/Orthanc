@@ -3,5 +3,5 @@
     if(getMemberJSON($login) != false && isset($dropID) && isset($lobbyKey) && isset($lobbyPlayerID)){
         $result = claimDrop($dropID,$lobbyKey,$lobbyPlayerID);
     }
-    else $result = '{"Valid":false, "Login: "' . $login . '"}';
+    else $result = '{"Valid":false, "Login": ' . $login . '"}';
 ?>

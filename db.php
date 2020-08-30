@@ -274,14 +274,14 @@ function claimDrop($_dropID, $_lobbyKey, $_lobbyPlayerID){
     $_result = $_sql->execute();
     
     $_return = "";
-    if($_db->changes() >0) $_return = true;
+    if($_db->changes() >0) $_return = '{"Caught":true}';
     else{
         $_sql = $_db->prepare("SELECT * FROM 'Drop' WHERE DropID = ?");
         $_sql->bindParam(1, $_dropID);
         $_result = $_sql->execute();
         if($_row = $_result->fetchArray()) 
-            $_return ='{"DropID":"'.$_row["DropID"].'","CaughtLobbyPlayerID":"'.$_row["CaughtLobbyPlayerID"].'","CaughtLobbyKey":"'.$_row["CaughtLobbyKey"].'"}';
-        else $_return = '{"Valid":false}';
+            $_return ='{"Caught":false,"DropID":"'.$_row["DropID"].'","CaughtLobbyPlayerID":"'.$_row["CaughtLobbyPlayerID"].'","CaughtLobbyKey":"'.$_row["CaughtLobbyKey"].'"}';
+        else $_return = '{"Caught":false}';
     }
     $_db->close();
     return json_encode($_return);

@@ -274,7 +274,7 @@ function claimDrop($_dropID, $_lobbyKey, $_lobbyPlayerID){
     $_result = $_sql->execute();
     
     $_return = "";
-    if( $_result->numRows()>0) $_return = true;
+    if($db->changes() >0) $_return = true;
     else{
         $_sql = $_db->prepare("SELECT * FROM 'Drop' WHERE DropID = ?");
         $_sql->bindParam(1, $_dropID);

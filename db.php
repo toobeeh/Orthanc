@@ -267,7 +267,7 @@ function claimDrop($_dropID, $_lobbyKey, $_lobbyPlayerID){
     $_db->busyTimeout(1000);
     $_db->exec('PRAGMA journal_mode = wal;');
 
-    $_sql = $_db->prepare("UPDATE 'Drop' SET CaughtLobbyKey = ?, CaughtLobbyPlayerID = ? WHERE DropID = ? AND ValidFrom < datetime('now')");
+    $_sql = $_db->prepare("UPDATE 'Drop' SET CaughtLobbyKey = ?, CaughtLobbyPlayerID = ? WHERE DropID = ? AND ValidFrom < datetime('now') AND CaughtLobbyKey = '' AND CaughtLobbyPlayerID = ''");
     $_sql->bindParam(1, $_lobbyKey);
     $_sql->bindParam(2, $_lobbyPlayerID);
     $_sql->bindParam(3, $_dropID);

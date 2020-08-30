@@ -4,5 +4,5 @@
     if(json_decode($valid)->Valid == true){
         $result = getNextDrop();
     }
-    else $resut = '{"Valid":false, "Login: "' . $login . '"}';
+    else $result = '{"Valid":false, "Login: "' . $login . '"}';
 ?>

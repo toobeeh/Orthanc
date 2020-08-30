@@ -261,4 +261,30 @@ function getNextDrop(){
     return json_encode($_return);
 }
 
+function claimDrop($_dropID, $_lobbyKey, $_lobbyPlayerID){
+    // get a available drop
+    $_db = new SQlite3('/home/pi/Database/palantir.db');
+    $_db->busyTimeout(1000);
+    $_db->exec('PRAGMA journal_mode = wal;');
+
+    $_sql = $_db->prepare("UPDATE 'Drop' SET LobbyKey = ?, LobbyPlayerID = ? WHERE DropID = ? AND ValidFrom < datetime('now')");
+    $_sql->bindParam(1, $_lobbyKey);
+    $_sql->bindParam(2, $_lobbyPlayerID);
+    $_sql->bindParam(3, $_dropID);
+    $_result = $_sql->execute();
+    
+    $_return = "";
+    if( $_result->numRows()>0) $_return = true;
+    else{
+        $_sql = $_db->prepare("SELECT * FROM 'Drop' WHERE DropID = ?");
+        $_sql->bindParam(1, $_dropID);
+        $_result = $_sql->execute();
+        if($_row = $_result->fetchArray()) 
+            $_return ='{"DropID":"'.$_row["DropID"].'","LobbyPlayerID":"'.$_row["LobbyPlayerID"].'","LobbyKey":"'.$_row["LobbyKey"].'"}';
+        else $_return = '{"Valid":false}';
+    }
+    $_db->close();
+    return json_encode($_return);
+}
+
 ?>

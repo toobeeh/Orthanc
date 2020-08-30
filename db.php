@@ -255,7 +255,7 @@ function getNextDrop(){
     $_sql = $_db->prepare("SELECT * FROM 'Drop' WHERE CaughtLobbyKey = ''");
     $_result = $_sql->execute();
     
-    $_return = '{"DropID":}';
+    $_return = '{"DropID":null}';
     if($_row = $_result->fetchArray()) $_return =  '{"DropID":"'.$_row["DropID"].'","ValidFrom":"'.$_row["ValidFrom"].'"}';
     $_db->close();
     return json_encode($_return);

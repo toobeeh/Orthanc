@@ -6,9 +6,7 @@
     if(isset($_POST['login'])) $login = $_POST['login'];
 
     $result = "";
-    $valid = "";
 
-    include '/login/login.php';
     include 'drop.php';
 
     echo $result; 

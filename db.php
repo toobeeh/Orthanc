@@ -250,12 +250,12 @@ function getNextDrop(){
     $_db->exec('PRAGMA journal_mode = wal;');
 
     // remove entries older than 1h to avoid big data
-    ($_db->prepare("DELETE FROM 'Drop' WHERE Date < datetime('now', '-3600 seconds')"))->execute();
+    ($_db->prepare("DELETE FROM 'Drop' WHERE ValidFrom < datetime('now', '-3600 seconds')"))->execute();
 
     $_sql = $_db->prepare("SELECT * FROM 'Drop' WHERE CaughtLobbyKey = ''");
     $_result = $_sql->execute();
     
-    $_return = "";
+    $_return = '{"DropID":null}';
     if($_row = $_result->fetchArray()) $_return =  '{"DropID":"'.$_row["DropID"].'","ValidFrom":"'.$_row["ValidFrom"].'"}';
     $_db->close();
     return json_encode($_return);

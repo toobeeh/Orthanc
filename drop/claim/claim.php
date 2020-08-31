@@ -5,7 +5,7 @@
     error_reporting(E_ALL); 
     include '/home/pi/Webroot/Orthanc/db.php';
     if(getMemberJSON($login) != false && isset($dropID) && isset($lobbyKey) && isset($lobbyPlayerID)){
-        $result = claimDrop($dropID,$lobbyKey,$lobbyPlayerID);
+        $result = claimDrop($dropID,$lobbyKey,$lobbyPlayerID, $login);
     }
     else $result = '{"Valid":false, "Login": ' . $login . '"}';
 ?>

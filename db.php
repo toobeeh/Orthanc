@@ -261,7 +261,7 @@ function getNextDrop(){
     return $_return;
 }
 
-function claimDrop($_dropID, $_lobbyKey, $_lobbyPlayerID){
+function claimDrop($_dropID, $_lobbyKey, $_lobbyPlayerID, $_login){
     // get a available drop
     $_db = new SQlite3('/home/pi/Database/palantir.db');
     $_db->busyTimeout(1000);
@@ -274,7 +274,12 @@ function claimDrop($_dropID, $_lobbyKey, $_lobbyPlayerID){
     $_result = $_sql->execute();
     
     $_return = "";
-    if($_db->changes() >0) $_return = '{"Caught":true}';
+    if($_db->changes() >0) {
+        $_return = '{"Caught":true}';
+        $_sql = $_db->prepare("UPDATE Members SET Drops = Drops + 1 WHERE Login = ?");
+        $_sql->bindParam(1, $login);
+        $_sql->execute();
+    }
     else{
         $_sql = $_db->prepare("SELECT * FROM 'Drop' WHERE DropID = ?");
         $_sql->bindParam(1, $_dropID);

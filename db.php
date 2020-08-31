@@ -277,7 +277,7 @@ function claimDrop($_dropID, $_lobbyKey, $_lobbyPlayerID, $_login){
     if($_db->changes() >0) {
         $_return = '{"Caught":true}';
         $_sql = $_db->prepare("UPDATE Members SET Drops = Drops + 1 WHERE Login = ?");
-        $_sql->bindParam(1, $login);
+        $_sql->bindParam(1, $_login);
         $_sql->execute();
     }
     else{

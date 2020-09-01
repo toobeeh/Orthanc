@@ -239,6 +239,22 @@ function getAvailableSprites(){
     return json_encode($_return);
 }
 
+function getSpriteByGifName($_gif){
+    $_db = new SQlite3('/home/pi/Database/palantir.db');
+    $_db->busyTimeout(1000);
+    $_db->exec('PRAGMA journal_mode = wal;');
+
+    $_sql = $_db->prepare("SELECT * FROM Sprites WHERE URL LIKE '%?%'");
+    $_sql->bindParam(1, $_gif);
+    $_result = $_sql->execute();
+    
+    if($_row = $_result->fetchArray())
+        $_return = array("ID"=>$_row["ID"],"Name"=>$_row["Name"],"URL"=>$_row["URL"],"Cost"=>$_row["Cost"],"Special"=>$_row["Special"]);
+
+    $_db->close();
+    return $_return;
+}
+
 // -------------------------------------
 //              Table: Sprites
 // -------------------------------------

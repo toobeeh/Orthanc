@@ -10,6 +10,11 @@
                 }
         body{width:100%}
 
+        .sprite{
+            margin:1.5em;
+            border: 2px solid #7289da;
+        }
+
     </style>
 </head>
 <body>
@@ -23,7 +28,10 @@ function endsWith($haystack, $needle) {
 
 $gifs = array_diff(scandir("."), array('..', '.'));
 foreach($gifs as $gif){
-    if($gif != "drop.gif" && endsWith($gif,".gif")) echo "<div><img src='".$gif."'><h2>" . str_replace(".gif","",$gif) . "</h2></div>";
+    if($gif != "drop.gif" && endsWith($gif,".gif")) {
+        $sprite = getSpriteByGifName($gif);
+        echo "<div class='sprite flexcol flexcenter'><img src='".$gif."'><h2>" . $sprite->Name ."(#". $sprite->ID . ") </h2></div>";
+    }
 }
 
 ?>

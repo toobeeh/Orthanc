@@ -15,8 +15,8 @@
 
         .sprite{
             margin:1.5em;
-            padding:1em;
-            border.radius:.5em;
+            padding:2em;
+            border-radius:.5em;
             border: 2px solid #7289da;
         }
 
@@ -42,7 +42,7 @@ $gifs = array_diff(scandir("."), array('..', '.'));
 foreach($gifs as $gif){
     if($gif != "drop.gif" && endsWith($gif,".gif")) {
         $sprite = getSpriteByGifName($gif);
-        echo "<div class='sprite flexcol flexcenter'><img style='width:100%' src='".$gif."'><h2>" . $sprite['Name'] ."<br>#". $sprite['ID'] . "</h2></div>";
+        echo "<div class='sprite flexcol flexcenter'><h2>"."#". $sprite['ID'] ."</h2><img style='width:100%' src='".$gif."'><h2>" . $sprite['Name'] . "</h2></div>";
     }
 }
 

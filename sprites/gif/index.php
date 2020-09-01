@@ -14,6 +14,7 @@
         }
 
         .sprite{
+            text-align:center;
             margin:1.5em;
             padding:2em;
             border-radius:.5em;

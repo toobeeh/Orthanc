@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <title>Sprites</title>
-    <link rel="stylesheet" type="text/css" href="/popup.css">
+    <link rel="stylesheet" type="text/css" href="/Orthanc/popup.css">
 </head>
 <body>
 
@@ -11,9 +11,9 @@
 
 <?php
 
-$gifs = scandir(".");
+$gifs = array_diff(scandir("."), array('..', '.'));
 foreach($gifs as $gif){
-    echo "<div><img src='".$gif."'></div>";
+    if($gif != "drop.gif") echo "<div><img src='".$gif."'></div>";
 }
 
 ?>

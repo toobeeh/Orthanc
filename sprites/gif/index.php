@@ -8,7 +8,7 @@
 <body>
 
     <h1>Listig all available Sprites<h2>
-
+<div class = 'flexrow'>
 <?php
 
 $gifs = array_diff(scandir("."), array('..', '.'));
@@ -17,6 +17,6 @@ foreach($gifs as $gif){
 }
 
 ?>
-
+</div>
 </body>
 </html>

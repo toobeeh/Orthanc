@@ -27,6 +27,7 @@
 ini_set('display_errors', 1); 
 ini_set('display_startup_errors', 1); 
 error_reporting(E_ALL);
+include '/home/pi/Webroot/Orthanc/db.php';
 
 function endsWith($haystack, $needle) {
     return substr_compare($haystack, $needle, -strlen($needle)) === 0;

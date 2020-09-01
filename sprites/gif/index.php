@@ -7,11 +7,16 @@
     <style>
         .flexcenter{
                     justify-content: center;
+                    flex-wrap:wrap;
                 }
-        body{width:100%}
+        body{width:100%;
+            padding:2em;
+        }
 
         .sprite{
             margin:1.5em;
+            padding:1em;
+            border.radius:.5em;
             border: 2px solid #7289da;
         }
 
@@ -37,7 +42,7 @@ $gifs = array_diff(scandir("."), array('..', '.'));
 foreach($gifs as $gif){
     if($gif != "drop.gif" && endsWith($gif,".gif")) {
         $sprite = getSpriteByGifName($gif);
-        echo "<div class='sprite flexcol flexcenter'><img src='".$gif."'><h2>" . $sprite['Name'] ."(#". $sprite['ID'] . ") </h2></div>";
+        echo "<div class='sprite flexcol flexcenter'><img src='".$gif."'><h2>" . $sprite['Name'] ."<br>#". $sprite['ID'] . "</h2></div>";
     }
 }
 

@@ -43,7 +43,10 @@ $gifs = array_diff(scandir("."), array('..', '.'));
 foreach($gifs as $gif){
     if($gif != "drop.gif" && endsWith($gif,".gif")) {
         $sprite = getSpriteByGifName($gif);
-        echo "<div class='sprite flexcol flexcenter'><h2>"."#". $sprite['ID'] ."</h2><img style='width:100%' src='".$gif."'><h2>" . $sprite['Name'] . "</h2></div>";
+        echo "<div class='sprite flexcol flexcenter' style='order:" . $sprite['Cost'] ."><h2>"."#". $sprite['ID'] 
+            ."</h2><img style='width:100%' src='".$gif."'><h2>" 
+            . $sprite['Name'] . "</h2><h3>Costs: "
+            . $sprite['Cost'] . " Bubbles</h2>" . "</div>";
     }
 }
 

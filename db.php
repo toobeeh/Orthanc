@@ -244,7 +244,7 @@ function getSpriteByGifName($_gif){
     $_db->busyTimeout(1000);
     $_db->exec('PRAGMA journal_mode = wal;');
 
-    $_result = $db->query('SELECT * FROM Sprites WHERE URL LIKE "%'.$_gif.'%" ');
+    $_result = $_db->query('SELECT * FROM Sprites WHERE URL LIKE "%'.$_gif.'%" ');
     
     if($_row = $_result->fetchArray())
         $_return = array("ID"=>$_row["ID"],"Name"=>$_row["Name"],"URL"=>$_row["URL"],"Cost"=>$_row["Cost"],"Special"=>$_row["Special"]);

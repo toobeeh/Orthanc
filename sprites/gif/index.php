@@ -9,7 +9,7 @@
                     justify-content: center;
                     flex-wrap:wrap;
                 }
-        body{width:calc(100%-4em);
+        body{width:calc(100% - 4em);
             padding:2em;
         }
 

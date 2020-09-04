@@ -8,6 +8,6 @@
         die("<h2>401: Unauthorized</h2>");
     }
     
-    echo file_get_contents("/home/pi/palantirOutput.log");
+    echo str_replace("\n","<br>",file_get_contents("/home/pi/palantirOutput.log"));
 
 ?>

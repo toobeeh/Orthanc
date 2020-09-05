@@ -24,7 +24,7 @@
         echo "<br><a href='/Orthanc/log/?auth=supersecret'><button>Show palantir log</button></a>";
     }
     else{
-        echo "<h2>Plantir Bot Dashboard</h2><h3> Refreshed at:  " . date("Y-m-d H:i:s") 
+        echo "<h2>Plantir Bot Dashboard & Log</h2><h3> Refreshed at:  " . date("Y-m-d H:i:s") 
             . "</h3><a href='/Orthanc/log/?auth=supersecret&updateptr'><button>Pull & Restart Palantir</button></a><br><a href='/Orthanc/log/?auth=supersecret&updateohc'><button>Pull Orthanc</button></a><br><br>";
         $file = file("/home/pi/palantirOutput.log");
         $file = array_reverse($file);

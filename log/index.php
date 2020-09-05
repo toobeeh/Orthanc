@@ -8,6 +8,11 @@
         die("<h2>401: Unauthorized</h2>");
     }
     
-    echo str_replace("\n","<br>",file_get_contents("/home/pi/palantirOutput.log"));
+    $file = file("/home/pi/palantirOutput.log");
+    $file = array_reverse($file);
+    foreach($file as $f){
+        echo $f."<br />";
+    }
+    echo "<script>setInterval(()=>{if(window.scrollY == 0)location.reload();},2000);</script>";
 
 ?>

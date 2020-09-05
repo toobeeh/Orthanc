@@ -20,10 +20,11 @@
         echo "<script>setInterval(()=>{if(window.scrollY == 0)location.reload();},2000);</script>";
     }
     else{
-        echo "> " . shell_exec("sudo service palantir stop 2>&1") . "<br>";
-        echo "> " . shell_exec("sudo truncate -s0 /home/pi/palantirOutput.log 2>&1") . "<br>";
-        echo "> " . shell_exec("sudo git -C /home/pi/Palantir/ pull 2>&1") . "<br>";
-        echo "> " . shell_exec("sudo service palantir start 2>&1") . "<br>";
+        echo "<h2>Plantir Update Result</h2><h3> Updated at:  " . date("Y-m-d H:i:s");
+        echo "> Stopping service... " . shell_exec("sudo service palantir stop 2>&1") . "<br>";
+        echo "> Emptying log... " . shell_exec("sudo truncate -s0 /home/pi/palantirOutput.log 2>&1") . "<br>";
+        echo "> Pulling from git... " . shell_exec("sudo git -C /home/pi/Palantir/ pull 2>&1") . "<br>";
+        echo "> Starting service..." . shell_exec("sudo service palantir start 2>&1") . "<br>";
         echo "<a href='/Orthanc/log/?auth=supersecret'><button>Show log</button></a>";
     }
     

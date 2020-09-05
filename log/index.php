@@ -18,7 +18,7 @@
         echo "> Starting service..." . shell_exec("sudo service palantir start 2>&1") . "<br>";
         echo "<br><a href='/Orthanc/log/?auth=supersecret'><button>Show palantir log</button></a>";
     }
-    if(isset($_GET['updateohc'])){
+    else if(isset($_GET['updateohc'])){
         echo "<h2>Orthanc Update Result</h2><h3> Updated at:  " . date("Y-m-d H:i:s") . "</h3>";
         echo "> Pulling from git... " . shell_exec("sudo git -C /home/pi/Webroot/Orthanc/ pull 2>&1") . "<br>";
         echo "<br><a href='/Orthanc/log/?auth=supersecret'><button>Show palantir log</button></a>";

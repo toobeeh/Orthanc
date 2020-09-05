@@ -8,7 +8,7 @@
         die("<h2>401: Unauthorized</h2>");
     }
     
-    echo "<h2>Plantir Bot Log</h2><h3> Refreshed:" . date("Y-m-d H:i:s") . "</h3><br>";
+    echo "<h2>Plantir Bot Log</h2><h3> Refreshed at:  " . date("Y-m-d H:i:s") . "</h3><br>";
     $file = file("/home/pi/palantirOutput.log");
     $file = array_reverse($file);
     foreach($file as $f){

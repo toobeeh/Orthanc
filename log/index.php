@@ -11,7 +11,7 @@
     }
     
     if(!isset($_GET['update'])){
-        echo "<h2>Plantir Bot Log</h2><h3> Refreshed at:  " . date("Y-m-d H:i:s") . "</h3><a href='Orthanc/log/?auth=supersecret&update'><button>Pull & Restart PTR</button></a><br>";
+        echo "<h2>Plantir Bot Log</h2><h3> Refreshed at:  " . date("Y-m-d H:i:s") . "</h3><a href='/Orthanc/log/?auth=supersecret&update'><button>Pull & Restart PTR</button></a><br>";
         $file = file("/home/pi/palantirOutput.log");
         $file = array_reverse($file);
         foreach($file as $f){
@@ -20,11 +20,11 @@
         echo "<script>setInterval(()=>{if(window.scrollY == 0)location.reload();},2000);</script>";
     }
     else{
-        echo "> " . shell_exec("sudo service palantir stop") . "<br>";
+        echo "> " . shell_exec("service palantir stop") . "<br>";
         echo "> " . shell_exec(">/home/pi/palantirOutput.log") . "<br>";
-        echo "> " . shell_exec("sudo git -C /home/pi/Palantir/ pull") . "<br>";
-        echo "> " . shell_exec("sudo service palantir start") . "<br>";
-        echo "<a href='Orthanc/log/?auth=supersecret'><button>Show log</button></a>";
+        echo "> " . shell_exec("git -C /home/pi/Palantir/ pull") . "<br>";
+        echo "> " . shell_exec("service palantir start") . "<br>";
+        echo "<a href='/Orthanc/log/?auth=supersecret'><button>Show log</button></a>";
     }
     
 ?>

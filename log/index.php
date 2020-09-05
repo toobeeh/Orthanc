@@ -11,7 +11,7 @@
     }
     
     if(!isset($_GET['update'])){
-        echo "<h2>Plantir Bot Log</h2><h3> Refreshed at:  " . date("Y-m-d H:i:s") . "</h3><button onlick='location.href = \"Orthanc/log/?auth=supersecret?update\"'>Pull & Restart PTR</button><br>";
+        echo "<h2>Plantir Bot Log</h2><h3> Refreshed at:  " . date("Y-m-d H:i:s") . "</h3><a href='Orthanc/log/?auth=supersecret&update'><button>Pull & Restart PTR</button></a><br>";
         $file = file("/home/pi/palantirOutput.log");
         $file = array_reverse($file);
         foreach($file as $f){
@@ -24,7 +24,7 @@
         echo "> " . shell_exec(">/home/pi/palantirOutput.log") . "<br>";
         echo "> " . shell_exec("sudo git -C /home/pi/Palantir/ pull") . "<br>";
         echo "> " . shell_exec("sudo service palantir start") . "<br>";
-        echo "<button onlick='location.href = \"Orthanc/log/?auth=supersecret\"'>Show log</button>";
+        echo "<a href='Orthanc/log/?auth=supersecret'><button>Show log</button></a>";
     }
     
 ?>

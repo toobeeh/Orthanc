@@ -32,9 +32,11 @@ include '/home/pi/Webroot/Orthanc/db.php';
 <body>
 
     <h1>Listing all available Sprites</h1>
+    <div class = 'flexcenter flexrow'>
     <a href= <?php echo isset($_GET["price"]) ? "/Orthanc/sprites/gif/" : "/Orthanc/sprites/gif/?price"; ?> >
     <button>Order by <?php echo isset($_GET["price"]) ? " ID" : " price"; ?> </button>
     </a>
+    </div>
     <div class = 'flexcenter flexrow'>
 <?php
 

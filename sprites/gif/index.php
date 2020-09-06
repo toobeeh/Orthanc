@@ -33,7 +33,7 @@ include '/home/pi/Webroot/Orthanc/db.php';
 
     <h1>Listing all available Sprites</h1>
     <a href= <?php echo isset($_GET["price"]) ? "/Orthanc/sprites/gif/" : "/Orthanc/sprites/gif/?price"; ?> >
-    <h2>Order by <?php echo isset($_GET["price"]) ? " ID" : " price"; ?> </h2>
+    <button>Order by <?php echo isset($_GET["price"]) ? " ID" : " price"; ?> </button>
     </a>
     <div class = 'flexcenter flexrow'>
 <?php

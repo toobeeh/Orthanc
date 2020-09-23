@@ -306,7 +306,7 @@ function claimDrop($_dropID, $_lobbyKey, $_lobbyPlayerID, $_login){
             $_sql->bindParam(2, $eventDropID);
             $result = $_sql->execute();
             if($_db->changes() - $changes <= 0){
-                $_sql = $_db->prepare("INSERT INTO EventCredits VALUES(?, ?, 1");
+                $_sql = $_db->prepare("INSERT INTO EventCredits VALUES(?, ?, 1)");
                 $_sql->bindParam(1, $_login);
                 $_sql->bindParam(2, $eventDropID);
                 $_sql->execute();

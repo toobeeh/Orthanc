@@ -270,7 +270,7 @@ function getNextDrop(){
     $_result = $_sql->execute();
     
     $_return = '{"DropID":null}';
-    if($_row = $_result->fetchArray()) $_return =  '{"DropID":"'.$_row["DropID"].'","ValidFrom":"'.$_row["ValidFrom"].'"}';
+    if($_row = $_result->fetchArray()) $_return =  '{"DropID":"'.$_row["DropID"].'","EventDropID":"'.$_row["EventDropID"].'","ValidFrom":"'.$_row["ValidFrom"].'"}';
     $_db->close();
     return $_return;
 }
@@ -289,10 +289,31 @@ function claimDrop($_dropID, $_lobbyKey, $_lobbyPlayerID, $_login){
     
     $_return = "";
     if($_db->changes() >0) {
+
+        $_sql = $_db->prepare("SELECT * FROM 'DROP' WHERE DropID = ?");
+        $_sql->bindParam(1, $_dropID);
+        $result = $_sql->execute();
+        $eventDropID = ($result->fetchArray())["EventDropID"];
+        if($eventDropID == 0){
+            $_sql = $_db->prepare("UPDATE Members SET Drops = Drops + 1 WHERE Login = ?");
+            $_sql->bindParam(1, $_login);
+            $_sql->execute();
+        }
+        else{
+            $changes = $_db->changes();
+            $_sql = $_db->prepare("UPDATE EventCredits SET Credit = Credit + 1 WHERE Login = ? AND EventDropID = ?");
+            $_sql->bindParam(1, $_login);
+            $_sql->bindParam(2, $eventDropID);
+            $result = $_sql->execute();
+            if($_db->changes() - $changes <= 0){
+                $_sql = $_db->prepare("INSERT INTO EventCredits SET Credit = 1 WHERE Login = ? AND EventDropID = ?");
+                $_sql->bindParam(1, $_login);
+                $_sql->bindParam(2, $eventDropID);
+                $_sql->execute();
+            }
+        }
+
         $_return = '{"Caught":true}';
-        $_sql = $_db->prepare("UPDATE Members SET Drops = Drops + 1 WHERE Login = ?");
-        $_sql->bindParam(1, $_login);
-        $_sql->execute();
     }
     else{
         $_sql = $_db->prepare("SELECT * FROM 'Drop' WHERE DropID = ?");

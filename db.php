@@ -254,7 +254,7 @@ function getSpriteByGifName($_gif){
 }
 
 // -------------------------------------
-//              Table: Sprites
+//              Table: DROP
 // -------------------------------------
 
 function getNextDrop(){
@@ -325,6 +325,29 @@ function claimDrop($_dropID, $_lobbyKey, $_lobbyPlayerID, $_login){
     }
     $_db->close();
     return $_return;
+}
+
+// -------------------------------------
+//              Table: Sprites
+// -------------------------------------
+
+function getEventDrops(){
+    // get all eventdrops
+    $_db = new SQlite3('/home/pi/Database/palantir.db');
+    $_db->busyTimeout(1000);
+    $_db->exec('PRAGMA journal_mode = wal;');
+
+    $_sql = $_db->prepare("SELECT * FROM EventDrops");
+    $_result = $_sql->execute();
+    
+    $_return = array();
+    while($_row = $_result->fetchArray()) 
+        array_push($_return, 
+            array("EventDropID"=>$_row["EventDropID"],"EventID"=>$_row["EventID"],"Name"=>$_row["Name"],"URL"=>$_row["URL"])
+        );
+
+    $_db->close();
+    return json_encode($_return);
 }
 
 ?>

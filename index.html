@@ -300,7 +300,7 @@
                     <ul>
                         <li>Watch the tutorial to connect to the Palantir bot!</li>
                         <li>Enable captions to see the full instructions.</li>
-                        <li>If you are'nt member of a discord server which uses Palantir, feel free to invite the Bot to your server!</li>
+                        <li>If you are'nt member of a discord server which uses Palantir,<br> feel free to invite the Bot to your server!</li>
                         <li>Check out the "Admin" page.</li>
                     </ul>
                 </div>
@@ -413,25 +413,25 @@
                 window.location.href = 'https://chrome.google.com/webstore/detail/skribbl-typo/bpcilmjlpebjklinlbdjhfkkgmmfghfj';
             }
             if(this.id == 'interface'){
-                document.querySelector("#bot").classList.toggle("active");
-                document.querySelector("#interface").classList.toggle("active");
-                document.querySelector("#complete").classList.toggle("active");
+                document.querySelector("#bot").classList.remove("active");
+                document.querySelector("#interface").classList.add("active");
+                document.querySelector("#complete").classList.remove("active");
                 document.querySelector("#manualInterface").style.display="flex";
                 document.querySelector("#manualBot").style.display="none";
                 document.querySelector("#manualComplete").style.display="none";
             }
             if(this.id == 'bot'){
-                document.querySelector("#bot").classList.toggle("active");
-                document.querySelector("#interface").classList.toggle("active");
-                document.querySelector("#complete").classList.toggle("active");
+                document.querySelector("#bot").classList.add("active");
+                document.querySelector("#interface").classList.remove("active");
+                document.querySelector("#complete").classList.remove("active");
                 document.querySelector("#manualInterface").style.display="none";
                 document.querySelector("#manualBot").style.display="flex";
                 document.querySelector("#manualComplete").style.display="none";
             }
             if(this.id == 'complete'){
-                document.querySelector("#bot").classList.toggle("active");
-                document.querySelector("#interface").classList.toggle("active");
-                document.querySelector("#complete").classList.toggle("active");
+                document.querySelector("#bot").classList.remove("active");
+                document.querySelector("#interface").classList.remove("active");
+                document.querySelector("#complete").classList.add("active");
                 document.querySelector("#manualInterface").style.display="none";
                 document.querySelector("#manualBot").style.display="none";
                 document.querySelector("#manualComplete").style.display="flex";

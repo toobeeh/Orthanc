@@ -48,14 +48,6 @@ body {
     display: none;
 }
 
-#mainSettings {
-    overflow: hidden;
-}
-
-#advancedSettings, #palantirSettings {
-    overflow: hidden;
-    display: none;
-}
 
 #play {
     image-rendering: pixelated;

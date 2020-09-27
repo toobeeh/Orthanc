@@ -53,6 +53,7 @@
     <div class="flexcenter flexrow">
         <button type="button" class="skribbl active" id="interface">Extension interface</button>
         <button type="button" class="skribbl" id="bot">Connect the  Discord bot</button>
+        <button type="button" class="skribbl" id="bot">All features</button>
     </div>
     <div class="prevContainer" id="manualInterface">
         <div class="dummy">
@@ -117,9 +118,9 @@
         <div class="dummy">
             <h1>Skribbl Typo</h1>
             <div class="tabSelection flexrow skribbl sketchful">
-                <div class="tabTitle skribbl" id="tabDashboard">Dashboard</div>
+                <div class="tabTitle tabActive skribbl" id="tabDashboard">Dashboard</div>
                 <div class="tabTitle" id="tabDiscord">Discord</div>
-                <div class="tabTitle skribbl  tabActive" id="tabAdvanced">Advanced</div>
+                <div class="tabTitle skribbl  " id="tabAdvanced">Advanced</div>
             </div>
             <div class="tabContent skribbl sketchful">
                 <div id="mainSettings" class="skribbl">
@@ -164,9 +165,9 @@
         <div class="dummy">
             <h1>Skribbl Typo</h1>
             <div class="tabSelection flexrow skribbl sketchful">
-                <div class="tabTitle tabActive skribbl" id="tabDashboard">Dashboard</div>
+                <div class="tabTitle skribbl" id="tabDashboard">Dashboard</div>
                 <div class="tabTitle" id="tabDiscord">Discord</div>
-                <div class="tabTitle skribbl" id="tabAdvanced">Advanced</div>
+                <div class="tabTitle tabActive skribbl" id="tabAdvanced">Advanced</div>
             </div>
             <div class="tabContent skribbl sketchful">
                 <div id="advancedSettings" class="skribbl">
@@ -222,6 +223,55 @@
             Click any button!
         </div>
     </div>
+    <div class="prevContainer flexcol" style="display:none" id="manualComplete">
+        <div class="flexcol" style="width:auto" >
+            <h1>Drawing</h1>
+           <ul>
+               <li>Pressure sensitivity (Windows Ink required)</li>
+               <li>Free Draw Mode (Click the avatar on the skribbl frontpage)</li>
+               <li>Back-Button to undo last step (not 100% stable)</li>
+               <li>Rainbow-Color brush to switch colors automatically (Click the dice in the color field)</li>
+               <li>Color pipette (Shortcut "C")</li>
+               <li>Bigger color palette (only extension users see those)</li>
+               <li>Clear-Shortcut "ESC"</li>
+           </ul>
+        </div>
+        <div class="flexcol" style="width:auto" >
+            <h1>Palantir Discord bot</h1>
+           <ul>
+               <li>Send your lobby to your favourite discord servers</li>
+               <li>See who of your friends is playing and search automatically for them</li>
+               <li>Collect Bubbles and unlock sprites to upgrade your avatar</li>
+               <li>Prove quick ration time and collect drops for extra bubbles</li>
+               <li>Participate events to unlok seasonal sprites</li>
+           </ul>
+        </div>
+        <div class="flexcol" style="width:auto" >
+            <h1>Image</h1>
+           <ul>
+               <li>Download image as PNG</li>
+               <li>Save drawing process animation as GIF</li>
+               <li>Copy other drawings to be automatically re-drawn (ImageTools)</li>
+           </ul>
+        </div>
+        <div class="flexcol" style="width:auto" >
+            <h1>Interface improvements</h1>
+           <ul>
+               <li>CharBar shows if the typed guess fits the hints and the word length</li>
+               <li>Up/Down keys to get the last chat input</li>
+               <li>Show a template picture of a term (ImageAgent)</li>
+               <li>Highlight your messages in the chat</li>
+           </ul>
+        </div>
+        <div class="flexcol" style="width:auto" >
+            <h1>Lobby search</h1>
+           <ul>
+               <li>Search for one or more player names</li>
+               <li>Buttons to exit / skip current lobby</li>
+               <li>Skip empty lobbies</li>
+           </ul>
+        </div>
+    </div>
     <div class="prevContainer flexcol" style="display:none" id="manualBot">
         <div class="flexcol" style="width:auto" >
             <h1>How it works</h1>
@@ -240,14 +290,14 @@
             <h1>Connect the bot</h1>
             <div class="flexrow">
                 <div class="flexcol">
-                    <img class="img" src='d4.png' >
-                    <div class="label">Message the bot in DM to get your login.</div>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/Tt8eb3v6UwE" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
                 <div class="flexcol">
-                    <img class="img" src='https://media.giphy.com/media/UuviRqel88ryGaL8cg/giphy.gif' >
                     <div class="label">
-                        Enter your login and the server token in the popup.<br>
-                        Dont forget to activate the 'Discord Bot Status' button!
+                        Watch the tutorial to connect to the Palantir bot!<br>
+                        Enable captions to see the full instructions.<br>
+                        If you are'nt member of a discord server which uses Palantir, feel free to invite the Bot to your server!<br>
+                        Check out the "Admin" page.
                     </div>
                 </div>
             </div>

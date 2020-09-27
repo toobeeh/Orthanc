@@ -58,8 +58,8 @@
         <div class="dummy">
             <h1>Skribbl Typo</h1>
             <div class="tabSelection flexrow skribbl sketchful">
-                <div class="tabTitle tabActive skribbl" id="tabDashboard">Dashboard</div>
-                <div class="tabTitle" id="tabDiscord">Discord</div>
+                <div class="tabTitle skribbl" id="tabDashboard">Dashboard</div>
+                <div class="tabTitle tabActive " id="tabDiscord">Discord</div>
                 <div class="tabTitle skribbl" id="tabAdvanced">Advanced</div>
             </div>
             <div class="tabContent skribbl sketchful">
@@ -107,7 +107,7 @@
             <div id="footer" class="flexcol">
                 <button type="button" class="active" id="help">How-To</button>
                 <div id="dc" class="flexrow">
-                    <img src="/res/dc.gif" height="20" />
+                    <img src="dc.gif" height="20" />
                     <div id="credits" style="margin-left:1em;">
                         Discord: tobeh#7437
                     </div>
@@ -117,9 +117,9 @@
         <div class="dummy">
             <h1>Skribbl Typo</h1>
             <div class="tabSelection flexrow skribbl sketchful">
-                <div class="tabTitle tabActive skribbl" id="tabDashboard">Dashboard</div>
+                <div class="tabTitle skribbl" id="tabDashboard">Dashboard</div>
                 <div class="tabTitle" id="tabDiscord">Discord</div>
-                <div class="tabTitle skribbl" id="tabAdvanced">Advanced</div>
+                <div class="tabTitle skribbl  tabActive" id="tabAdvanced">Advanced</div>
             </div>
             <div class="tabContent skribbl sketchful">
                 <div id="mainSettings" class="skribbl">
@@ -154,7 +154,7 @@
             <div id="footer" class="flexcol">
                 <button type="button" class="active" id="help">How-To</button>
                 <div id="dc" class="flexrow">
-                    <img src="/res/dc.gif" height="20" />
+                    <img src="dc.gif" height="20" />
                     <div id="credits" style="margin-left:1em;">
                         Discord: tobeh#7437
                     </div>
@@ -211,7 +211,7 @@
             <div id="footer" class="flexcol">
                 <button type="button" class="active" id="help">How-To</button>
                 <div id="dc" class="flexrow">
-                    <img src="/res/dc.gif" height="20" />
+                    <img src="dc.gif" height="20" />
                     <div id="credits" style="margin-left:1em;">
                         Discord: tobeh#7437
                     </div>
@@ -279,6 +279,22 @@
             if(this.id == 'holy'){
                 info.innerHTML = "Holy <br><br>"
                 info.innerHTML += "Nothing except a small ego boost :D.<br>";
+            }
+            if(this.id == 'originalPalette'){
+                info.innerHTML = "Original Palette<br><br>"
+                info.innerHTML += "Choose of color palettes! Default palette is the original skribbl palette. <br>Get more colors by choosing the sketchful palette!<br>";
+            }
+            if(this.id == 'paletteJSON' || this.id == 'enterJSON'){
+                info.innerHTML = "Palette JSON <br><br>"
+                info.innerHTML += "Create a custom color palette!<br>The palette has to be created in JSON format, example given:<br>" 
+                            + '{"rowCount":13, "name":"sketchfulPalette", "colors":[{"color":"rgb(255, 255, 255)","index":100},{"color":"rgb(211, 209, 210)","index":101},{"color":"rgb(247, 15, 15)","index":102},{"color":"rgb(255, 114, 0)","index":103},{"color":"rgb(252, 231, 0)","index":104},{"color":"rgb(2, 203, 0)","index":105}]}<br>'
+                            + "That's an incomplete sketchful palette.<br>"
+                            + "The JSON has to contain following things:<br>"
+                            +"- rowCount: the count of color boxes in a row, important for the formatting<br>"
+                            +"- name: the name of the palette; just don't choose anything too fancy<br>"
+                            +"- colors: the colors. They contain of two things:<br>"
+                            +"- index: rather an id than index, but that's how it is called in skribbl. Important that NONE of your colors have an index of a color of another palette! <br>Skribbl colors have indexes from 0-20, the sketchful palette from 100 to 138. Choose anything else.<br>"
+                            +"- color: your color. Can be in hex, rgb, anything (rgba didn't work).<br>";
             }
             if(this.id == 'backbutton'){
                 info.innerHTML = "BackButton <br><br>"

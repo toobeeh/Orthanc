@@ -300,12 +300,17 @@ function claimDrop($_dropID, $_lobbyKey, $_lobbyPlayerID, $_login){
             $_sql->execute();
         }
         else{
-            $changes = $_db->changes();
-            $_sql = $_db->prepare("UPDATE EventCredits SET Credit = Credit + 1 WHERE Login = ? AND EventDropID = ?");
+            $_sql = $_db->prepare("SELECT * FROM EventCredits WHERE Login = ? AND EventDropID = ?");
             $_sql->bindParam(1, $_login);
             $_sql->bindParam(2, $eventDropID);
             $result = $_sql->execute();
-            if($_db->changes() - $changes <= 0){
+            if($result->fetchArray()){
+                $_sql = $_db->prepare("UPDATE EventCredits SET Credit = Credit + 1 WHERE Login = ? AND EventDropID = ?");
+                $_sql->bindParam(1, $_login);
+                $_sql->bindParam(2, $eventDropID);
+                $result = $_sql->execute();
+            }
+            else{
                 $_sql = $_db->prepare("INSERT INTO EventCredits VALUES(?, ?, 1)");
                 $_sql->bindParam(1, $_login);
                 $_sql->bindParam(2, $eventDropID);

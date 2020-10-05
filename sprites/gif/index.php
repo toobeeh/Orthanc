@@ -10,6 +10,7 @@ include '/home/pi/Webroot/Orthanc/db.php';
     <meta charset="utf-8">
     <title>Sprites</title>
     <link rel="stylesheet" type="text/css" href="/Orthanc/popup.css">
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
     <style>
         .flexcenter{
                     justify-content: center;

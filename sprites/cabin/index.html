@@ -75,27 +75,29 @@
             switch(btn.id) {
                 case "nextcol":
                     btn.addEventListener("click", ()=>{
-                        localStorage.color++;
+                        if(localStorage.color < 18) localStorage.color++;
                         document.querySelector(".color").style.backgroundPosition = ((localStorage.color * -50) % 500) + "vh " + (Math.floor((localStorage.color * -50) / 500) * 50) + "vh";
-                    })
+                    });
                     break;
                 case "prevcol":
                     btn.addEventListener("click", ()=>{
-                        localStorage.color--;
+                        if(localStorage.color > 0) localStorage.color--;
                         document.querySelector(".color").style.backgroundPosition = ((localStorage.color * -50) % 500) + "vh " + (Math.floor((localStorage.color * -50) / 500) * 50) + "vh";
-                    })
+                        if(localStorage.color == 0) document.querySelector(".color").style.backgroundPosition = "0 0";
+                    });
                     break;
                 case "nexteye":
-                    btn.addEventListener("click", ()=>{
-                        localStorage.eye++;
-                        document.querySelector(".eyes").style.backgroundPosition = localStorage.eye * -50 + "vh 0vh";
-                    })
+                btn.addEventListener("click", ()=>{
+                        if(localStorage.eye < 31) localStorage.eye++;
+                        document.querySelector(".eyes").style.backgroundPosition = ((localStorage.eye * -50) % 500) + "vh " + (Math.floor((localStorage.eye * -50) / 500) * 50) + "vh";
+                    });
                     break;
                 case "preveye":
-                    btn.addEventListener("click", ()=>{
-                        localStorage.eye--;
-                        document.querySelector(".eyes").style.backgroundPosition = localStorage.eye * -50 + "vh 0vh";
-                    })
+                btn.addEventListener("click", ()=>{
+                        if(localStorage.eye > 0) localStorage.eye--;
+                        document.querySelector(".eyes").style.backgroundPosition = ((localStorage.eye * -50) % 500) + "vh " + (Math.floor((localStorage.eye * -50) / 500) * 50) + "vh";
+                        if(localStorage.eye == 0) document.querySelector(".eyes").style.backgroundPosition = "0 0";
+                    });
                     break;
                 case "nextmouth":
                     btn.addEventListener("click", ()=>{

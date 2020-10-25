@@ -76,13 +76,13 @@
                 case "nextcol":
                     btn.addEventListener("click", ()=>{
                         localStorage.color++;
-                        document.querySelector(".color").style.backgroundPosition = ((localStorage.color * -50) % 500) + "vh " + (((localStorage.color * -50) % 500) * 50) + "vh";
+                        document.querySelector(".color").style.backgroundPosition = ((localStorage.color * -50) % 500) + "vh " + (Math.floor((localStorage.color * -50) / 500) * 50) + "vh";
                     })
                     break;
                 case "prevcol":
                     btn.addEventListener("click", ()=>{
                         localStorage.color--;
-                        document.querySelector(".color").style.backgroundPosition = ((localStorage.color * -50) % 500) + "vh " + (((localStorage.color * -50) % 500) * 50) + "vh";
+                        document.querySelector(".color").style.backgroundPosition = ((localStorage.color * -50) % 500) + "vh " + (Math.floor((localStorage.color * -50) / 500) * 50) + "vh";
                     })
                     break;
                 case "nexteye":

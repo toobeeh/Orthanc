@@ -30,7 +30,7 @@ include '/home/pi/Webroot/Orthanc/db.php';
 
     </style>
 </head>
-<body>
+<body style="image-rendering:pixelated">
 
     <h1>Listing all available Sprites</h1>
     <div class = 'flexcenter flexrow'>

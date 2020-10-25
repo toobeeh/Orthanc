@@ -76,23 +76,40 @@
                 case "nextcol":
                     btn.addEventListener("click", ()=>{
                         localStorage.color++;
-                        document.querySelector(".color").style.backgroundPosition = localStorage.color * -50 + "vh";
+                        document.querySelector(".color").style.backgroundPosition = localStorage.color * -50 + "vh 0vh";
                     })
                     break;
                 case "prevcol":
                     btn.addEventListener("click", ()=>{
                         localStorage.color--;
-                        document.querySelector(".color").style.backgroundPosition = localStorage.color * -50 + "vh";
+                        document.querySelector(".color").style.backgroundPosition = localStorage.color * -50 + "vh 0vh";
                     })
                     break;
                 case "nexteye":
-                    
+                    btn.addEventListener("click", ()=>{
+                        localStorage.eye++;
+                        document.querySelector(".eye").style.backgroundPosition = localStorage.eye * -50 + "vh 0vh";
+                    })
+                    break;
+                case "preveye":
+                    btn.addEventListener("click", ()=>{
+                        localStorage.eye--;
+                        document.querySelector(".eye").style.backgroundPosition = localStorage.eye * -50 + "vh 0vh";
+                    })
                     break;
                 case "nextmouth":
-                    
+                    btn.addEventListener("click", ()=>{
+                        localStorage.mouth++;
+                        document.querySelector(".mouth").style.backgroundPosition = localStorage.mouth * -50 + "vh 0vh";
+                    })
+                    break;
+                case "prevmouth":
+                    btn.addEventListener("click", ()=>{
+                        localStorage.mouth--;
+                        document.querySelector(".mouth").style.backgroundPosition = localStorage.mouth * -50 + "vh 0vh";
+                    })
                     break;
                 default:
-                    text = "I have never heard of that fruit...";
             }
         });  
 

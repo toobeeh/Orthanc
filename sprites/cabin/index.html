@@ -69,19 +69,21 @@
     <script>
         if(!localStorage.color) localStorage.color = 0;
         if(!localStorage.mouth) localStorage.mouth = 0;
-        if(!localStorage.eyes) localStorage.eyes = 0;
+        if(!localStorage.eye) localStorage.eye = 0;
 
         document.querySelectorAll("button").forEach(btn=>{
             switch(btn.id) {
                 case "nextcol":
                     btn.addEventListener("click", ()=>{
                         if(localStorage.color < 18) localStorage.color++;
+                        else localStorage.color = 18;
                         document.querySelector(".color").style.backgroundPosition = ((localStorage.color * -50) % 500) + "vh " + (Math.floor((localStorage.color * -50) / 500) * 50) + "vh";
                     });
                     break;
                 case "prevcol":
                     btn.addEventListener("click", ()=>{
                         if(localStorage.color > 0) localStorage.color--;
+                        else localStorage.color = 0;
                         document.querySelector(".color").style.backgroundPosition = ((localStorage.color * -50) % 500) + "vh " + (Math.floor((localStorage.color * -50) / 500) * 50) + "vh";
                         if(localStorage.color == 0) document.querySelector(".color").style.backgroundPosition = "0 0";
                     });
@@ -89,12 +91,14 @@
                 case "nexteye":
                 btn.addEventListener("click", ()=>{
                         if(localStorage.eye < 31) localStorage.eye++;
+                        else localStorage.eye = 31;
                         document.querySelector(".eyes").style.backgroundPosition = ((localStorage.eye * -50) % 500) + "vh " + (Math.floor((localStorage.eye * -50) / 500) * 50) + "vh";
                     });
                     break;
                 case "preveye":
                 btn.addEventListener("click", ()=>{
                         if(localStorage.eye > 0) localStorage.eye--;
+                        else localStorage.eye = 0;
                         document.querySelector(".eyes").style.backgroundPosition = ((localStorage.eye * -50) % 500) + "vh " + (Math.floor((localStorage.eye * -50) / 500) * 50) + "vh";
                         if(localStorage.eye == 0) document.querySelector(".eyes").style.backgroundPosition = "0 0";
                     });

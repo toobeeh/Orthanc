@@ -36,9 +36,11 @@
             background-image: url("https://skribbl.io/res/avatar/mouth_atlas.gif");
             background-position: 0 0;
         }
-        .nextitem .previtem{
-            height:100%;
+        .nextitem, .previtem{
             justify-content:space-between;
+        }
+        .nextitem button, .previtem button{
+            margin:1em;
         }
 
     </style>
@@ -48,9 +50,9 @@
     <h1>Try out a sprite!</h1>
     <div class="flexrow flexcenter">
         <div class="previtem flexcol">
-            <button class="active">￩ Color</button>
-            <button class="active">￩ Eyes</button>
-            <button class="active">￩ Mouth</button>
+            <button id="nextcol" class="active">🠘 Color</button>
+            <button id="nexteye" class="active">🠘 Eyes</button>
+            <button id="nextmouth" class="active">🠘 Mouth</button>
         </div>
         <div class="avatarContainer">
             <div class="color"></div>
@@ -59,9 +61,33 @@
             <div class="sprite"></div>
         </div>
         <div class="nextitem flexcol">
-            <button class="active">Color ￫</button>
-            <button class="active">Eyes ￫</button>
-            <button class="active">Mouth ￫</button>
+            <button id="prevcol" class="active">Color 🠚</button>
+            <button id="prevcol" class="active">Eyes 🠚</button>
+            <button id="prevcol" class="active">Mouth 🠚</button>
         </div>
     </div>
+    <script>
+        if(!localStorage.avatar) localStorage.avatar = [0,0,0];
+        document.querySelectorAll("button").forEach(btn=>{
+            switch(btn.id) {
+                case "nextcol":
+                    btn.addEventListener("click", ()=>{
+                        localStorage.avatar[0]++;
+                        document.querySelector(".color").style.backgroundPosition = localStorage.avatar[0] * -50 + "vh";
+                    })
+                    break;
+                case "nexteye":
+                    
+                    break;
+                case "nextmouth":
+                    
+                    break;
+                default:
+                    text = "I have never heard of that fruit...";
+            }
+        });  
+
+
+
+    </script>
 </body>

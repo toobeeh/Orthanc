@@ -71,60 +71,68 @@
         if(!localStorage.mouth) localStorage.mouth = 0;
         if(!localStorage.eye) localStorage.eye = 0;
 
+        let updateColor = () => {
+            let posW = (localStorage.color % 10) * -50;
+            let posH = Math.floor(localStorage.color / 10) * -50;
+            document.querySelector(".color").style.backgroundPosition = posW + "vh " + posH + "vh";
+        };
+        let updateMouth = () => {
+            let posW = (localStorage.mouth % 10) * -50;
+            let posH = Math.floor(localStorage.mouth / 10) * -50;
+            document.querySelector(".mouth").style.backgroundPosition = posW + "vh " + posH + "vh";
+        }
+        let updateEyes = () => {
+            let posW = (localStorage.eye % 10) * -50;
+            let posH = Math.floor(localStorage.eye / 10) * -50;
+            document.querySelector(".eyes").style.backgroundPosition = posW + "vh " + posH + "vh";
+        }
+
+        updateMouth();
+        updateColor();
+        updateEyes();
+
         document.querySelectorAll("button").forEach(btn=>{
             switch(btn.id) {
                 case "nextcol":
                     btn.addEventListener("click", ()=>{
                         if(localStorage.color < 18) localStorage.color++;
                         else localStorage.color = 18;
-                        let posW = (localStorage.color % 10) * -50;
-                        let posH = Math.floor(localStorage.color / 10) * -50;
-                        document.querySelector(".color").style.backgroundPosition = posW + "vh " + posH + "vh";
+                        updateColor();
                     });
                     break;
                 case "prevcol":
                     btn.addEventListener("click", ()=>{
                         if(localStorage.color > 0) localStorage.color--;
                         else localStorage.color = 0;
-                        let posW = (localStorage.color % 10) * -50;
-                        let posH = Math.floor(localStorage.color / 10) * -50;
-                        document.querySelector(".color").style.backgroundPosition = posW + "vh " + posH + "vh";
+                        updateColor();
                     });
                     break;
                 case "nexteye":
                     btn.addEventListener("click", ()=>{
                         if(localStorage.eye < 31) localStorage.eye++;
                         else localStorage.eye = 31;
-                        let posW = (localStorage.eye % 10) * -50;
-                        let posH = Math.floor(localStorage.eye / 10) * -50;
-                        document.querySelector(".eyes").style.backgroundPosition = posW + "vh " + posH + "vh";
+                        updateEyes();
                     });
                     break;
                 case "preveye":
                     btn.addEventListener("click", ()=>{
                         if(localStorage.eye > 0) localStorage.eye--;
                         else localStorage.eye = 0;
-                        let posW = (localStorage.eye % 10) * -50;
-                        let posH = Math.floor(localStorage.eye / 10) * -50;
-                        document.querySelector(".eyes").style.backgroundPosition = posW + "vh " + posH + "vh";
+                        updateEyes();
                     });
                     break;
                 case "nextmouth":
                     btn.addEventListener("click", ()=>{
                         if(localStorage.mouth < 24) localStorage.mouth++;
                         else localStorage.mouth = 24;
-                        let posW = (localStorage.mouth % 10) * -50;
-                        let posH = Math.floor(localStorage.mouth / 10) * -50;
-                        document.querySelector(".mouth").style.backgroundPosition = posW + "vh " + posH + "vh";
+                        updateMouth();
                     });
                     break;
                 case "prevmouth":
                     btn.addEventListener("click", ()=>{
                         if(localStorage.mouth > 0) localStorage.mouth--;
                         else localStorage.mouth = 0;
-                        let posW = (localStorage.mouth % 10) * -50;
-                        let posH = Math.floor(localStorage.mouth / 10) * -50;
-                        document.querySelector(".mouth").style.backgroundPosition = posW + "vh " + posH + "vh";
+                        updateMouth();
                     })
                     break;
                 default:

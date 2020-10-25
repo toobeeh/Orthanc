@@ -16,27 +16,29 @@
         .avatarContainer{
             width: 50vh;
             height: 50vh;
+            position: relative;
         }
-        .color{
+        .color, .mouth, .eyes{
+            position: absolute;
+            background-size: 500vh 500vh;
             width:100%;
             height:100%;
-            background-size: 500vh 500vh;
+        }
+        .color{
             background-image: url("https://skribbl.io/res/avatar/color_atlas.gif");
             background-position: 0 0;
         }
         .eyes{
-            width:100%;
-            height:100%;
-            background-size: 500vh 500vh;
             background-image: url("https://skribbl.io/res/avatar/eyes_atlas.gif");
             background-position: 0 0;
         }
         .mouth{
-            width:100%;
-            height:100%;
-            background-size: 500vh 500vh;
             background-image: url("https://skribbl.io/res/avatar/mouth_atlas.gif");
             background-position: 0 0;
+        }
+        .nextitem .previtem{
+            height:100%;
+            justify-content:space-between;
         }
 
     </style>
@@ -45,11 +47,21 @@
 
     <h1>Try out a sprite!</h1>
     <div class="flexrow flexcenter">
+        <div class="previtem flexcol">
+            <button class="active">￩ Color</button>
+            <button class="active">￩ Eyes</button>
+            <button class="active">￩ Mouth</button>
+        </div>
         <div class="avatarContainer">
             <div class="color"></div>
             <div class="eyes"></div>
             <div class="mouth"></div>
             <div class="sprite"></div>
+        </div>
+        <div class="nextitem flexcol">
+            <button class="active">Color ￫</button>
+            <button class="active">Eyes ￫</button>
+            <button class="active">Mouth ￫</button>
         </div>
     </div>
 </body>

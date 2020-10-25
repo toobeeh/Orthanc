@@ -18,7 +18,7 @@
             height: 50vh;
             position: relative;
         }
-        .color, .mouth, .eyes{
+        .color, .mouth, .eyes {
             position: absolute;
             background-size: 500vh 500vh;
             width:100%;
@@ -35,6 +35,15 @@
         .mouth{
             background-image: url("https://skribbl.io/res/avatar/mouth_atlas.gif");
             background-position: 0 0;
+        }
+        .sprite{
+            position: absolute;
+            width:166%;
+            height:166%;
+            top:-33%;
+            left:-33%;
+            background-size:cover;
+            z-index:1;
         }
         .nextitem, .previtem{
             justify-content:space-between;
@@ -85,6 +94,10 @@
             let posW = (localStorage.eye % 10) * -50;
             let posH = Math.floor(localStorage.eye / 10) * -50;
             document.querySelector(".eyes").style.backgroundPosition = posW + "vh " + posH + "vh";
+        }
+        let getParameterByName = (name) => {
+            let match = RegExp('[?&]' + name + '=([^&]*)').exec(window.location.search);
+            return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
         }
 
         updateMouth();
@@ -139,7 +152,21 @@
             }
         });  
 
+        let availableSprites = []; //list of all sprites
+        let resp = await fetch("https://www.tobeh.host/Orthanc/sprites/", {
+            method: 'GET',
+            headers: {
+                'Accept': '*/*',
+                'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+            }
+        });
+        let json = await resp.json();
+        availableSprites = json.Sprites;
 
+        // get sprite by parameter
+        let sprite = getParameterByName("sprite");
+        
+        
 
     </script>
 </body>

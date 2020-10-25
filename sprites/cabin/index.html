@@ -76,25 +76,25 @@
                 case "nextcol":
                     btn.addEventListener("click", ()=>{
                         localStorage.color++;
-                        document.querySelector(".color").style.backgroundPosition = localStorage.color * -50 + "vh 0vh";
+                        document.querySelector(".color").style.backgroundPosition = ((localStorage.color * -50) % 500) + "vh " + (((localStorage.color * -50) % 500) * 50) + "vh";
                     })
                     break;
                 case "prevcol":
                     btn.addEventListener("click", ()=>{
                         localStorage.color--;
-                        document.querySelector(".color").style.backgroundPosition = localStorage.color * -50 + "vh 0vh";
+                        document.querySelector(".color").style.backgroundPosition = ((localStorage.color * -50) % 500) + "vh " + (((localStorage.color * -50) % 500) * 50) + "vh";
                     })
                     break;
                 case "nexteye":
                     btn.addEventListener("click", ()=>{
                         localStorage.eye++;
-                        document.querySelector(".eye").style.backgroundPosition = localStorage.eye * -50 + "vh 0vh";
+                        document.querySelector(".eyes").style.backgroundPosition = localStorage.eye * -50 + "vh 0vh";
                     })
                     break;
                 case "preveye":
                     btn.addEventListener("click", ()=>{
                         localStorage.eye--;
-                        document.querySelector(".eye").style.backgroundPosition = localStorage.eye * -50 + "vh 0vh";
+                        document.querySelector(".eyes").style.backgroundPosition = localStorage.eye * -50 + "vh 0vh";
                     })
                     break;
                 case "nextmouth":

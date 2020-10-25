@@ -77,15 +77,18 @@
                     btn.addEventListener("click", ()=>{
                         if(localStorage.color < 18) localStorage.color++;
                         else localStorage.color = 18;
-                        document.querySelector(".color").style.backgroundPosition = ((localStorage.color * -50) % 500) + "vh " + (Math.floor(((localStorage.color - 1) * -50) / 500) * 50) + "vh";
+                        let posW = (localStorage.color % 10) * -50;
+                        let posH = Math.floor(localStorage.color / 10) * 50;
+                        document.querySelector(".color").style.backgroundPosition = posW + "vh " + posH + "vh";
                     });
                     break;
                 case "prevcol":
                     btn.addEventListener("click", ()=>{
                         if(localStorage.color > 0) localStorage.color--;
                         else localStorage.color = 0;
-                        document.querySelector(".color").style.backgroundPosition = ((localStorage.color * -50) % 500) + "vh " + (Math.floor(((localStorage.color - 1) * -50) / 500) * 50) + "vh";
-                        if(localStorage.color == 0) document.querySelector(".color").style.backgroundPosition = "0 0";
+                        let posW = (localStorage.color % 10) * -50;
+                        let posH = Math.floor(localStorage.color / 10) * 50;
+                        document.querySelector(".color").style.backgroundPosition = posW + "vh " + posH + "vh";
                     });
                     break;
                 case "nexteye":

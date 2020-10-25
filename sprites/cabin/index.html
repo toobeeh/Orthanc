@@ -99,6 +99,11 @@
             let match = RegExp('[?&]' + name + '=([^&]*)').exec(window.location.search);
             return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
         }
+        let getSpriteURL = (id) => {
+            let url = "";
+            availableSprites.forEach(s => { if (s.ID == id) url = s.URL; });
+            return url;
+        }
 
         updateMouth();
         updateColor();
@@ -153,20 +158,22 @@
         });  
 
         let availableSprites = []; //list of all sprites
-        let resp = await fetch("https://www.tobeh.host/Orthanc/sprites/", {
+        // get sprites and set by param name
+        (async () => {
+            let resp = await fetch("https://www.tobeh.host/Orthanc/sprites/", {
             method: 'GET',
             headers: {
                 'Accept': '*/*',
                 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
             }
-        });
-        let json = await resp.json();
-        availableSprites = json.Sprites;
+            });
+            let json = await resp.json();
+            availableSprites = json.Sprites;
 
-        // get sprite by parameter
-        let sprite = getParameterByName("sprite");
+            // get sprite by parameter
+            let sprite = getParameterByName("sprite");
+            document.querySelector(".sprite").backgroundImage = 'url("' + getSpriteURL(sprite) + '")';
+        })();
         
-        
-
     </script>
 </body>

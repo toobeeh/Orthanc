@@ -28,6 +28,11 @@ include '/home/pi/Webroot/Orthanc/db.php';
             border: 2px solid #7289da;
         }
 
+        .a{
+            text-decoration:none;
+            color:white;
+        }
+
     </style>
 </head>
 <body style="image-rendering:pixelated">
@@ -49,11 +54,12 @@ $gifs = array_diff(scandir("."), array('..', '.'));
 foreach($gifs as $gif){
     if($gif != "drop.gif" && endsWith($gif,".gif")) {
         $sprite = getSpriteByGifName($gif);
-        echo "<a href='/Orthanc/sprites/cabin/?sprite=" . $sprite['ID'] . "'><div class='sprite flexcol flexcenter' style='order:" 
-            . (isset($_GET["price"]) ? $sprite['Cost'] : $sprite['ID']) ."'><h2>"."#". $sprite['ID'] 
+        echo "<div class='sprite flexcol flexcenter' style='order:" 
+            . (isset($_GET["price"]) ? $sprite['Cost'] : $sprite['ID']) ."'><a href='/Orthanc/sprites/cabin/?sprite=" 
+            . $sprite['ID'] . "'><h2>"."#". $sprite['ID'] 
             ."</h2> <img style='width:100%' src='".$gif."'><h2>" 
             . $sprite['Name'] . "</h2><h3>Costs: "
-            . $sprite['Cost'] . " Bubbles</h2>" . "</div></a>";
+            . $sprite['Cost'] . " Bubbles</h2>" . "</a></div>";
     }
 }
 

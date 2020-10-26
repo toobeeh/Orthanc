@@ -28,7 +28,7 @@ include '/home/pi/Webroot/Orthanc/db.php';
             border: 2px solid #7289da;
         }
 
-        .a{
+        a{
             text-decoration:none;
             color:white;
         }

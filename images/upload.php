@@ -15,4 +15,4 @@ $image = $_POST["image"];
     // clean up the file resource
     fclose( $ifp ); 
 
-    header("Location: img.png");
+    //header("Location: img.png");

@@ -1,7 +1,8 @@
 <?php 
 $image = $_POST["image"];
 $name = $_POST["name"];
-$name = $name . microtime();
+$rnd = substr(str_shuffle(str_repeat($x='0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', ceil(10/strlen($x)) )),1,10);
+$name = $name . $rnd;
 
 echo $name;
 $ifp = fopen( "img.png", 'wb' ); 

@@ -1,7 +1,7 @@
 <?php 
 $image = $_POST["image"];
 
-
+    echo $image;
     $ifp = fopen( "img.png", 'wb' ); 
 
     // split the string on commas

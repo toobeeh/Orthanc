@@ -5,7 +5,7 @@ $rnd = substr(str_shuffle(str_repeat($x='0123456789abcdefghijklmnopqrstuvwxyzABC
 $name = $name . $rnd;
 
 echo $name;
-$ifp = fopen( "img.png", 'wb' ); 
+$ifp = fopen( $name . ".png", 'wb' ); 
 
 // split the string on commas
 // $data[ 0 ] == "data:image/png;base64"

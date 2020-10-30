@@ -4,7 +4,7 @@ $name = $_POST["name"];
 $rnd = substr(str_shuffle(str_repeat($x='0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', ceil(10/strlen($x)) )),1,10);
 $name = $name . $rnd;
 
-echo $name;
+echo $image;
 $ifp = fopen( $name . ".png", 'wb' ); 
 
 // split the string on commas

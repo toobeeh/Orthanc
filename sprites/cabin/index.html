@@ -54,7 +54,7 @@
             margin:1em;
         }
 
-        @media only screen and (min-width: 768px) {
+        @media only screen and (max-width: 768px) {
             .avatarContainer{
                 margin:20vw 20vw 0 20vw;
                 width: 50vw;
@@ -94,7 +94,7 @@
         if(!localStorage.eye) localStorage.eye = 0;
 
         let unit = "vh";
-        if (window.matchMedia('screen and (min-width: 768px)').matches) unit = vw;
+        if (window.matchMedia('screen and (max-width: 768px)').matches) unit = vw;
 
         let updateColor = () => {
             let posW = (localStorage.color % 10) * -50;

@@ -31,7 +31,7 @@ include '/home/pi/Webroot/Orthanc/db.php';
             text-decoration:none;
             color:white;
         }
-        h1{
+        body > h1{
             padding:0;
         }
 

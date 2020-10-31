@@ -17,7 +17,6 @@ include '/home/pi/Webroot/Orthanc/db.php';
                     flex-wrap:wrap;
                 }
         body{width:calc(100% - 4em);
-            padding:2em;
         }
 
         .sprite{
@@ -46,9 +45,9 @@ include '/home/pi/Webroot/Orthanc/db.php';
     <div class="flexcenter flexrow">
         <a href="/Orthanc/"><button type="button" class="skribbl" id="">Typo</button></a>
         <a href="/Orthanc/sprites/gif/"><button type="button" class="skribbl active" id="">Sprites</button></a>
-        <a href="/Orthanc/sprites/gif/cabin/"><button type="button " class="skribbl" id="">Cabin</button></a>
+        <a href="/Orthanc/sprites/cabin/"><button type="button " class="skribbl" id="">Cabin</button></a>
     </div>
-    <h1>Click a Sprite to try it out!</h1>
+    <h2>Click a Sprite to try it out!</h2>
     <div class = 'flexcenter flexrow'>
     <a href= <?php echo isset($_GET["price"]) ? "/Orthanc/sprites/gif/" : "/Orthanc/sprites/gif/?price"; ?> >
     <button>Order by <?php echo isset($_GET["price"]) ? " ID" : " price"; ?> </button>

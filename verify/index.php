@@ -5,6 +5,8 @@
 
     if(isset($_POST['observeToken'])) $token = $_POST['observeToken'];
     if(isset($_POST['member'])) $member = $_POST['member'];
+    if(isset($_POST['remove'])) $remove = true;
+    else $remove = false;
 
     include 'verify.php';
 

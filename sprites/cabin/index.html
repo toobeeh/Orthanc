@@ -63,6 +63,9 @@
             .color, .mouth, .eyes {
                 background-size: 500vw 500vw !important;
             }
+            .nav{
+                flex-direction: row;
+            }
         }
 
     </style>
@@ -71,7 +74,7 @@
 
     <h1>Try out a sprite!</h1>
     <div class="flexrow flexcenter">
-        <div class="previtem flexcol">
+        <div class="previtem flexcol nav">
             <button id="prevcol" class="active">🠘 Color</button>
             <button id="preveye" class="active">🠘 Eyes</button>
             <button id="prevmouth" class="active">🠘 Mouth</button>
@@ -82,7 +85,7 @@
             <div class="mouth"></div>
             <div class="sprite"></div>
         </div>
-        <div class="nextitem flexcol">
+        <div class="nextitem flexcol nav">
             <button id="nextcol" class="active">Color 🠚</button>
             <button id="nexteye" class="active">Eyes 🠚</button>
             <button id="nextmouth" class="active">Mouth 🠚</button>

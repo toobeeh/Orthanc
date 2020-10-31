@@ -52,13 +52,13 @@ include '/home/pi/Webroot/Orthanc/db.php';
 <body style="image-rendering:pixelated">
 <h1>
         <a href="typo/"><button type="button" class="skribbl" id="">Add Typo</button></a>
-        <a href="/"><button type="button " class="skribbl active" id="">Manual</button></a>
+        <a href=""><button type="button " class="skribbl active" id="">Manual</button></a>
         <a href="bot/"><button type="button" class="skribbl" id="">Admin</button></a>
         <a href="https://github.com/toobeeh/"><button type="button" class="skribbl" id="">GitHub</button></a>
     </h1>
     <br>
     <div class="flexcenter flexrow">
-        <a href="/"><button type="button" class="skribbl" id="">Typo</button></a>
+        <a href=""><button type="button" class="skribbl" id="">Typo</button></a>
         <a href="sprites/gif/"><button type="button" class="skribbl active" id="">Sprites</button></a>
         <a href="sprites/cabin/"><button type="button " class="skribbl" id="">Cabin</button></a>
     </div>
@@ -84,7 +84,7 @@ foreach($gifs as $gif){
         echo "<div class='sprite flexcol flexcenter' style='order:" 
             . (isset($_GET["price"]) ? $sprite['Cost'] : $sprite['ID']) ."'><a href='sprites/cabin/?sprite=" 
             . $sprite['ID'] . "'><h2>"."#". $sprite['ID'] 
-            ."</h2> <img style='width:100%' src='".$gif."'><h2>" 
+            ."</h2> <img style='width:100%' src='sprites/gif/".$gif."'><h2>" 
             . $sprite['Name'] . "</h2><h3>Costs: "
             . $sprite['Cost'] . " Bubbles</h2>" . "</a></div>";
     }

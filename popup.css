@@ -165,11 +165,11 @@ hr {
     }
 
 .label {
-    font-size: 1.2em;
+    font-size: 1.5em;
     text-align: center;
     margin-top: 0.4em;
     margin-bottom: 0.2em;
-    font-weight: 600;
+    font-weight: 500;
 }
 
 .slider {

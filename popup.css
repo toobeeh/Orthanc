@@ -172,6 +172,14 @@ hr {
     font-weight: 500;
 }
 
+.label .dummy{
+    font-size: 1.2em;
+    text-align: center;
+    margin-top: 0.4em;
+    margin-bottom: 0.2em;
+    font-weight: 600;
+}
+
 .slider {
     position: relative;
     -webkit-appearance: none;

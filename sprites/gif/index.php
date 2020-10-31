@@ -51,7 +51,7 @@ include '/home/pi/Webroot/Orthanc/db.php';
 </head>
 <body style="image-rendering:pixelated">
 <h1>
-        <a href="typo/"><button type="button" class="skribbl" id="">Add Typo</button></a>
+        <a href="https://tobeh.host/typo/"><button type="button" class="skribbl" id="">Add Typo</button></a>
         <a href=""><button type="button " class="skribbl active" id="">Manual</button></a>
         <a href="bot/"><button type="button" class="skribbl" id="">Admin</button></a>
         <a href="https://github.com/toobeeh/"><button type="button" class="skribbl" id="">GitHub</button></a>

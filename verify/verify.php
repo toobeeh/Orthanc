@@ -18,6 +18,8 @@
             $jsonOutput = '{"Valid": false, "AuthGuildName": "", "AuthGuildID": "0", "ObserveToken": "'.$token.'","Member":'. $member . '}';
             return;
         }
+
+        if(!isset($remove)) $remove = false;
             
         // parse to object
         $authenticatedMember = json_decode($authenticatedMember);

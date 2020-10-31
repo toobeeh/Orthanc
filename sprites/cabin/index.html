@@ -73,19 +73,17 @@
 <body style="image-rendering:pixelated">
     <h1>
         <a href="../typo/"><button type="button" class="skribbl" id="">Add Typo</button></a>
-        <button type="button" class="skribbl active" id="">Manual</button>
-        <button type="button" class="skribbl" id="admin">Admin</button>
-        <button type="button" class="skribbl" id="github">GitHub</button>
+        <a href="./"><button type="button active" class="skribbl" id="">Manual</button></a>
+        <a href="./bot/"><button type="button" class="skribbl" id="">Admin</button></a>
+        <a href="https://github.com/toobeeh/"><button type="button" class="skribbl" id="">GitHub</button></a>
     </h1>
     <br>
     <div class="flexcenter flexrow">
-        <button style="display:none" type="button" class="skribbl" id="about">About</button> 
-        <button type="button" class="skribbl active" id="interface">Extension interface</button>
-        <button type="button" class="skribbl" id="bot">Palantir Discord bot</button>
-        <button type="button" class="skribbl" id="complete">All features</button>
+        <a href="./"><button type="button" class="skribbl" id="">Typo</button></a>
         <a href="./sprites/gif/"><button type="button" class="skribbl" id="">Sprites</button></a>
+        <a href="./sprites/gif/cabin/"><button type="button active" class="skribbl" id="">Cabin</button></a>
     </div>
-    
+
     <div class="flexrow flexcenter">
         <div class="previtem flexcol nav">
             <button id="prevcol" class="active">🠘 Color</button>
@@ -196,7 +194,7 @@
             method: 'GET',
             headers: {
                 'Accept': '*/*',
-                'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+                'Content-Type': 'applicjation/x-www-form-urlencoded; charset=UTF-8'
             }
             });
             let json = await resp.json();

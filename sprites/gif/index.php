@@ -47,13 +47,13 @@ include '/home/pi/Webroot/Orthanc/db.php';
         <a href="/Orthanc/sprites/gif/"><button type="button" class="skribbl active" id="">Sprites</button></a>
         <a href="/Orthanc/sprites/cabin/"><button type="button " class="skribbl" id="">Cabin</button></a>
     </div>
-    <div class="flexrow flexcenter">
-        <h2>Click a sprite to try it out!</h2>
-    </div>
     <div class = 'flexcenter flexrow'>
     <a href= <?php echo isset($_GET["price"]) ? "/Orthanc/sprites/gif/" : "/Orthanc/sprites/gif/?price"; ?> >
     <button>Order by <?php echo isset($_GET["price"]) ? " ID" : " price"; ?> </button>
     </a>
+    </div>
+    <div class="flexrow flexcenter">
+        <h2>Click a sprite to try it out!</h2>
     </div>
     <div class = 'flexcenter flexrow'>
 <?php

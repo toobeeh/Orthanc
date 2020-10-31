@@ -37,9 +37,11 @@
             setMemberJSON($authenticatedMember->UserLogin, $newMemberJson);
         }
         else if($has === true  && $remove === true) {
-            $authenticatedMember->Guilds = array_filter($authenticatedMember->Guilds, function($guild){
-                return $guild->GuildID != $authentificatedPalantir->GuildID;
-            });
+            $newGuilds = [];
+            foreach($authenticatedMember->Guilds as $guild){
+                if($guild->GuildID != $authentificatedPalantir->GuildID) array_push($newGuilds, $guild);
+            }
+            $authenticatedMember->Guilds = $newGuilds;
             $newMemberJson = json_encode($authenticatedMember);
             setMemberJSON($authenticatedMember->UserLogin, $newMemberJson);
         }

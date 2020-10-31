@@ -55,6 +55,7 @@
     </h1>
     <br>
     <div class="flexcenter flexrow">
+        <button type="button" class="skribbl" id="about">About</button>
         <button type="button" class="skribbl active" id="interface">Extension interface</button>
         <button type="button" class="skribbl" id="bot">Palantir Discord bot</button>
         <button type="button" class="skribbl" id="complete">All features</button>
@@ -220,6 +221,8 @@
             Click any button!
         </div>
     </div>
+    <div class="prevContainer flexcol" style="display:none" id="aboutTypo">
+    </div>
     <div class="prevContainer flexcol" style="display:none" id="manualComplete">
         <div class="flexcol" style="width:auto" >
             <h1>Drawing</h1>
@@ -249,6 +252,7 @@
            <ul>
                <li>Download image as PNG</li>
                <li>Save drawing process animation as GIF</li>
+               <li>Share images with one click on your Discord servers</li>
                <li>Copy other drawings to be automatically re-drawn (ImageTools)</li>
            </ul>
         </div>
@@ -512,25 +516,41 @@
                 document.querySelector("#bot").classList.remove("active");
                 document.querySelector("#interface").classList.add("active");
                 document.querySelector("#complete").classList.remove("active");
+                document.querySelector("#about").classList.remove("active");
                 document.querySelector("#manualInterface").style.display="flex";
                 document.querySelector("#manualBot").style.display="none";
                 document.querySelector("#manualComplete").style.display="none";
+                document.querySelector("#aboutTypo").style.display="none";
             }
             if(this.id == 'bot'){
                 document.querySelector("#bot").classList.add("active");
                 document.querySelector("#interface").classList.remove("active");
                 document.querySelector("#complete").classList.remove("active");
+                document.querySelector("#about").classList.remove("active");
                 document.querySelector("#manualInterface").style.display="none";
                 document.querySelector("#manualBot").style.display="flex";
                 document.querySelector("#manualComplete").style.display="none";
+                document.querySelector("#aboutTypo").style.display="none";
             }
             if(this.id == 'complete'){
                 document.querySelector("#bot").classList.remove("active");
                 document.querySelector("#interface").classList.remove("active");
                 document.querySelector("#complete").classList.add("active");
+                document.querySelector("#about").classList.remove("active");
                 document.querySelector("#manualInterface").style.display="none";
                 document.querySelector("#manualBot").style.display="none";
                 document.querySelector("#manualComplete").style.display="flex";
+                document.querySelector("#aboutTypo").style.display="none";
+            }
+            if(this.id == 'about'){
+                document.querySelector("#bot").classList.remove("active");
+                document.querySelector("#interface").classList.remove("active");
+                document.querySelector("#complete").classList.remove("active");
+                document.querySelector("#about").classList.add("active");
+                document.querySelector("#manualInterface").style.display="none";
+                document.querySelector("#manualBot").style.display="none";
+                document.querySelector("#manualComplete").style.display="none";
+                document.querySelector("#aboutTypo").style.display="flex";
             }
         }
 

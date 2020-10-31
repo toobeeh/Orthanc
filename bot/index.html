@@ -138,6 +138,7 @@
                     <div class="label back">>help</div>
                     <div class="label">
                         Usable by anyone plus in DM.<br>
+                        The first thing you should do when you're confused with a command! <br>
                         Optionally takes a command name as argument for further details.<br>
                         Responds a message with details about all comands or the specified command.<br>
                         Example: >help observe
@@ -152,6 +153,30 @@
                         Sets the channel for the bot message and initiates the bot.<br>
                         Generates a new server token - server member have to enter this in order to use the bot.<br>
                         Example: >observe #channel
+                    </div>
+                </div>
+                <br>
+                <div class="">
+                    <div class="label back">>addwebhook</div>
+                    <div class="label">
+                        Usable by roles with administrator permission and server-only.<br>
+                        Adds a webhook to a server.<br>
+                        Webhooks enable users to post images to a dicord server by clicking the letter-icon in skribbl.<br>
+                        Multiple webhooks for different channels can be added.<br>
+                        Takes the name (can be any) and the webhook url as parameter.<br>
+                        Get the URL by creating a webhook for a channel in discord and click "Copy Webhook URL". <br>
+                        Example: >addwebhook ImagePoster https://discordapp.com/api/webhooks/xx/xx
+                    </div>
+                </div>
+                <br>
+                <div class="">
+                    <div class="label back">>webhooks</div>
+                    <div class="label">
+                        Usable by roles with administrator permission and server-only.<br>
+                        Lists all webhooks for your server.<br>
+                        Takes an optional argument to remove ALL webhooks for your server.<br>
+                        Example: >webhooks <br>>
+                        Example: >webhooks true
                     </div>
                 </div>
                 <br>

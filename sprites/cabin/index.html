@@ -94,7 +94,7 @@
         if(!localStorage.eye) localStorage.eye = 0;
 
         let unit = "vh";
-        if (window.matchMedia('screen and (max-width: 768px)').matches) unit = "vw";
+        if (window.matchMedia('screen and (max-width: 992px)').matches) unit = "vw";
 
         let updateColor = () => {
             let posW = (localStorage.color % 10) * -50;

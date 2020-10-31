@@ -3,9 +3,21 @@
 <head>
     <!-- pls DONT read this, its A MESS -->
     <meta charset="utf-8">
+    <script>
+        let base = "";
+        switch (window.location.host) {
+            case "tobeh.host":
+                base = "https://tobeh.host/Orthanc/";
+                break;
+            case "typo.rip":
+                base = "https://typo.rip/";
+                break;
+        }
+        document.writeln('<base href="' + base + '" />');
+    </script>
     <style id="sliderThumbColorStyle"></style>
     <link rel="stylesheet" type="text/css" href="popup.css">
-    <title>Skribbltypo How-To</title>
+    <title>Typo How-To</title>
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
     <style>
         body{
@@ -60,9 +72,9 @@
 </head>
 <body>
     <h1>
-        <a href="/Orthanc/typo/"><button type="button" class="skribbl" id="">Add Typo</button></a>
-        <a href="/Orthanc/"><button type="button " class="skribbl active" id="">Manual</button></a>
-        <a href="/Orthanc/bot/"><button type="button" class="skribbl" id="">Admin</button></a>
+        <a href="typo/"><button type="button" class="skribbl" id="">Add Typo</button></a>
+        <a href="/"><button type="button " class="skribbl active" id="">Manual</button></a>
+        <a href="bot/"><button type="button" class="skribbl" id="">Admin</button></a>
         <a href="https://github.com/toobeeh/"><button type="button" class="skribbl" id="">GitHub</button></a>
     </h1>
     <br>
@@ -71,7 +83,7 @@
         <button type="button" class="skribbl active" id="interface">Extension interface</button>
         <button type="button" class="skribbl" id="bot">Palantir Discord bot</button>
         <button type="button" class="skribbl" id="complete">All features</button>
-        <a href="./sprites/gif/"><button type="button" class="skribbl" id="">Sprites</button></a>
+        <a href="sprites/gif/"><button type="button" class="skribbl" id="">Sprites</button></a>
     </div>
     <div class="prevContainer" id="manualInterface">
         <div class="dummy">

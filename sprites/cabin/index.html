@@ -3,8 +3,20 @@
 <head>
     <meta charset="utf-8">
     <title>Sprite Cabin</title>
-    <link rel="stylesheet" type="text/css" href="/Orthanc/popup.css">
-    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    <script>
+        let base = "";
+        switch (window.location.host) {
+            case "tobeh.host":
+                base = "https://tobeh.host/Orthanc/";
+                break;
+            case "typo.rip":
+                base = "https://typo.rip/";
+                break;
+        }
+        document.writeln('<base href="' + base + '" />');
+    </script>
+    <link rel="stylesheet" type="text/css" href="popup.css">
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
     <style>
         .flexcenter{
                     justify-content: center;
@@ -81,9 +93,9 @@
     </h1>
     <br>
     <div class="flexcenter flexrow">
-        <a href="/Orthanc/"><button type="button" class="skribbl" id="">Typo</button></a>
-        <a href="/Orthanc/sprites/gif/"><button type="button" class="skribbl" id="">Sprites</button></a>
-        <a href="/Orthanc/sprites/cabin/"><button type="button " class="skribbl active" id="">Cabin</button></a>
+        <a href="/"><button type="button" class="skribbl" id="">Typo</button></a>
+        <a href="sprites/gif/"><button type="button" class="skribbl" id="">Sprites</button></a>
+        <a href="sprites/cabin/"><button type="button " class="skribbl active" id="">Cabin</button></a>
     </div>
     <div class="flexrow flexcenter">
         <h2>Sprite cabin</h2>

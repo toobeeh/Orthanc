@@ -9,8 +9,20 @@ include '/home/pi/Webroot/Orthanc/db.php';
 <head>
     <meta charset="utf-8">
     <title>Sprites</title>
-    <link rel="stylesheet" type="text/css" href="/Orthanc/popup.css">
-    <link rel="shortcut icon" type="image/x-icon" href="/Orthanc/favicon.ico">
+    <script>
+        let base = "";
+        switch (window.location.host) {
+            case "tobeh.host":
+                base = "https://tobeh.host/Orthanc/";
+                break;
+            case "typo.rip":
+                base = "https://typo.rip/";
+                break;
+        }
+        document.writeln('<base href="' + base + '" />');
+    </script>
+    <link rel="stylesheet" type="text/css" href="popup.css">
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
     <style>
         .flexcenter{
                     justify-content: center;
@@ -39,19 +51,19 @@ include '/home/pi/Webroot/Orthanc/db.php';
 </head>
 <body style="image-rendering:pixelated">
 <h1>
-        <a href="/Orthanc/typo/"><button type="button" class="skribbl" id="">Add Typo</button></a>
-        <a href="/Orthanc/"><button type="button " class="skribbl active" id="">Manual</button></a>
-        <a href="/Orthanc/bot/"><button type="button" class="skribbl" id="">Admin</button></a>
+        <a href="typo/"><button type="button" class="skribbl" id="">Add Typo</button></a>
+        <a href="/"><button type="button " class="skribbl active" id="">Manual</button></a>
+        <a href="bot/"><button type="button" class="skribbl" id="">Admin</button></a>
         <a href="https://github.com/toobeeh/"><button type="button" class="skribbl" id="">GitHub</button></a>
     </h1>
     <br>
     <div class="flexcenter flexrow">
-        <a href="/Orthanc/"><button type="button" class="skribbl" id="">Typo</button></a>
-        <a href="/Orthanc/sprites/gif/"><button type="button" class="skribbl active" id="">Sprites</button></a>
-        <a href="/Orthanc/sprites/cabin/"><button type="button " class="skribbl" id="">Cabin</button></a>
+        <a href="/"><button type="button" class="skribbl" id="">Typo</button></a>
+        <a href="sprites/gif/"><button type="button" class="skribbl active" id="">Sprites</button></a>
+        <a href="sprites/cabin/"><button type="button " class="skribbl" id="">Cabin</button></a>
     </div>
     <div class = 'flexcenter flexrow'>
-    <a href= <?php echo isset($_GET["price"]) ? "/Orthanc/sprites/gif/" : "/Orthanc/sprites/gif/?price"; ?> >
+    <a href= <?php echo isset($_GET["price"]) ? "sprites/gif/" : "sprites/gif/?price"; ?> >
     <button>Order by <?php echo isset($_GET["price"]) ? " ID" : " price"; ?> </button>
     </a>
     </div>
@@ -70,7 +82,7 @@ foreach($gifs as $gif){
     if($gif != "drop.gif" && endsWith($gif,".gif")) {
         $sprite = getSpriteByGifName($gif);
         echo "<div class='sprite flexcol flexcenter' style='order:" 
-            . (isset($_GET["price"]) ? $sprite['Cost'] : $sprite['ID']) ."'><a href='/Orthanc/sprites/cabin/?sprite=" 
+            . (isset($_GET["price"]) ? $sprite['Cost'] : $sprite['ID']) ."'><a href='sprites/cabin/?sprite=" 
             . $sprite['ID'] . "'><h2>"."#". $sprite['ID'] 
             ."</h2> <img style='width:100%' src='".$gif."'><h2>" 
             . $sprite['Name'] . "</h2><h3>Costs: "

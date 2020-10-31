@@ -38,15 +38,15 @@ include '/home/pi/Webroot/Orthanc/db.php';
 <body style="image-rendering:pixelated">
 <h1>
         <a href="../typo/"><button type="button" class="skribbl" id="">Add Typo</button></a>
-        <a href="./"><button type="button active" class="skribbl" id="">Manual</button></a>
+        <a href="./"><button type="button " class="skribbl active" id="">Manual</button></a>
         <a href="./bot/"><button type="button" class="skribbl" id="">Admin</button></a>
         <a href="https://github.com/toobeeh/"><button type="button" class="skribbl" id="">GitHub</button></a>
     </h1>
     <br>
     <div class="flexcenter flexrow">
         <a href="./"><button type="button" class="skribbl" id="">Typo</button></a>
-        <a href="./sprites/gif/"><button type="button" class="skribbl" id="">Sprites</button></a>
-        <a href="./sprites/gif/cabin/"><button type="button active" class="skribbl" id="">Cabin</button></a>
+        <a href="./sprites/gif/"><button type="button" class="skribbl active" id="">Sprites</button></a>
+        <a href="./sprites/gif/cabin/"><button type="button " class="skribbl" id="">Cabin</button></a>
     </div>
     <h1>Click a Sprite to try it out!</h1>
     <div class = 'flexcenter flexrow'>

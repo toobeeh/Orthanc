@@ -145,10 +145,10 @@
             let match = RegExp('[?&]' + name + '=([^&]*)').exec(window.location.search);
             return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
         }
-        let getSpriteURL = (id) => {
-            let url = "";
-            availableSprites.forEach(s => { if (s.ID == id) url = s.URL; });
-            return url;
+        let getSprite = (id) => {
+            let sprite;
+            availableSprites.forEach(s => { if (s.ID == id) sprite = s; });
+            return sprite;
         }
 
         updateMouth();
@@ -218,7 +218,16 @@
 
             // get sprite by parameter
             let sprite = getParameterByName("sprite");
-            document.querySelector(".sprite").style.backgroundImage = 'url("' + getSpriteURL(sprite) + '")';
+            sprite = getSprite(sprite);
+            document.querySelector(".sprite").style.backgroundImage = 'url("' + sprite.URL + '")';
+            if(sprite.Special > 0){
+                localStorage.mouth = 50;
+                localStorage.eyes = 50;
+                localStorage.color = 50;
+                updateColor();
+                updateEyes();
+                updateMouth();
+            }
         })();
         
     </script>

@@ -81,7 +81,7 @@ $gifs = array_diff(scandir("."), array('..', '.'));
 foreach($gifs as $gif){
     if($gif != "drop.gif" && endsWith($gif,".gif")) {
         $sprite = getSpriteByGifName($gif);
-        echo "<div class='sprite flexcol flexcenter' style='order:" 
+        if($sprite['EventDropID'] <= 0) echo "<div class='sprite flexcol flexcenter' style='order:" 
             . (isset($_GET["price"]) ? $sprite['Cost'] : $sprite['ID']) ."'><a href='sprites/cabin/?sprite=" 
             . $sprite['ID'] . "'><h2>"."#". $sprite['ID'] 
             ."</h2> <img style='width:100%' src='sprites/gif/".$gif."'><h2>" 

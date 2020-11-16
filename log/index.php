@@ -27,6 +27,7 @@
         echo "<h2>Plantir Bot Dashboard & Log</h2><h3> Refreshed at:  " . date("Y-m-d H:i:s") 
             . "</h3><a href='/Orthanc/log/?auth=supersecret&updateptr'><button>Pull & Restart Palantir</button></a><br><a href='/Orthanc/log/?auth=supersecret&updateohc'><button>Pull Orthanc</button></a><br><br>";
         $file = file("/home/pi/palantirOutput.log");
+        if(count($file) > 500) file_put_contents("/home/pi/palantirOutput.log"), $file[0];
         $file = array_reverse($file);
         foreach($file as $f){
             echo $f."<br />";

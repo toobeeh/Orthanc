@@ -217,16 +217,22 @@
             availableSprites = json.Sprites;
 
             // get sprite by parameter
-            let sprite = getParameterByName("sprite");
-            sprite = getSprite(sprite);
-            document.querySelector(".sprite").style.backgroundImage = 'url("' + sprite.URL + '")';
-            if(sprite.Special > 0){
-                localStorage.mouth = 50;
-                localStorage.eyes = 50;
-                localStorage.color = 50;
-                updateColor();
-                updateEyes();
-                updateMouth();
+            let demo = getParameterByName("demo");
+            if(!demo){
+                let sprite = getParameterByName("sprite");
+                sprite = getSprite(sprite);
+                document.querySelector(".sprite").style.backgroundImage = 'url("' + sprite.URL + '")';
+                if(sprite.Special > 0){
+                    localStorage.mouth = 50;
+                    localStorage.eyes = 50;
+                    localStorage.color = 50;
+                    updateColor();
+                    updateEyes();
+                    updateMouth();
+                }
+            }
+            else{
+                ocument.querySelector(".sprite").style.backgroundImage = 'url("' + demo + '")';
             }
         })();
         

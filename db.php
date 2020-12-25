@@ -305,7 +305,7 @@ function claimDrop($_dropID, $_lobbyKey, $_lobbyPlayerID, $_login){
             $_sql->bindParam(2, $eventDropID);
             $result = $_sql->execute();
             if($result->fetchArray()){
-                $_sql = $_db->prepare("UPDATE EventCredits SET Credit = Credit + 2 WHERE Login = ? AND EventDropID = ?");
+                $_sql = $_db->prepare("UPDATE EventCredits SET Credit = Credit + 1 WHERE Login = ? AND EventDropID = ?");
                 $_sql->bindParam(1, $_login);
                 $_sql->bindParam(2, $eventDropID);
                 $result = $_sql->execute();

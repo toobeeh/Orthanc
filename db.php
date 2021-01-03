@@ -342,7 +342,7 @@ function getEventDrops(){
     $_db->busyTimeout(1000);
     $_db->exec('PRAGMA journal_mode = wal;');
 
-    $_sql = $_db->prepare("SELECT * FROM EventDrops INNER JOIN Events ON EventDrops.EventID = Events.EventID");
+    $_sql = $_db->prepare("SELECT * FROM EventDrops LEFT JOIN Events ON EventDrops.EventID = Events.EventID");
     $_result = $_sql->execute();
     
     $_return = array();

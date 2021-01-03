@@ -342,15 +342,14 @@ function getEventDrops(){
     $_db->busyTimeout(1000);
     $_db->exec('PRAGMA journal_mode = wal;');
 
-    $_sql = $_db->prepare("SELECT * FROM EventDrops");
+    $_sql = $_db->prepare("SELECT * FROM EventDrops INNER JOIN Events ON EventDrops.EventID = Events.EventID");
     $_result = $_sql->execute();
     
     $_return = array();
     while($_row = $_result->fetchArray()) 
         array_push($_return, 
-            array("EventDropID"=>$_row["EventDropID"],"EventID"=>$_row["EventID"],"Name"=>$_row["Name"],"URL"=>$_row["URL"])
+            array("EventDropID"=>$_row["EventDropID"],"EventID"=>$_row["EventID"],"Name"=>$_row["Name"],"URL"=>$_row["URL"],"EventName"=>$_row["EventName"])
         );
-
     $_db->close();
     return json_encode($_return);
 }

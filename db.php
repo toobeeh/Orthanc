@@ -21,6 +21,21 @@ function getMemberJSON($_login){
     return $_return;
 }
 
+// Get Member sprite data
+function getFullMemberData($_login){
+    $_db = new SQlite3('/home/pi/Database/palantir.db');
+    $_db->busyTimeout(1000);
+    $_db->exec('PRAGMA journal_mode = wal;');
+
+    $_sql = $_db->prepare('SELECT * FROM Members WHERE Login = ?');
+    $_sql->bindParam(1, $_login);
+    $_result = $_sql->execute();
+    if($_row = $_result->fetchArray()) $_return =  json_encode($_row);
+    else $_return = false;
+    $_db->close();
+    return $_return;
+}
+
 // Set member Json (for example to add new guild)
 function setMemberJSON($_login, $_json){
     $_db = new SQlite3('/home/pi/Database/palantir.db');

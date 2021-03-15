@@ -45,12 +45,12 @@ function getAll(){
     $_db->exec('PRAGMA journal_mode = wal;');
     $_sql = $_db->prepare('SELECT * FROM Emojis');
     $_result = $_sql->execute();
-    $_return = "[";
-    while($_row = $_result->fetchArray()) 
-        $_return = $_return . "{\"name\":\"" . $_row["Name"] . "~" . $_row["ID"] . "\", \"url\":\"". $_row["URL"] . "\"}";
-    $_db->close();
-    $_return = $_return . "]";
-    return $_return;
+    // $_return = "[";
+    // while($_row = $_result->fetchArray()) 
+    //     $_return = $_return . "{\"name\":\"" . $_row["Name"] . "~" . $_row["ID"] . "\", \"url\":\"". $_row["URL"] . "\"}";
+    // $_db->close();
+    // $_return = $_return . "]";
+    return json_encode($_result);
 }
 if(isset($_GET["keyword"])){
     $resUrl = "https://api.allorigins.win/get?url=https://discordservers.me/animatedsearch?emoji=" . $_GET["keyword"];

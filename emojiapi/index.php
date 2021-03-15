@@ -37,7 +37,7 @@ function addEmoji($_name, $_url){
     }
 }
 
-$response = shell_exec('php -r "curl_exec(curl_init(' . "https://discordservers.me/animatedsearch?emoji=" . $_GET["keyword"] . '));"');
+$response = shell_exec('php -r "curl_exec(curl_init(\'' . 'https://discordservers.me/animatedsearch?emoji=' . $_GET["keyword"] . '\'));"');
 echo "<!-- " . $response . " -->";
 $regex = '/<p[^>]*class=[^>]*"pack-description[^>]*"[^>]*>(.+?)<\/p>.*?https:([^?]+)\?.*?<img/m';
 preg_match_all($regex, $response, $matches);

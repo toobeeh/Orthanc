@@ -47,7 +47,7 @@ function getAll(){
     $_result = $_sql->execute();
     $_return = "[";
     while($_row = $_result->fetchArray()) 
-        $_return = $_return . "{'name':'" . $_row["name"] . "~" . $_row["ID"] . "', 'url':'". $_row["URL"] . "'}";
+        $_return = $_return . "{'name':'" . $_row["Name"] . "~" . $_row["ID"] . "', 'url':'". $_row["URL"] . "'}";
     $_db->close();
     $_return = $_return . "]";
     return $_return;

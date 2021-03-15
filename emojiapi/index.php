@@ -41,7 +41,7 @@ $resUrl = "https://discordservers.me/animatedsearch?emoji=" . $_GET["keyword"];
 $ch = curl_init($resUrl);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 $response = curl_exec($ch);
-$regex = '/<p[^>]*class=[^>]*"pack-description[^>]*"[^>]*>(.+?)<\/p>.*?https:([^?]+)\?.*?<img/m';
-preg_match_all($regex, $response, $matches, PREG_SET_ORDER, 0);
-print("<pre>".print_r($matches,true)."</pre>");
+$regex = '/<p[^>]*class=[^>]*"pack-description[^>]*"[^>]*>(.+?)<\/p>.*?https:([^?]+)\?.*?<img/g';
+preg_match_all($regex, $response, $matches);
+print_r($matches);
 ?>

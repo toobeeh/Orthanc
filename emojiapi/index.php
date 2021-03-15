@@ -44,10 +44,12 @@ function getAll($_name){
     $_db->busyTimeout(1000);
     $_db->exec('PRAGMA journal_mode = wal;');
     if(is_string($_name) && strlen($_name) > 0){
-        $_sql = $_db->prepare('SELECT * FROM Emojis WHERE Name like "%?%"');
-        $_sql->bindParam(1, $_name);
+        $_sql = $_db->prepare('SELECT * FROM Emojis WHERE Name like ?"');
+        $_sql->bindParam(1, "'%".$_name."%'");
     }
-    else $_sql = $_db->prepare('SELECT * FROM Emojis');
+    else {
+        $_sql = $_db->prepare('SELECT * FROM Emojis');
+    }
     $_result = $_sql->execute();
     $_return = "[";
     while($_row = $_result->fetchArray()) 

@@ -39,6 +39,7 @@ function addEmoji($_name, $_url){
 
 $resUrl = "https://discordservers.me/animatedsearch?emoji=" . $_GET["keyword"];
 $ch = curl_init($resUrl);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 $response = curl_exec($ch);
 $regex = '/<p[^>]*class=[^>]*"pack-description[^>]*"[^>]*>(.+?)<\/p>.*?https:([^?]+)\?.*?<img/gm';
 preg_match_all($regex, $response, $matches, PREG_SET_ORDER, 0);

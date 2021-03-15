@@ -1,4 +1,4 @@
-<?
+<?php
 function getAvailableEmojiID($_name){
     $_db = new SQlite3('/home/pi/Database/emojis.db');
     $_db->busyTimeout(1000);

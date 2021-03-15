@@ -41,8 +41,9 @@ $resUrl = "https://api.allorigins.win/get?url=https://discordservers.me/animated
 $ch = curl_init($resUrl);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 $response = curl_exec($ch);
-echo "<!-- " . $response . " -->";
 $regex = '/<p[^>]*class=[^>]*"pack-description[^>]*"[^>]*>(.+?)<\/p>.*?https:([^?]+)\?.*?<img/m';
 preg_match_all($regex, $response, $matches);
-var_dump($matches);
+foreach ($matches as $match) {
+    addEmoji($match[1], "https" . $match[2]);
+}
 ?>

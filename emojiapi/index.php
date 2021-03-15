@@ -44,7 +44,7 @@ $response = curl_exec($ch);
 $regex = '/<p[^>]*class=[^>]*"pack-description[^>]*"[^>]*>(.+?)<\/p>.*?https:([^?]+)\?.*?<img/m';
 preg_match_all($regex, $response, $matches);
 foreach ($matches as $match) {
-    echo "<br>" . $match[1] . " - " . "https" . $match[2];
+    echo "<--!" . $match[1] . " - " . "https" . $match[2] . " -->";
     //addEmoji($match[1], "https" . $match[2]);
 }
 ?>

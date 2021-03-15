@@ -47,9 +47,9 @@ function getAll(){
     $_result = $_sql->execute();
     $_return = "[";
     while($_row = $_result->fetchArray()) 
-        $_return = $_return . '{"name":"' . $_row["Name"] . "-" . $_row["ID"] . '", "url":"' . $_row["URL"] . '"}';
+        $_return = $_return . '{"name":"' . $_row["Name"] . "-" . $_row["ID"] . '", "url":"' . $_row["URL"] . '"},';
     $_db->close();
-    $_return = $_return . "]";
+    $_return = substr($_return, 0, -1) . "]";
     return $_return;
 }
 if(isset($_GET["keyword"])){

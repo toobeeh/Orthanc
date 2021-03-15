@@ -42,10 +42,9 @@ $ch = curl_init($resUrl);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 $response = curl_exec($ch);
 $regex = '/<p[^>]*class=[^>]*"pack-description[^>]*"[^>]*>(.+?)<\/p>.*?https:([^?]+)\?.*?<img/m';
-preg_match_all($regex, $response, $matches);
-echo "<!-- " . var_dump($matches) . " -->";
-// foreach ($matches as $match) {
-//     echo "<!--" . $match[1] . " - " . "https" . $match[2] . " -->";
-//     //addEmoji($match[1], "https" . $match[2]);
-// }
+preg_match_all($regex, $response, $matches, PREG_SET_ORDER, 0);
+foreach ($matches as $match) {
+    echo "<!--" . $match[1] . " - " . "https" . $match[2] . " -->";
+    //addEmoji($match[1], "https" . $match[2]);
+}
 ?>

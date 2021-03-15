@@ -44,7 +44,7 @@ function getAll($_name){
     $_db->busyTimeout(1000);
     $_db->exec('PRAGMA journal_mode = wal;');
     if(is_string($_name) && strlen($_name) > 0){
-        $_sql = $_db->prepare('SELECT * FROM Emojis WHERE Name like ?"');
+        $_sql = $_db->prepare('SELECT * FROM Emojis WHERE Name like ?');
         $_sql->bindParam(1, "'%".$_name."%'");
     }
     else {

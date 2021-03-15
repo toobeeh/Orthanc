@@ -42,5 +42,5 @@ $ch = curl_init($resUrl);
 $response = curl_exec($ch);
 $regex = '/<p[^>]*class=[^>]*"pack-description[^>]*"[^>]*>(.+?)<\/p>.*?https:([^?]+)\?.*?<img/gm';
 preg_match_all($regex, $response, $matches, PREG_SET_ORDER, 0);
-printf($matches);
+print("<pre>".print_r($matches,true)."</pre>");
 ?>

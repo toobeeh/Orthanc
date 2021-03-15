@@ -36,16 +36,35 @@ function addEmoji($_name, $_url){
         $_sql->bindParam(2, $_id);
         $_sql->bindParam(3, $_url);
         $_result = $_sql->execute();
+        $_db->close();
     }
 }
-
-$resUrl = "https://api.allorigins.win/get?url=https://discordservers.me/animatedsearch?emoji=" . $_GET["keyword"];
-$ch = curl_init($resUrl);
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-$response = curl_exec($ch);
-$regex = '/<p[^>]*class=[^>]*"pack-description[^>]*"[^>]*>(.+?)<\/p>.*?https:([^?]+)\?.*?<img/m';
-preg_match_all($regex, $response, $matches, PREG_SET_ORDER, 0);
-foreach ($matches as $match) {
-    addEmoji($match[1], "https:" . $match[2]);
+function getAll(){
+    $_db = new SQlite3('/home/pi/Database/emojis.db');
+    $_db->busyTimeout(1000);
+    $_db->exec('PRAGMA journal_mode = wal;');
+    $_sql = $_db->prepare('SELECT * FROM Emojis');
+    $_result = $_sql->execute();
+    $_return = "[";
+    while($_row = $_result->fetchArray()) 
+        $_return = $_return . "{'name':'" . $_row["name"] . "~" . $_row["ID"] . "', 'url':'". $_row["URL"] . "'}";
+    $_db->close();
+    $_return = $_return . "]";
+    return $_return;
 }
+if(isset($_GET["keyword"])){
+    $resUrl = "https://api.allorigins.win/get?url=https://discordservers.me/animatedsearch?emoji=" . $_GET["keyword"];
+    $ch = curl_init($resUrl);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    $response = curl_exec($ch);
+    $regex = '/<p[^>]*class=[^>]*"pack-description[^>]*"[^>]*>(.+?)<\/p>.*?https:([^?]+)\?.*?<img/m';
+    preg_match_all($regex, $response, $matches, PREG_SET_ORDER, 0);
+    foreach ($matches as $match) {
+        addEmoji($match[1], "https:" . $match[2]);
+    }
+}
+else{
+    echo getAll();
+}
+
 ?>

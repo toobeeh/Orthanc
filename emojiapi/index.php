@@ -74,5 +74,11 @@ if(isset($_GET["add"])){
 else if(isset($_GET["get"])){
     echo getAll($_GET["get"]);
 }
+else {
+    $em = getAll($_GET["show"]);
+    foreach($em as $emoji){
+        echo "<span><img height='20px' src='" . $emoji->URL . "'>" . $emoji->Name . "</span>";
+    }
+}
 
 ?>

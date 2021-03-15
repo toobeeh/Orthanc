@@ -76,8 +76,8 @@ else if(isset($_GET["get"])){
 }
 else {
     $em = getAll($_GET["show"]);
-    foreach($em as $emoji){
-        echo "<span><img height='20px' src='" . $emoji->URL . "'>" . $emoji->Name . "</span>";
+    foreach(json_decode($em) as $emoji){
+        echo "<span><img height='20px' src='" . $emoji->url . "'>" . $emoji->name . "</span>";
     }
 }
 

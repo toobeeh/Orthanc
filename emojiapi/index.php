@@ -5,7 +5,7 @@ function getAvailableEmojiID($_name){
     $_db = new SQlite3('/home/pi/Database/emojis.db');
     $_db->busyTimeout(1000);
     $_db->exec('PRAGMA journal_mode = wal;');
-    $_sql = $_db->prepare('SELECT * FROM Emojis WHERE Name = ? ORDER BY ID DESCENDING');
+    $_sql = $_db->prepare('SELECT * FROM Emojis WHERE Name = ? ORDER BY ID DESC');
     $_sql->bindParam(1, $_name);
     $_result = $_sql->execute();
     if($_row = $_result->fetchArray()) $_id = $_row['ID'] + 1;

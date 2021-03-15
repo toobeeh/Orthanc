@@ -1,4 +1,6 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 'On');
 function getAvailableEmojiID($_name){
     $_db = new SQlite3('/home/pi/Database/emojis.db');
     $_db->busyTimeout(1000);

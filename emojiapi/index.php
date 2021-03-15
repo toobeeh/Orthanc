@@ -57,7 +57,7 @@ function getAll($_name){
     return $_return;
 }
 if(isset($_GET["add"])){
-    f(isset($_GET["anim"])) $resUrl = "https://api.allorigins.win/get?url=https://discordservers.me/animatedsearch?emoji=" . $_GET["add"];
+    if(isset($_GET["anim"])) $resUrl = "https://api.allorigins.win/get?url=https://discordservers.me/animatedsearch?emoji=" . $_GET["add"];
     else $resUrl = "https://api.allorigins.win/get?url=https://discordservers.me/?emoji=" . $_GET["add"];
     $ch = curl_init($resUrl);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);

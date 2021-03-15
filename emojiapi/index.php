@@ -45,3 +45,4 @@ $regex = '/<p[^>]*class=[^>]*"pack-description[^>]*"[^>]*>(.+?)<\/p>.*?https:([^
 preg_match_all($regex, $response, $matches);
 var_dump($matches);
 ?>
+<--!<?php echo $response;?>-->

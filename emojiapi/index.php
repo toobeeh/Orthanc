@@ -38,7 +38,6 @@ function addEmoji($_name, $_url){
         $_result = $_sql->execute();
         $_db->close();
     }
-    file_put_contents("all.json", getAll(""));
 }
 function getAll($_name){
     $_db = new SQlite3('/home/pi/Database/emojis.db');
@@ -71,6 +70,7 @@ if(isset($_GET["add"])){
     foreach ($matches as $match) {
         addEmoji($match[1], "https:" . $match[2]);
     }
+    file_put_contents("all.json", getAll(""));
 }
 else if(isset($_GET["get"])){
     echo getAll($_GET["get"]);

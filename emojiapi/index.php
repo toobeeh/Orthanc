@@ -38,6 +38,7 @@ function addEmoji($_name, $_url){
         $_result = $_sql->execute();
         $_db->close();
     }
+    file_put_contents("all.json", getAll(""));
 }
 function getAll($_name){
     $_db = new SQlite3('/home/pi/Database/emojis.db');

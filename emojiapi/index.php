@@ -1,6 +1,7 @@
 <?php
 error_reporting(E_ALL);
 ini_set('display_errors', 'On');
+ini_set('max_execution_time', '300'); 
 function getAvailableEmojiID($_name){
     $_db = new SQlite3('/home/pi/Database/emojis.db');
     $_db->busyTimeout(1000);
@@ -71,6 +72,7 @@ if(isset($_GET["add"])){
         addEmoji($match[1], "https:" . $match[2]);
     }
     file_put_contents("all.json", getAll(""));
+    echo count($matches);
 }
 else if(isset($_GET["get"])){
     echo getAll($_GET["get"]);

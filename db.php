@@ -247,7 +247,7 @@ function getAvailableSprites(){
     $_return = array();
     while($_row = $_result->fetchArray()) 
         array_push($_return, 
-            array("ID"=>$_row["ID"],"Name"=>$_row["Name"],"URL"=>$_row["URL"],"Cost"=>$_row["Cost"],"Special"=>$_row["Special"],"EventDropID"=>$_row["EventDropID"])
+            array("ID"=>$_row["ID"],"Name"=>$_row["Name"],"URL"=>$_row["URL"],"Cost"=>$_row["Cost"],"Special"=>$_row["Special"],"EventDropID"=>$_row["EventDropID"],"Artist"=>$_row["Artist"])
         );
 
     $_db->close();

@@ -4,6 +4,7 @@
     error_reporting(E_ALL);
 
     if(isset($_POST['login'])) $login = $_POST['login'];
+    if(isset($_POST['url'])) $url = $_POST['url'];
     // login token set?
     if(!isset($login)){
         $valid = '{"Valid":false}';
@@ -17,8 +18,12 @@
 
         // evaluate member
         if($member !== false) {
-            $image = getPalantirSubmission($login);
-            $valid = '{"Valid":true, "Image":'.$image.'}';
+            if(getPalantirSubmission($login)) $valid = '{"Valid":true, "Image":'.getPalantirSubmission($login).'}';
+            else {
+                addPalantirSubmission($login, $url);
+                $valid = '{"Valid":true, "Image":'.getPalantirSubmission($login).'}';
+            }
+            
         }
         else $valid = '{"Valid":false}';
     }

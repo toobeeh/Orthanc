@@ -384,7 +384,7 @@ function addPalantirSubmission($_login, $_image){
     $_db->busyTimeout(1000);
     $_db->exec('PRAGMA journal_mode = wal;');
 
-    $_sql = $_db->prepare("INSERT INTO Submissions Where values(?, ?)");
+    $_sql = $_db->prepare("INSERT INTO Submissions values(?, ?)");
     $_sql->bindParam(1, $_login);
     $_sql->bindParam(1, $_image);
     $res = $_sql->execute();

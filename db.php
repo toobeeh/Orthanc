@@ -389,6 +389,18 @@ function addPalantirSubmission($_login, $_image){
     $_sql->bindParam(2, $_image);
     $res = $_sql->execute();
 }
+function getAllPalantirSubmissions(){
+    $_db = new SQlite3('/home/pi/Database/contest.db');
+    $_db->busyTimeout(1000);
+    $_db->exec('PRAGMA journal_mode = wal;');
+
+    $_sql = $_db->prepare("Select image FROM Submissions");
+    $_sql->bindParam(1, $_login);
+    $res = $_sql->execute();
+    $images = [];
+    while($row = $res->fetchArray()) array_push($images, $row["image"]);
+    return implode(",", $images);
+}
 
 ?>
 

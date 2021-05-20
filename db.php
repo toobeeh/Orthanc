@@ -368,5 +368,58 @@ function getEventDrops(){
     $_db->close();
     return json_encode($_return);
 }
+function getPalantirSubmission($_login){
+    $_db = new SQlite3('/home/pi/Database/contest.db');
+    $_db->busyTimeout(1000);
+    $_db->exec('PRAGMA journal_mode = wal;');
 
+    $_sql = $_db->prepare("Select image FROM Submissions Where login = ?");
+    $_sql->bindParam(1, $_login);
+    $res = $_sql->execute();
+    if($row = $res->fetchArray()) return $row["image"];
+    else return false;
+}
+function addPalantirSubmission($_login, $_image){
+    $_db = new SQlite3('/home/pi/Database/contest.db');
+    $_db->busyTimeout(1000);
+    $_db->exec('PRAGMA journal_mode = wal;');
+
+    $_sql = $_db->prepare("INSERT INTO Submissions Where values(?, ?)");
+    $_sql->bindParam(1, $_login);
+    $_sql->bindParam(1, $_image);
+    $res = $_sql->execute();
+}
+
+?>
+
+<?php
+    // $dbs = glob("/home/pi/Webroot/rippro/userdb/*.db");
+    // $sum = count($dbs);
+    // $count = 0;
+    // $words = [];
+    // foreach($dbs as $db){
+    //     $count++;
+    //     echo "Reading " . $db . " - No. " . $count . " of " . $sum . "\n";
+    //     try{
+    //         $_db = new SQlite3($db);
+    //         $_db->busyTimeout(1000);
+    //         $_db->exec('PRAGMA journal_mode = wal;');
+
+    //         $_sql = $_db->prepare("SELECT name FROM sqlite_master WHERE type='table' AND name='Drawings'");
+    //         if(($_sql->execute())->fetchArray() === false) throw new Exception("No such table: Drawings");
+
+    //         $_sql = $_db->prepare("SELECT json_extract(meta, '$.name') as word, meta FROM Drawings WHERE json_extract(meta, '$.private') = 0 AND json_extract(meta, '$.language') = 'German' AND json_extract(meta, '$.own') = 0");
+    //         $_result = $_sql->execute();
+    //         while($_row = $_result->fetchArray()) 
+    //             //if(!in_array($_row["word"], $words)) array_push($words, $_row["word"]);
+    //             if($_row["word"] == "Vertrauen") echo $_row["meta"];
+    //         $_db->close();
+    //     }
+    //     catch (Exception $e) {
+    //         echo 'Exception thrown: ',  $e->getMessage(), "\n";
+    //     }
+    //     //echo "Total " . count($words) . " words in the list yet\n";
+    // }
+    // file_put_contents("/home/pi/wordlist.txt", implode(",", $words));
+    // echo "Done!";
 ?>

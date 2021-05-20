@@ -18,7 +18,7 @@
         // evaluate member
         if($member !== false) {
             $image = getPalantirSubmission($login);
-            $valid = '{"Valid":true, "Image":'.$image.'}';
+            $valid = '{"Valid":true, "Image":"'.$image.'"}';
         }
         else $valid = '{"Valid":false}';
     }

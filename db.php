@@ -386,7 +386,7 @@ function addPalantirSubmission($_login, $_image){
 
     $_sql = $_db->prepare("INSERT INTO Submissions values(?, ?)");
     $_sql->bindParam(1, $_login);
-    $_sql->bindParam(1, $_image);
+    $_sql->bindParam(2, $_image);
     $res = $_sql->execute();
 }
 

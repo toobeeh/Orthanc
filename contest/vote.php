@@ -3,20 +3,20 @@
     ini_set('display_startup_errors', 1); 
     error_reporting(E_ALL);
 
-    if(isset($_POST['login'])) $login = $_POST['login'];
-    if(isset($_POST['vote1'])) $vote1 = $_POST['vote1'];
-    else $vote1 = "";
-    if(isset($_POST['vote2'])) $vote2 = $_POST['vote2'];
-    else $vote2 = "";
+    if(isset($_POST['login'])) $_login = $_POST['login'];
+    if(isset($_POST['vote1'])) $_vote1 = $_POST['vote1'];
+    else $_vote1 = "";
+    if(isset($_POST['vote2'])) $_vote2 = $_POST['vote2'];
+    else $_vote2 = "";
 
     // include db functions
     include '/home/pi/Webroot/Orthanc/db.php';
     // login token set?
-    if(!isset($login) || getMemberJSON($login) === false){
+    if(!isset($_login) || getMemberJSON($_login) === false){
         $valid = 'false';
     }
     else{
-        setSubmissionVotes($login, $vote1, $vote2);     
+        setSubmissionVotes($_login, $_vote1, $_vote2);     
         $valid = "true";   
     }
     echo $valid;

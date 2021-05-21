@@ -397,7 +397,7 @@ function getAllPalantirSubmissions(){
     $_sql = $_db->prepare("SELECT submissions.image AS sub, COUNT(votes.votelogin) AS votes FROM submissions LEFT JOIN votes ON votes.image = submissions.image GROUP BY sub ORDER BY votes");
     $res = $_sql->execute();
     $images = [];
-    while($row = $res->fetchArray()) array_push($images, $row);
+    while($row = $res->fetchArray()) array_push($images, json_encode($row));
     return implode(",", $images);
 }
 

@@ -406,12 +406,13 @@ function setSubmissionVotes($login, $vote1, $vote2){
     $_db->exec('PRAGMA journal_mode = wal;');
 
     $_sql = $_db->prepare("REPLACE INTO Votes VALUES(?,?)");
-    $_sql->bindParam(1, $login . "1");
+    $_sql->bindParam(1, $login);
     $_sql->bindParam(2, $vote1);
     $res = $_sql->execute();
 
     $_sql = $_db->prepare("REPLACE INTO Votes VALUES(?,?)");
-    $_sql->bindParam(1, $login . "2");
+    $login = $login . "0";
+    $_sql->bindParam(1, $login);
     $_sql->bindParam(2, $vote2);
     $res = $_sql->execute();
 }

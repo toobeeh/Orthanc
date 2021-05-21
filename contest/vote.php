@@ -5,7 +5,7 @@
 
     if(isset($_POST['login'])) $login = $_POST['login'];
     if(isset($_POST['vote1'])) $vote1 = $_POST['vote1'];
-    if(isset($_POST['vote1'])) $vote1 = $_POST['vote1'];
+    if(isset($_POST['vote2'])) $vote2 = $_POST['vote2'];
 
     // include db functions
     include '/home/pi/Webroot/Orthanc/db.php';

@@ -398,7 +398,22 @@ function getAllPalantirSubmissions(){
     $res = $_sql->execute();
     $images = [];
     while($row = $res->fetchArray()) array_push($images, json_encode($row));
-    return implode(",", $images);
+    return "[" . implode(",", $images) . "]";
+}
+function setSubmissionVotes($login, $vote1, $vote2){
+    $_db = new SQlite3('/home/pi/Database/contest.db');
+    $_db->busyTimeout(1000);
+    $_db->exec('PRAGMA journal_mode = wal;');
+
+    $_sql = $_db->prepare("REPLACE INTO Votes VALUES(?,?)");
+    $_sql->bindParam(1, $login . "1");
+    $_sql->bindParam(2, $vote1);
+    $res = $_sql->execute();
+
+    $_sql = $_db->prepare("REPLACE INTO Votes VALUES(?,?)");
+    $_sql->bindParam(1, $login . "2");
+    $_sql->bindParam(2, $vote2);
+    $res = $_sql->execute();
 }
 
 ?>

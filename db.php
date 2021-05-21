@@ -394,11 +394,10 @@ function getAllPalantirSubmissions(){
     $_db->busyTimeout(1000);
     $_db->exec('PRAGMA journal_mode = wal;');
 
-    $_sql = $_db->prepare("Select image FROM Submissions");
-    $_sql->bindParam(1, $_login);
+    $_sql = $_db->prepare("SELECT submissions.image AS sub, COUNT(votes.votelogin) AS votes FROM submissions LEFT JOIN votes ON votes.image = submissions.image GROUP BY sub ORDER BY votes");
     $res = $_sql->execute();
     $images = [];
-    while($row = $res->fetchArray()) array_push($images, $row["image"]);
+    while($row = $res->fetchArray()) array_push($images, $row);
     return implode(",", $images);
 }
 

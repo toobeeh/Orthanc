@@ -61,18 +61,30 @@ function getAll($_name){
     return $_return;
 }
 if(isset($_GET["add"])){
-    if(isset($_GET["anim"])) $resUrl = "https://api.allorigins.win/get?url=https://discordservers.me/animatedsearch?emoji=" . $_GET["add"];
-    else $resUrl = "https://api.allorigins.win/get?url=https://discordservers.me/search?emoji=" . $_GET["add"];
+    if(isset($_GET["anim"])) $resUrl = "https://discords.com/api-v2/emoji/search?type=animated&query=" . $_GET["add"];
+    else $resUrl = "https://discords.com/api-v2/emoji/search?type=static&query=" . $_GET["add"];
     $ch = curl_init($resUrl);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
     $response = curl_exec($ch);
-    $regex = '/<p[^>]*class=[^>]*"pack-description[^>]*"[^>]*>(.+?)<\/p>.*?https:([^?]+)\?.*?<img/m';
-    preg_match_all($regex, $response, $matches, PREG_SET_ORDER, 0);
-    foreach ($matches as $match) {
-        addEmoji($match[1], "https:" . $match[2]);
+    // $regex = '/<p[^>]*class=[^>]*"pack-description[^>]*"[^>]*>(.+?)<\/p>.*?https:([^?]+)\?.*?<img/m';
+    // preg_match_all($regex, $response, $matches, PREG_SET_ORDER, 0);
+    // foreach ($matches as $match) {
+    //     addEmoji($match[1], "https:" . $match[2]);
+    // }
+    $json_response = json_decode($response);
+    $pages = $json_response->pages;
+    $count = 0;
+    for($page = 1; $page++; $page <= $pages){
+        $emojipage = curl_exec($ch . "&page=" . $page);
+        foreach(json_decode($emojipage)->emojis as $emoji){
+            if(isset($_GET["anim"])) $emourl = "https://cdn.discordapp.com/emojis/" . $emoji->id . ".gif";
+            else $emourl = "https://cdn.discordapp.com/emojis/" . $emoji->id . ".png";
+            addEmoji($emoji->name, $emourl);
+            $count++;
+        }
     }
     file_put_contents("all.json", getAll(""));
-    echo count($matches);
+    echo $count;
 }
 else if(isset($_GET["get"])){
     echo getAll($_GET["get"]);

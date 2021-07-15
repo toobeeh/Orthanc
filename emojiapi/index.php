@@ -68,21 +68,20 @@ if(isset($_GET["add"])){
     $response = curl_exec($ch);
     $json_response = json_decode($response);
     $pages = $json_response->pages;
-    echo $pages;
-    // $count = 0;
-    // for($page = 1; $page++; $page <= $pages){
-    //     $pagecurl = curl_init($ch . "&page=" . $page);
-    //     $emojipage = curl_exec($pagecurl);
-    //     echo $emojipage;
-    //     // foreach((json_decode($emojipage)->emojis) as $emoji){
-    //     //     if(isset($_GET["anim"])) $emourl = "https://cdn.discordapp.com/emojis/" . $emoji->id . ".gif";
-    //     //     else $emourl = "https://cdn.discordapp.com/emojis/" . $emoji->id . ".png";
-    //     //     addEmoji($emoji->name, $emourl);
-    //     //     $count++;
-    //     // }
-    // }
-    // //file_put_contents("all.json", getAll(""));
-    // echo $count;
+    $count = 0;
+    for($page = 1; $page++; $page <= $pages){
+        $pagecurl = curl_init($resUrl . "&page=" . $page);
+        $emojipage = curl_exec($pagecurl);
+        echo $emojipage;
+        // foreach((json_decode($emojipage)->emojis) as $emoji){
+        //     if(isset($_GET["anim"])) $emourl = "https://cdn.discordapp.com/emojis/" . $emoji->id . ".gif";
+        //     else $emourl = "https://cdn.discordapp.com/emojis/" . $emoji->id . ".png";
+        //     addEmoji($emoji->name, $emourl);
+        //     $count++;
+        // }
+    }
+    //file_put_contents("all.json", getAll(""));
+    echo $count;
 }
 else if(isset($_GET["get"])){
     echo getAll($_GET["get"]);

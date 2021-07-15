@@ -85,7 +85,7 @@ if(isset($_GET["add"])){
         //     $count++;
         // }
     }
-    file_put_contents("all.json", getAll(""));
+    //file_put_contents("all.json", getAll(""));
     echo $count;
 }
 else if(isset($_GET["get"])){

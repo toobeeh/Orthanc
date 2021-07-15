@@ -66,15 +66,9 @@ if(isset($_GET["add"])){
     $ch = curl_init($resUrl);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
     $response = curl_exec($ch);
-    // $regex = '/<p[^>]*class=[^>]*"pack-description[^>]*"[^>]*>(.+?)<\/p>.*?https:([^?]+)\?.*?<img/m';
-    // preg_match_all($regex, $response, $matches, PREG_SET_ORDER, 0);
-    // foreach ($matches as $match) {
-    //     addEmoji($match[1], "https:" . $match[2]);
-    // }
     $json_response = json_decode($response);
-    echo $response;
-    
-    // $pages = $json_response->pages;
+    $pages = $json_response->pages;
+    echo $pages;
     // $count = 0;
     // for($page = 1; $page++; $page <= $pages){
     //     $pagecurl = curl_init($ch . "&page=" . $page);

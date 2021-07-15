@@ -63,18 +63,17 @@ function getAll($_name){
 if(isset($_GET["add"])){
     if(isset($_GET["anim"])) $resUrl = "https://discords.com/api-v2/emoji/search?type=animated&query=" . $_GET["add"];
     else $resUrl = "https://discords.com/api-v2/emoji/search?type=static&query=" . $_GET["add"];
-    $ch = curl_init($resUrl);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-    $response = curl_exec($ch);
-    curl_close($ch);
+    $curlHandler = curl_init();
+    curl_setopt($curlHandler, CURLOPT_URL, $resUrl);
+    curl_setopt($curlHandler, CURLOPT_RETURNTRANSFER, 1);
+    $response = curl_exec($curlHandler);
     $json_response = json_decode($response);
     $pages = $json_response->pages;
     $count = 0;
     for($page = 1; $page++; $page <= $pages){
-        $pagecurl = curl_init($resUrl . "&page=" . $page);
-        curl_setopt($pagecurl, CURLOPT_RETURNTRANSFER, 1);
-        $emojipage = curl_exec($pagecurl);
-        curl_close($emojipage);
+        $pageurl = $resUrl . "&page=" . $page;
+        curl_setopt($curlHandler, CURLOPT_URL, $pageurl);
+        $emojipage = curl_exec($curlHandler);
         echo $emojipage;
         // foreach((json_decode($emojipage)->emojis) as $emoji){
         //     if(isset($_GET["anim"])) $emourl = "https://cdn.discordapp.com/emojis/" . $emoji->id . ".gif";
@@ -83,6 +82,7 @@ if(isset($_GET["add"])){
         //     $count++;
         // }
     }
+    curl_close($curlHandler);
     //file_put_contents("all.json", getAll(""));
     echo $count;
 }

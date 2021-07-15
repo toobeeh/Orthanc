@@ -71,6 +71,7 @@ if(isset($_GET["add"])){
     $count = 0;
     for($page = 1; $page++; $page <= $pages){
         $pagecurl = curl_init($resUrl . "&page=" . $page);
+        curl_setopt($pagecurl, CURLOPT_RETURNTRANSFER, 1);
         $emojipage = curl_exec($pagecurl);
         echo $emojipage;
         // foreach((json_decode($emojipage)->emojis) as $emoji){

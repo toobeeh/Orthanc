@@ -66,6 +66,7 @@ if(isset($_GET["add"])){
     $ch = curl_init($resUrl);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
     $response = curl_exec($ch);
+    curl_close($ch);
     $json_response = json_decode($response);
     $pages = $json_response->pages;
     $count = 0;
@@ -73,6 +74,7 @@ if(isset($_GET["add"])){
         $pagecurl = curl_init($resUrl . "&page=" . $page);
         curl_setopt($pagecurl, CURLOPT_RETURNTRANSFER, 1);
         $emojipage = curl_exec($pagecurl);
+        curl_close($emojipage);
         echo $emojipage;
         // foreach((json_decode($emojipage)->emojis) as $emoji){
         //     if(isset($_GET["anim"])) $emourl = "https://cdn.discordapp.com/emojis/" . $emoji->id . ".gif";

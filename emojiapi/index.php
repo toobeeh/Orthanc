@@ -75,8 +75,8 @@ if(isset($_GET["add"])){
     $pages = $json_response->pages;
     $count = 0;
     for($page = 1; $page++; $page <= $pages){
-        $pageurl = $ch . "&page=" . $page;
-        $emojipage = curl_exec($pgeurl);
+        $pagecurl = curl_init($ch . "&page=" . $page);
+        $emojipage = curl_exec($pagecurl);
         foreach(json_decode($emojipage)->emojis as $emoji){
             if(isset($_GET["anim"])) $emourl = "https://cdn.discordapp.com/emojis/" . $emoji->id . ".gif";
             else $emourl = "https://cdn.discordapp.com/emojis/" . $emoji->id . ".png";

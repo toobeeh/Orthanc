@@ -72,7 +72,7 @@ if(isset($_GET["add"])){
     //     addEmoji($match[1], "https:" . $match[2]);
     // }
     $json_response = json_decode($response);
-    echo $json_response;
+    echo $response;
     
     // $pages = $json_response->pages;
     // $count = 0;

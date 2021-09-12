@@ -48,11 +48,17 @@ if ($oauth2->isRedirected() === false) { // Did the client already logged in ?
     </head>
     <body>
         <div id="maincontent">
-            <h1>Hi, <?php echo $username; ?> :*</h1>
+            <h1><?php echo $login ? "Welcome back, " . $username : "Hello there, " . $username; ?> </h1>
             <div class="roundbtn" style="font-size:0.8em" id="viewinfo">
-                Found your palantir account!<br>
-                No worries, your Discord authorization is not used for any other purposes than the login.<br>
-                Proceed to log in on skribbl to collect bubbles, claim drops and use sprites!
+                <?php if($login): ?>
+                <br>
+                Found your palantir account!<br><br>
+                No worries, your Discord authorization is not used for any other purposes than the login.<br><br>
+                <?php else: ?>
+                    You have no account - yet!<br><br>
+                    By proceeding, a Plantir account is created and you will immeadiately be logged in.<br><br>
+                    When you create an account, you agree to the <a href="https://typo.rip/privacy"> Data Usage </a> of Palantir.
+                <?php endif; ?>
             </div>
         </div>
         <div class="wobblebox" id="submitInteraction">

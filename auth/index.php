@@ -37,7 +37,7 @@ if ($oauth2->isRedirected() === false) { // Did the client already logged in ?
             include '/home/pi/Webroot/Orthanc/db.php';
             $login = getMemberLogin($id);
         }
-        $return = $login != false;
+        $return = $login ? true : false;
         if(!$return){ // find unique login
             do{
                 $login = mt_rand(0,999999);
@@ -56,9 +56,9 @@ if ($oauth2->isRedirected() === false) { // Did the client already logged in ?
     </head>
     <body>
         <div id="maincontent">
-            <h1><?php echo $login ? "Welcome back, " . $username : "Hello there, " . $username; ?> </h1>
+            <h1><?php echo $return ? "Welcome back, " . $username : "Hello there, " . $username; ?> </h1>
             <div class="roundbtn" style="font-size:0.8em" id="viewinfo">
-                <?php if($login): ?>
+                <?php if($return): ?>
                 <br>
                 Found your palantir account!<br><br>
                 No worries, your Discord authorization is not used for any other purposes than the login.<br><br>

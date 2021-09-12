@@ -29,7 +29,8 @@ function addMember($_login, $_username, $_id){
 
     $_sql = $_db->prepare('INSERT INTO Members VALUES(?, ?, 0, 0, 0, 0, null, null, null)');
     $_sql->bindParam(1, $_login);
-    $_sql->bindParam(1, '{"UserID":"' . $_id . '","UserName":"' . $_username . '","UserLogin":"' . $_login . '","Guilds":[]}');
+    $json = '{"UserID":"' . $_id . '","UserName":"' . $_username . '","UserLogin":"' . $_login . '","Guilds":[]}';
+    $_sql->bindParam(2, $json);
     $_result = $_sql->execute();
     $_db->close();
     return $_return;

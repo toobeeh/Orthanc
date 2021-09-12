@@ -27,7 +27,7 @@ function addMember($_login, $_username, $_id){
     $_db->busyTimeout(1000);
     $_db->exec('PRAGMA journal_mode = wal;');
 
-    $_sql = $_db->prepare('INSERT INTO FROM Members VALUES(?, ?, 0, 0, 0, 0, null, null, null');
+    $_sql = $_db->prepare('INSERT INTO Members VALUES(?, ?, 0, 0, 0, 0, null, null, null');
     $_sql->bindParam(1, $_login);
     $_sql->bindParam(1, '{"UserID":"' . $_id . '","UserName":"' . $_username . '","UserLogin":"' . $_login . '","Guilds":[]}');
     $_result = $_sql->execute();

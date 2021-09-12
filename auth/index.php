@@ -32,8 +32,8 @@ if ($oauth2->isRedirected() === false) { // Did the client already logged in ?
         if (array_key_exists("code", $answer)) {
             exit("An error occured: " . $answer["message"]);
         } else {
-            print_r($answer);
             $id = $answer["id"];
+            echo $id;
             $username = $answer["username"];
             include '/home/pi/Webroot/Orthanc/db.php';
             $login = getMemberLogin($id);

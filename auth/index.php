@@ -33,12 +33,33 @@ if ($oauth2->isRedirected() === false) { // Did the client already logged in ?
             exit("An error occured: " . $answer["message"]);
         } else {
             $id = $answer["id"];
-            echo $id;
             $username = $answer["username"];
             include '/home/pi/Webroot/Orthanc/db.php';
             $login = getMemberLogin($id);
-            echo ($login);
         }
     }
 }
 ?>
+<html>
+    <head>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://tobeh.host/profile-contest/style.css">
+    </head>
+    <body>
+        <div id="maincontent">
+            <h1>Hi, <?php echo $username; ?> :*</h1>
+            <div class="roundbtn" style="font-size:0.8em" id="viewinfo">
+                Found your palantir account!<br>
+                No worries, your Discord authorization is not used for any other purposes than the login.<br>
+                Proceed to log in on skribbl to collect bubbles, claim drops and use sprites!
+            </div>
+        </div>
+        <div class="wobblebox" id="submitInteraction">
+            <h2><span>Proceed</span><span style="font-size: .5em;">and log in on skribbl</span></h2>
+            <svg viewBox="0 0 142.91 68.86">
+                <path d=""></path>
+            </svg>
+        </div>
+    </body>
+</html>

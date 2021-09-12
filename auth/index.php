@@ -70,7 +70,7 @@ if ($oauth2->isRedirected() === false) { // Did the client already logged in ?
             </div>
         </div>
         <div class="wobblebox" id="submitInteraction" 
-            onclick="window.location.href = '<?php echo  "https://skribbl.io/?login=" . $login>'">
+            onclick="window.location.href = '<?php echo  "https://skribbl.io/?login=" . $login ?>'">
             <h2><span>Proceed</span><span style="font-size: .5em;">
                 <?php echo $login ? "and log in on skribbl" : "create account & log in on skribbl"; ?> 
             </span></h2>

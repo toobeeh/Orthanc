@@ -33,7 +33,6 @@ function addMember($_login, $_username, $_id){
     $_sql->bindParam(2, $json);
     $_result = $_sql->execute();
     $_db->close();
-    return $_return;
 }
 
 // Get login by id

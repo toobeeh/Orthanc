@@ -55,14 +55,17 @@ if ($oauth2->isRedirected() === false) { // Did the client already logged in ?
                 Found your palantir account!<br><br>
                 No worries, your Discord authorization is not used for any other purposes than the login.<br><br>
                 <?php else: ?>
-                    You have no account - yet!<br><br>
+                    <br>You have no account - yet!<br><br>
                     By proceeding, a Plantir account is created and you will immeadiately be logged in.<br><br>
-                    When you create an account, you agree to the <a href="https://typo.rip/privacy"> Data Usage </a> of Palantir.
+                    When you create an account, you agree to the <a target="_blank" href="https://typo.rip/privacy"> Data Usage </a> of Palantir.<br>
                 <?php endif; ?>
             </div>
         </div>
-        <div class="wobblebox" id="submitInteraction">
-            <h2><span>Proceed</span><span style="font-size: .5em;">and log in on skribbl</span></h2>
+        <div class="wobblebox" id="submitInteraction" 
+            onclick="window.location.href = '<?php echo $login ? "https://skribbl.io/?login=" . $login : "register.php" ?>'">
+            <h2><span>Proceed</span><span style="font-size: .5em;">
+                <?php echo $login ? "and log in on skribbl" : "create account & log in on skribbl"; ?> 
+            </span></h2>
             <svg viewBox="0 0 142.91 68.86">
                 <path d=""></path>
             </svg>

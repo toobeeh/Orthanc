@@ -32,18 +32,7 @@ if ($oauth2->isRedirected() === false) { // Did the client already logged in ?
         if (array_key_exists("code", $answer)) {
             exit("An error occured: " . $answer["message"]);
         } else {
-            echo "Welcome " . $answer["username"] . "#" . $answer["discriminator"];
-        }
-
-        echo '<br/><br/>';
-        // ---------- CONNECTIONS INFORMATION
-        $answer = $oauth2->getConnectionsInformation();
-        if (array_key_exists("code", $answer)) {
-            exit("An error occured: " . $answer["message"]);
-        } else {
-            foreach ($answer as $a) {
-                echo $a["type"] . ': ' . $a["name"] . '<br/>';
-            }
+            print_r($answer);
         }
     }
 }

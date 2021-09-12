@@ -56,8 +56,8 @@ if ($oauth2->isRedirected() === false) { // Did the client already logged in ?
                 No worries, your Discord authorization is not used for any other purposes than the login.<br><br>
                 <?php else: ?>
                     <br>You have no account - yet!<br><br>
-                    By proceeding, a Plantir account is created and you will immeadiately be logged in.<br><br>
-                    When you create an account, you agree to the <a target="_blank" href="https://typo.rip/privacy"> Data Usage </a> of Palantir.<br>
+                    By proceeding, a Palantir account is created and you will be logged in.<br><br>
+                    When you create an account, you agree to the <a target="_blank" href="https://typo.rip/privacy"> Data Usage </a> of Palantir.<br><br>
                 <?php endif; ?>
             </div>
         </div>

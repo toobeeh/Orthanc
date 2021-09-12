@@ -10,7 +10,7 @@ use Xwilarg\Discord\OAuth2;
 // SECRET: Replace this with the Secret of the application
 // CALLBACK-URL: Replace this with the redirect URL (URL called after the user is logged in, must be registered in https://discordapp.com/developers/applications/[YourAppId]/oauth)
 // Enter your Discord Oauth details here:
-$oauth2 = new OAuth2("715874397025468417", file_get_contents("/home/pi/oauth2Secret.txt"), "https://tobeh.host/Orthanc/auth/");
+$oauth2 = new OAuth2("715874397025468417", file_get_contents("/home/pi/oauth2Secret.txt"), "https://tobeh.host/Orthanc/auth");
 
 if ($oauth2->isRedirected() === false) { // Did the client already logged in ?
     // The parameters can be a combination of the following: connections, email, identity or guilds

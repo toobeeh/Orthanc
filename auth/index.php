@@ -5,8 +5,7 @@ error_reporting(E_ALL);
 require __DIR__ . '/vendor/autoload.php';
 
 use Xwilarg\Discord\OAuth2;
-$secret = file_get_contents("/home/pi/oauth2Secret.txt");
-echo $secret;
+$secret = trim(file_get_contents("/home/pi/oauth2Secret.txt"));
 
 // CLIENT-ID-HERE: Replace this with the Client ID of the application
 // SECRET: Replace this with the Secret of the application

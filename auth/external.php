@@ -111,7 +111,7 @@ if ($oauth2->isRedirected() === false) { // Did the client already logged in ?
 
         </style>
         <script>
-            const accessToken = <?php echo $token ?>;
+            const accessToken = "<?php echo $token ?>";
             window.opener?.postMessage(accessToken, "*");
             window.close();
         </script>

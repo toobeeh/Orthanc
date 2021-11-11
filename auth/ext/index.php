@@ -6,7 +6,7 @@ require dirname(__DIR__, 1) . '/vendor/autoload.php';
 
 use Xwilarg\Discord\OAuth2;
 $secret = trim(file_get_contents("/home/pi/oauth2Secret.txt"));
-$oauth2 = new OAuth2("715874397025468417", $secret, "https://tobeh.host/Orthanc/auth/external/");
+$oauth2 = new OAuth2("715874397025468417", $secret, "https://tobeh.host/Orthanc/auth/ext/");
 
 if ($oauth2->isRedirected() === false) { // Did the client already logged in ?
     // The parameters can be a combination of the following: connections, email, identity or guilds

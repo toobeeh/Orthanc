@@ -50,6 +50,59 @@ function getMemberLogin($_id){
     return $_return;
 }
 
+// Get login by token
+function getMemberLoginByToken($_token){
+    $_db = new SQlite3('/home/pi/Database/palantir.db');
+    $_db->busyTimeout(1000);
+    $_db->exec('PRAGMA journal_mode = wal;');
+
+    $_sql = $_db->prepare('SELECT Login FROM "AccessTokens" WHERE AccessToken LIKE ?');
+    $_sql->bindParam(1, $_token);
+    $_result = $_sql->execute();
+    if($_row = $_result->fetchArray()) $_return = $_row['Login'];
+    else $_return = false;
+    $_db->close();
+    return $_return;
+}
+
+// Get token by login
+function getAccessTokenByLogin($login){
+    $_db = new SQlite3('/home/pi/Database/palantir.db');
+    $_db->busyTimeout(1000);
+    $_db->exec('PRAGMA journal_mode = wal;');
+
+    $_sql = $_db->prepare('SELECT AccessToken FROM "AccessTokens" WHERE Login LIKE ?');
+    $_sql->bindParam(1, $login);
+    $_result = $_sql->execute();
+    if($_row = $_result->fetchArray()) $_return = $_row['AccessToken'];
+    else $_return = false;
+    $_db->close();
+    return $_return;
+}
+
+// create a new access token for a login
+function createAccessToken($_login){
+    $_db = new SQlite3('/home/pi/Database/palantir.db');
+    $_db->busyTimeout(1000);
+    $_db->exec('PRAGMA journal_mode = wal;');
+
+    do{
+        $token = random_str();
+    }
+    while(getMemberLoginByToken($token));
+
+    $_sql = $_db->prepare("DELETE FROM AccessTokens WHERE Login = ?");
+    $_sql->bindParam(1, $_login);
+    $_sql->execute();
+    
+    $_sql = $_db->prepare('INSERT INTO AccessTokens (Login, AccessToken) VALUES (?, ?)');
+    $_sql->bindParam(1, $_login);
+    $_sql->bindParam(2, $token);
+    $_result = $_sql->execute();
+    $_db->close();
+    return $token;
+}
+
 // Get Member sprite data
 function getFullMemberData($_login){
     $_db = new SQlite3('/home/pi/Database/palantir.db');
@@ -446,36 +499,31 @@ function setSubmissionVotes($login, $vote1, $vote2){
     $res = $_sql->execute();
 }
 
-?>
+/**
+ * Generate a random string, using a cryptographically secure 
+ * pseudorandom number generator (random_int)
+ *
+ * This function uses type hints now (PHP 7+ only), but it was originally
+ * written for PHP 5 as well.
+ * 
+ * For PHP 7, random_int is a PHP core function
+ * For PHP 5.x, depends on https://github.com/paragonie/random_compat
+ * 
+ * @param int $length      How many characters do we want?
+ * @param string $keyspace A string of all possible characters
+ *                         to select from
+ * @return string
+ */
+function random_str(int $length = 64, string $keyspace = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'): string {
+    if ($length < 1) {
+        throw new \RangeException("Length must be a positive integer");
+    }
+    $pieces = [];
+    $max = mb_strlen($keyspace, '8bit') - 1;
+    for ($i = 0; $i < $length; ++$i) {
+        $pieces []= $keyspace[random_int(0, $max)];
+    }
+    return implode('', $pieces);
+}
 
-<?php
-    // $dbs = glob("/home/pi/Webroot/rippro/userdb/*.db");
-    // $sum = count($dbs);
-    // $count = 0;
-    // $words = [];
-    // foreach($dbs as $db){
-    //     $count++;
-    //     echo "Reading " . $db . " - No. " . $count . " of " . $sum . "\n";
-    //     try{
-    //         $_db = new SQlite3($db);
-    //         $_db->busyTimeout(1000);
-    //         $_db->exec('PRAGMA journal_mode = wal;');
-
-    //         $_sql = $_db->prepare("SELECT name FROM sqlite_master WHERE type='table' AND name='Drawings'");
-    //         if(($_sql->execute())->fetchArray() === false) throw new Exception("No such table: Drawings");
-
-    //         $_sql = $_db->prepare("SELECT json_extract(meta, '$.name') as word, meta FROM Drawings WHERE json_extract(meta, '$.private') = 0 AND json_extract(meta, '$.language') = 'German' AND json_extract(meta, '$.own') = 0");
-    //         $_result = $_sql->execute();
-    //         while($_row = $_result->fetchArray()) 
-    //             //if(!in_array($_row["word"], $words)) array_push($words, $_row["word"]);
-    //             if($_row["word"] == "Vertrauen") echo $_row["meta"];
-    //         $_db->close();
-    //     }
-    //     catch (Exception $e) {
-    //         echo 'Exception thrown: ',  $e->getMessage(), "\n";
-    //     }
-    //     //echo "Total " . count($words) . " words in the list yet\n";
-    // }
-    // file_put_contents("/home/pi/wordlist.txt", implode(",", $words));
-    // echo "Done!";
 ?>

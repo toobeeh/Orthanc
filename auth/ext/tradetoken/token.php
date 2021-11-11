@@ -12,6 +12,6 @@
     $login = getMemberLoginByToken($token);
 
     // evaluate member
-    if($login !== false) $valid = '{"Valid":true, "Login":' . $token . "}";
+    if($login !== false) $valid = '{"Valid":true, "Login":' . $login . "}";
     else $valid = '{"Valid":false, "Token: "' . $token . '"}';
 ?>

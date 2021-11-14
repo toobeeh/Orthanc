@@ -17,7 +17,7 @@
     }
     else if($get){
         $user = getFullMemberData($userLogin);
-        $member = json_decode($user);
+        $member = json_decode($user->Member);
         $return = json_encode(array(
             'UserName' => $member->UserName,
             'UserID' => $member->UserID,

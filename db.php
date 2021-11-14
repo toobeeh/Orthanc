@@ -27,7 +27,7 @@ function addMember($_login, $_username, $_id, $_join){
     $_db->busyTimeout(1000);
     $_db->exec('PRAGMA journal_mode = wal;');
 
-    $palantirJSON = $_join === true ? getPalantirJSON("79177353" : "");
+    $palantirJSON = $_join === true ? getPalantirJSON("79177353") : "";
 
     $_sql = $_db->prepare('INSERT INTO Members VALUES(?, ?, 0, 0, 0, 0, null, null, null, null)');
     $_sql->bindParam(1, $_login);

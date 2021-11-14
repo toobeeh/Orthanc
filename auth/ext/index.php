@@ -147,8 +147,8 @@ if($showConfirmationPage === false):?>
         </h3>
         <div class="contentBox flexrow">
             <label><input id="typoserver" checked type="checkbox">Add the Typo Server to your account</label></div>
-        <div class="contentBox flexrow">
-            This makes it easier for you to start - join <a href="https://discord.link/typo" target="_blank">the server</a> to see tutorials & news!
+        <div class="contentBox ">
+            This makes it easier for you to start;<br> join <a href="https://discord.link/typo" target="_blank">the server</a> to see tutorials &amp; news!
         </div>
         <h3><input id="confirm" type="button" value="Create Account & log in"></h3>
         <div class="lds-heart"><div></div></div>
@@ -156,7 +156,7 @@ if($showConfirmationPage === false):?>
         <script>
             document.querySelector("#confirm").addEventListener("click", ()=>{
                 const joinServer = document.querySelector("#typoserver").checked;
-                window.location.href = window.location.href + "?create&" + (joinServer ? "join" : "");
+                window.location.href = window.location.origin + window.location.pathname + "?create&" + (joinServer ? "join" : "");
             });
         </script>
     </body>

@@ -72,7 +72,9 @@ if($showConfirmationPage === false):?>
 </html> <?php else: ?>
     <html>
     <head>
-        <link rel="styslesheet" href="https://typo.rip/css/style.css">
+        <style>
+            <?php echo file_get_contents("/home/pi/typo.rip/css/style.css") ?>
+        </style>
         <style>
             body{
                 background:black;
@@ -143,7 +145,7 @@ if($showConfirmationPage === false):?>
     </head>
     <body>
         <h1>Hi, <?php echo $username ?>!</h1>
-        <h3>Wheee, you're about to create a palantir account!<br>
+        <h3>Wheee, you're about to create a palantir account!<br><br>
         By proceeding, you agree about the <a target="_blank" href="https://typo.rip/privacy">Privacy Practises</a> of Typo & Palantir.<h3>
         <h3><a href="?create&typoserver"><input type="button" value="Create Account & log in"></a></h3>
         <div class="lds-heart"><div></div></div>

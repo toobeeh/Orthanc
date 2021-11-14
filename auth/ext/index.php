@@ -34,7 +34,7 @@ if ($oauth2->isRedirected() === false) { // Did the client already logged in ?
             $_SESSION["id"] = $id;
             include '/home/pi/Webroot/Orthanc/db.php';
             
-            if(isset($_GET["create"]){
+            if(isset($_GET["create"])){
                 $sID = $_SESSION["id"];
                 $sName = $_SESSION["username"];
                 do{

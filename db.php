@@ -339,6 +339,24 @@ function getAvailableSprites(){
     return json_encode($_return);
 }
 
+function getScenes(){
+    $_db = new SQlite3('/home/pi/Database/palantir.db');
+    $_db->busyTimeout(1000);
+    $_db->exec('PRAGMA journal_mode = wal;');
+
+    $_sql = $_db->prepare("SELECT * FROM Scenes");
+    $_result = $_sql->execute();
+    
+    $_return = array();
+    while($_row = $_result->fetchArray()) 
+        array_push($_return, 
+            array("ID"=>$_row["ID"],"Name"=>$_row["Name"],"URL"=>$_row["URL"],"Artist"=>$_row["Artist"],"Color"=>$_row["Color"], "GuessedColor"=>$_row["GuessedColor"])
+        );
+
+    $_db->close();
+    return json_encode($_return);
+}
+
 function getSpriteByGifName($_gif){
     $_db = new SQlite3('/home/pi/Database/palantir.db');
     $_db->busyTimeout(1000);

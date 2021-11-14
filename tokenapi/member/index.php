@@ -15,8 +15,15 @@
         header("HTTP/1.1 401 Unauthorized");
         exit;
     }
-    else{
-        $return = getFullMemberData($userLogin);
+    else if($get){
+        $user = getFullMemberData($userLogin);
+        $member = json_decode($user);
+        $return = json_encode(array(
+            'UserName' => $member->UserName,
+            'UserID' => $member->UserID,
+            'Guilds' => $member->Guilds,
+            'Bubbles' => $user->Bubbles
+        ), JSON_FORCE_OBJECT);
     }
 
     echo $return;   

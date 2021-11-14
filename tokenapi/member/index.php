@@ -22,7 +22,12 @@
             'UserName' => $member->UserName,
             'UserID' => $member->UserID,
             'Guilds' => $member->Guilds,
-            'Bubbles' => $user->Bubbles
+            'Bubbles' => $user->Bubbles,
+            'Drops' => $user->Drops,
+            'Scenes' => $user->Scenes,
+            'Sprites' => $user->Sprites,
+            'Emoji' => $user->Emoji,
+            'Flag' => $user->Flag
         ), JSON_FORCE_OBJECT);
     }
 

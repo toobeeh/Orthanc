@@ -28,6 +28,7 @@
 
         if($post && !$memberHasGuild){
             array_push($memberObj->Guilds, $guildObj);
+            setMemberJSON($userLogin, json_encode($memberObj));
             $return = json_encode($memberObj->Guilds);
         }
         else if($delete && $memberHasGuild){
@@ -36,6 +37,7 @@
                 if($connectedGuild->GuildID != $guildObj->GuildID) array_push($filteredGuilds, $connectedGuild);
             }
             $memberObj->Guilds = $filteredGuilds;
+            setMemberJSON($userLogin, json_encode($memberObj));
             $return = json_encode($memberObj->Guilds);
         }
     } 

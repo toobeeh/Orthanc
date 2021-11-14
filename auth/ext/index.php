@@ -81,6 +81,9 @@ if($showConfirmationPage === false):?>
                 display:grid;
                 place-items:center;
             }
+            a{
+                text-decoration:underline;
+            }
             .lds-heart {
             display: inline-block;
             position: relative;
@@ -136,19 +139,25 @@ if($showConfirmationPage === false):?>
             }}
 
         </style>
-        <script>
-            const accessToken = "<?php echo $token ?>";
-            const username = "<?php echo $username ?>";
-            window.opener?.postMessage({accessToken: accessToken, username: username}, "*");
-            window.close();
-        </script>
     </head>
     <body>
         <h1>Hi, <?php echo $username ?>!</h1>
-        <h3>Wheee, you're about to create a palantir account!<br><br>
-        By proceeding, you agree about the <a target="_blank" href="https://typo.rip/privacy">Privacy Practises</a> of Typo & Palantir.<h3>
-        <h3><a href="?create&typoserver"><input type="button" value="Create Account & log in"></a></h3>
+        <h3>Wheee, you're about to create a Palantir account!<br><br>
+        By proceeding, you agree about the <a target="_blank" href="https://typo.rip/privacy">Privacy Practises</a> of Typo & Palantir.
+        </h3>
+        <div class="contentBox">
+            <label><input id="typoserver" checked type="checkbox">Add the Typo Server to your account</label>
+            This makes it easier for you to start - join <a href="https://discord.link/typo" target="_blank">the server</a> to see tutorials & news!
+        </div>
+        <h3><input id="confirm" type="button" value="Create Account & log in"></h3>
         <div class="lds-heart"><div></div></div>
+        
+        <script>
+            document.querySelector("#confirm").addEventListener("click", ()=>{
+                const joinServer = document.querySelector("#typoserver").checked;
+                window.location.href = window.location.href + "?create&" + (joinServer ? "join" : "");
+            });
+        </script>
     </body>
 </html> <?php
 endif;

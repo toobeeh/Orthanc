@@ -18,7 +18,7 @@ if(isset($_GET["create"])){
         $login = mt_rand(0,999999);
     }
     while(getMemberJSON($login));
-    addMember($login, $username, $id, isset($_POST["join"]));
+    addMember($login, $username, $id, isset($_GET["join"]));
     $token = createAccessToken($login);
 }
 else if ($oauth2->isRedirected() === false) { // Did the client already logged in ?

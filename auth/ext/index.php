@@ -82,7 +82,7 @@ if($showConfirmationPage === false):?>
                 place-items:center;
             }
             a{
-                text-decoration:underline;
+                text-decoration:underline !important;
             }
             .lds-heart {
             display: inline-block;
@@ -145,8 +145,9 @@ if($showConfirmationPage === false):?>
         <h3>Wheee, you're about to create a Palantir account!<br><br>
         By proceeding, you agree about the <a target="_blank" href="https://typo.rip/privacy">Privacy Practises</a> of Typo & Palantir.
         </h3>
-        <div class="contentBox">
-            <label><input id="typoserver" checked type="checkbox">Add the Typo Server to your account</label>
+        <div class="contentBox flexrow">
+            <label><input id="typoserver" checked type="checkbox">Add the Typo Server to your account</label></div>
+        <div class="contentBox flexrow">
             This makes it easier for you to start - join <a href="https://discord.link/typo" target="_blank">the server</a> to see tutorials & news!
         </div>
         <h3><input id="confirm" type="button" value="Create Account & log in"></h3>

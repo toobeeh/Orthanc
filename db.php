@@ -56,7 +56,7 @@ function getMemberLoginByToken($_token){
     $_db->busyTimeout(1000);
     $_db->exec('PRAGMA journal_mode = wal;');
 
-    $_sql = $_db->prepare('SELECT Login FROM "AccessTokens" WHERE AccessToken LIKE ? AND CreatedAt > date("now", "-7day")');
+    $_sql = $_db->prepare('SELECT Login FROM "AccessTokens" WHERE AccessToken LIKE ? AND CreatedAt > date("now", "-7 day")');
     $_sql->bindParam(1, $_token);
     $_result = $_sql->execute();
     if($_row = $_result->fetchArray()) $_return = $_row['Login'];
@@ -71,7 +71,7 @@ function getAccessTokenByLogin($login){
     $_db->busyTimeout(1000);
     $_db->exec('PRAGMA journal_mode = wal;');
 
-    $_sql = $_db->prepare('SELECT AccessToken FROM "AccessTokens" WHERE Login LIKE ? AND CreatedAt > date("now", "-7day")');
+    $_sql = $_db->prepare('SELECT AccessToken FROM "AccessTokens" WHERE Login LIKE ? AND CreatedAt > date("now", "-7 day")');
     $_sql->bindParam(1, $login);
     $_result = $_sql->execute();
     if($_row = $_result->fetchArray()) $_return = $_row['AccessToken'];

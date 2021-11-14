@@ -4,12 +4,24 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 require dirname(__DIR__, 1) . '/vendor/autoload.php';
+include '/home/pi/Webroot/Orthanc/db.php';
 
 use Xwilarg\Discord\OAuth2;
 $secret = trim(file_get_contents("/home/pi/oauth2Secret.txt"));
 $oauth2 = new OAuth2("715874397025468417", $secret, "https://tobeh.host/Orthanc/auth/ext");
 
-if ($oauth2->isRedirected() === false) { // Did the client already logged in ?
+$showConfirmationPage = false;
+if(isset($_GET["create"])){
+    $id = $_SESSION["id"];
+    $username = $_SESSION["username"];
+    do{
+        $login = mt_rand(0,999999);
+    }
+    while(getMemberJSON($login));
+    addMember($login, $username, $id);
+    $token = createAccessToken($login);
+}
+else if ($oauth2->isRedirected() === false) { // Did the client already logged in ?
     // The parameters can be a combination of the following: connections, email, identity or guilds
     // More information about it here: https://discordapp.com/developers/docs/topics/oauth2#shared-resources-oauth2-scopes
     // The others parameters are not available with this library
@@ -32,18 +44,7 @@ if ($oauth2->isRedirected() === false) { // Did the client already logged in ?
             $username = $answer["username"];
             $_SESSION["username"] = $username;
             $_SESSION["id"] = $id;
-            include '/home/pi/Webroot/Orthanc/db.php';
             
-            if(isset($_GET["create"])){
-                $sID = $_SESSION["id"];
-                $sName = $_SESSION["username"];
-                do{
-                    $login = mt_rand(0,999999);
-                }
-                while(getMemberJSON($login));
-                addMember($login, $sName, $sID);
-                $id = $sID;
-            }
             $login = getMemberLogin($id);
             if($login){
                 $token = getAccessTokenByLogin($login);
@@ -51,7 +52,12 @@ if ($oauth2->isRedirected() === false) { // Did the client already logged in ?
                     $token = createAccessToken($login);
                 }
             }
-            ?>
+            else $showConfirmationPage = true;
+        }
+    }
+}
+
+if($showConfirmationPage === false):?>
 <html>
     <head>
         <style>
@@ -125,9 +131,8 @@ if ($oauth2->isRedirected() === false) { // Did the client already logged in ?
     <body>
         <div class="lds-heart"><div></div></div>
     </body>
-</html>
-            <?php} else { ?>
-                <html>
+</html> <?php else: ?>
+    <html>
     <head>
         <style>
             body{
@@ -204,9 +209,6 @@ if ($oauth2->isRedirected() === false) { // Did the client already logged in ?
         <h3><a href="?create&typoserver"><input type="button" value="Create Account & log in"></a></h3>
         <div class="lds-heart"><div></div></div>
     </body>
-</html>
-        <?php 
-        }
-    }
-}
+</html> <?php
+endif;
 ?>

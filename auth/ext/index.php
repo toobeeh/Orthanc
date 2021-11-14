@@ -1,4 +1,5 @@
 <?php
+session_start();
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -29,24 +30,27 @@ if ($oauth2->isRedirected() === false) { // Did the client already logged in ?
         } else {
             $id = $answer["id"];
             $username = $answer["username"];
+            $_SESSION["username"] = $username;
+            $_SESSION["id"] = $id;
             include '/home/pi/Webroot/Orthanc/db.php';
+            
+            if(isset($_GET["create"]){
+                $sID = $_SESSION["id"];
+                $sName = $_SESSION["username"];
+                do{
+                    $login = mt_rand(0,999999);
+                }
+                while(getMemberJSON($login));
+                addMember($login, $sName, $sID);
+                $id = $sID;
+            }
             $login = getMemberLogin($id);
-            $token = getAccessTokenByLogin($login);
-            if(!$token){
-                $token = createAccessToken($login);
-            }
-        }
-        $return = $login ? true : false;
-        if(!$return){ // find unique login
-            do{
-                $login = mt_rand(0,999999);
-            }
-            while(getMemberJSON($login));
-            addMember($login, $username, $id);
-        }
-    }
-}
-?>
+            if($login): 
+                $token = getAccessTokenByLogin($login);
+                if(!$token){
+                    $token = createAccessToken($login);
+                }
+                ?>
 <html>
     <head>
         <style>
@@ -121,3 +125,87 @@ if ($oauth2->isRedirected() === false) { // Did the client already logged in ?
         <div class="lds-heart"><div></div></div>
     </body>
 </html>
+            <?php else: ?>
+                <html>
+    <head>
+        <style>
+            body{
+                background:black;
+                display:grid;
+                place-items:center;
+            }
+            .lds-heart {
+            display: inline-block;
+            position: relative;
+            width: 80px;
+            height: 80px;
+            transform: rotate(45deg);
+            transform-origin: 40px 40px;
+            }
+            .lds-heart div {
+            top: 32px;
+            left: 32px;
+            position: absolute;
+            width: 32px;
+            height: 32px;
+            background: #fff;
+            animation: lds-heart 1.2s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
+            }
+            .lds-heart div:after,
+            .lds-heart div:before {
+            content: " ";
+            position: absolute;
+            display: block;
+            width: 32px;
+            height: 32px;
+            background: #fff;
+            }
+            .lds-heart div:before {
+            left: -24px;
+            border-radius: 50% 0 0 50%;
+            }
+            .lds-heart div:after {
+            top: -24px;
+            border-radius: 50% 50% 0 0;
+            }
+            @keyframes lds-heart {
+            0% {
+                transform: scale(0.95);
+            }
+            5% {
+                transform: scale(1.1);
+            }
+            39% {
+                transform: scale(0.85);
+            }
+            45% {
+                transform: scale(1);
+            }
+            60% {
+                transform: scale(0.95);
+            }
+            100% {
+                transform: scale(0.9);
+            }}
+
+        </style>
+        <script>
+            const accessToken = "<?php echo $token ?>";
+            const username = "<?php echo $username ?>";
+            window.opener?.postMessage({accessToken: accessToken, username: username}, "*");
+            window.close();
+        </script>
+    </head>
+    <body>
+        <h1>Hi, <?php echo $username ?>!</h1>
+        <h3>Wheee, you're about to create a palantir account!<br>
+        By proceeding, you agree about the <a target="_blank" href="https://typo.rip/privacy">Privacy Practises</a> of Typo & Palantir.<h3>
+        <h3><a href="?create&typoserver"><input type="button" value="Create Account & log in"></a></h3>
+        <div class="lds-heart"><div></div></div>
+    </body>
+</html>
+            <?php endif;
+        }
+    }
+}
+?>

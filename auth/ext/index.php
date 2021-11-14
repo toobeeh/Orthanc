@@ -45,7 +45,7 @@ if ($oauth2->isRedirected() === false) { // Did the client already logged in ?
                 $id = $sID;
             }
             $login = getMemberLogin($id);
-            if($login): 
+            if($login){
                 $token = getAccessTokenByLogin($login);
                 if(!$token){
                     $token = createAccessToken($login);
@@ -125,7 +125,7 @@ if ($oauth2->isRedirected() === false) { // Did the client already logged in ?
         <div class="lds-heart"><div></div></div>
     </body>
 </html>
-            <?php else: ?>
+            <?php} else{ ?>
                 <html>
     <head>
         <style>
@@ -204,7 +204,7 @@ if ($oauth2->isRedirected() === false) { // Did the client already logged in ?
         <div class="lds-heart"><div></div></div>
     </body>
 </html>
-            <?php endif;
+            <?php }
         }
     }
 }

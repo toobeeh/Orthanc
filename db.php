@@ -22,16 +22,19 @@ function getMemberJSON($_login){
 }
 
 // Check if members has row with login
-function addMember($_login, $_username, $_id){
+function addMember($_login, $_username, $_id, $_join){
     $_db = new SQlite3('/home/pi/Database/palantir.db');
     $_db->busyTimeout(1000);
     $_db->exec('PRAGMA journal_mode = wal;');
 
+    $palantirJSON = $_join === true ? getPalantirJSON("79177353" : "");
+
     $_sql = $_db->prepare('INSERT INTO Members VALUES(?, ?, 0, 0, 0, 0, null, null, null, null)');
     $_sql->bindParam(1, $_login);
-    $json = '{"UserID":"' . $_id . '","UserName":"' . $_username . '","UserLogin":"' . $_login . '","Guilds":[]}';
+    $json = '{"UserID":"' . $_id . '","UserName":"' . $_username . '","UserLogin":"' . $_login . '","Guilds":[' . $palantirJSON . ']}';
     $_sql->bindParam(2, $json);
     $_result = $_sql->execute();
+    
     $_db->close();
 }
 

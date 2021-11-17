@@ -3,7 +3,7 @@
 ini_set('display_errors', 1); 
 ini_set('display_startup_errors', 1); 
 error_reporting(E_ALL);
-if(!str_contains($_SERVER['HTTP_USER_AGENT'], "Discordbot")) header("Location: http://typo.rip#u"); 
+if(false == strpos($_SERVER['HTTP_USER_AGENT'], "Discordbot")) header("Location: http://typo.rip#u"); 
 ?>
     <!DOCTYPE html>
 <html>

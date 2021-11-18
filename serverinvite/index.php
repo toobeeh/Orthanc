@@ -1,5 +1,4 @@
 <?php 
-
 ini_set('display_errors', 1); 
 ini_set('display_startup_errors', 1); 
 error_reporting(E_ALL);
@@ -9,7 +8,7 @@ header("Cache-Control: post-check=0, pre-check=0", false);
 header("Pragma: no-cache");
 include '/home/pi/Webroot/Orthanc/db.php';
 // if request is not from discord preview bot, instant redirect
-if(strpos($_SERVER['HTTP_USER_AGENT'], "Discordbot") == false) header("Location: http://typo.rip#guild?invite=" . $_GET["invite"])); 
+if(strpos($_SERVER['HTTP_USER_AGENT'], "Discordbot") == false) header("Location: http://typo.rip#guild?invite=" . $_GET["invite"]); 
 // else generate card
 
 $palantir = json_decode(getPalantirJSON($_GET["invite"]));

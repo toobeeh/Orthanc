@@ -13,5 +13,7 @@ curl_setopt_array($ch, array(
     CURLOPT_HTTPHEADER     => array('Authorization: Bot ' . $token)
 ));
 $response = curl_exec($ch);
+$apiGuild = json_decode($response);
 curl_close($ch); 
-echo $response;?>
+echo $guild->icon;
+echo "<img src=\"https://discord.com/https://cdn.discordapp.com/icons/" . $apiGuild->id . "/" . $apiGuild->icon . ".png\">" ?>

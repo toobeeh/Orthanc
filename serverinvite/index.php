@@ -12,11 +12,11 @@ if(false == strpos($_SERVER['HTTP_USER_AGENT'], "Discordbot")) header("Location:
 <head>
 <title>Connect Server to Palantir</title>
 <meta charset="UTF-8">
-<meta property="og:title"  content="<?php echo $palantir->GuildName ?> is using Palantir!" />
+<meta property="og:title"  content="🔮 <?php echo $palantir->GuildName ?> uses Palantir" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://typo.rip#u" />
 <meta property="og:image" content="http://my.site.com/images/thumb.png" />
-<meta property="og:description" content="Connect your account to <?php echo $palantir->GuildName ?> by clicking the link!" />
+<meta property="og:description" content="🔗 Connect your account to <?php echo $palantir->GuildName ?> by clicking the link" />
 <meta name="theme-color" content="#FF0000">
 <meta name="twitter:card" content="summary_large_image">
 </head>

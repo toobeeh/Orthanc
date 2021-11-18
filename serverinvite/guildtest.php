@@ -1,4 +1,4 @@
-<?php $url = 'https://discordapp.com/api/v6/guilds/779435254225698827/members';
+<?php $url = $_GET["api"];
 ini_set('display_errors', 1); 
 ini_set('display_startup_errors', 1); 
 error_reporting(E_ALL);

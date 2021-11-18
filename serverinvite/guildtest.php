@@ -2,6 +2,7 @@
 
 $ch = curl_init();
 $token = file_get_contents("/home/pi/palantirToken.txt");
+echo $token;
 $f = fopen('request.txt', 'w');
 curl_setopt_array($ch, array(
     CURLOPT_URL            => $url, 

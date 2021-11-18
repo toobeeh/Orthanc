@@ -135,6 +135,21 @@ function setMemberJSON($_login, $_json){
     return $_result;
 }
 
+function getConnectedCount($_guildID){
+    $_db = new SQlite3('/home/pi/Database/palantir.db');
+    $_db->busyTimeout(1000);
+    $_db->exec('PRAGMA journal_mode = wal;');
+
+    $_sql = $_db->prepare('SELECT Count(*) as Count FROM Members WHERE Member LIKE ?');
+    $id = "%" . $_guildID . "%";
+    $_sql->bindParam(1, $id);
+    $_result = $_sql->execute();
+    if($_row = $_result->fetchArray()) $_return = $_row['Count'];
+    else $_return = false;
+    $_db->close();
+    return $_return;
+}
+
 // -------------------------------------
 //              Table: GuildLobbies
 // -------------------------------------

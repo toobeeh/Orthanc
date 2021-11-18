@@ -27,10 +27,10 @@ $apiGuild = json_decode($response);
 <head>
 <title>Connect Server to Palantir</title>
 <meta charset="UTF-8">
-<meta property="og:title"  content="🔮 <?php echo $apiGuild->name ?> uses Palantir" />
+<meta property="og:title"  content="🔮 <?php echo $apiGuild->name ?> is using Palantir" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://typo.rip#u" />
-<meta property="og:image" content="<?php echo "<img src=\"https://cdn.discordapp.com/icons/" . $apiGuild->id . "/" . $apiGuild->icon . ".png"?>" />
+<meta property="og:image" content="<?php echo "https://cdn.discordapp.com/icons/" . $apiGuild->id . "/" . $apiGuild->icon . ".png"?>" />
 <meta property="og:description" content="🔗 Connect your account to <?php echo $palantir->GuildName ?> by clicking the link" />
 <meta name="theme-color" content="#FF0000">
 <!-- <meta name="twitter:card" content="summary_large_image"> -->

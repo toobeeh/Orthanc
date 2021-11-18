@@ -12,5 +12,6 @@ curl_setopt_array($ch, array(
     CURLOPT_HTTPHEADER     => array('Authorization: Bot ' . $token)
 ));
 $response = curl_exec($ch);
+echo curl_error($ch);
 curl_close($ch); 
 var_dump($response);?>

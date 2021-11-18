@@ -1,4 +1,4 @@
-<?php $url = 'https://discordapp.com/api/guilds/779435254225698827';
+<?php $url = 'https://discordapp.com/api/guilds/779435254225698827/members';
 
 $ch = curl_init();
 $token = file_get_contents("/home/pi/palantirToken.txt");

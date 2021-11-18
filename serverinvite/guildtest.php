@@ -11,7 +11,7 @@ curl_setopt_array($ch, array(
     CURLOPT_URL            => $url, 
     CURLOPT_HTTPHEADER     => array('Authorization: Bot ' . $token)
 ));
-curl_setopt($curl, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
+curl_setopt($ch, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
 $response = curl_exec($ch);
 echo curl_error($ch);
 curl_close($ch); 

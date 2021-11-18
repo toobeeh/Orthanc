@@ -12,8 +12,8 @@ curl_setopt_array($ch, array(
     CURLOPT_HTTP_VERSION   => CURL_HTTP_VERSION_1_1,
     CURLOPT_HTTPHEADER     => array('Authorization: Bot ' . $token)
 ));
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); 
 $response = curl_exec($ch);
 $apiGuild = json_decode($response);
 curl_close($ch); 
-echo $guild->icon;
 echo "<img src=\"https://discord.com/https://cdn.discordapp.com/icons/" . $apiGuild->id . "/" . $apiGuild->icon . ".png\">" ?>

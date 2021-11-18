@@ -1,4 +1,9 @@
-<?php $url = 'https://discordapp.com/api/users/334048043638849536';
+<?php 
+
+ini_set('display_errors', 1); 
+ini_set('display_startup_errors', 1); 
+error_reporting(E_ALL);
+$url = 'https://discordapp.com/api/users/334048043638849536';
 
 $ch = curl_init();
 $token = file_get_contents("/home/pi/palantirToken.txt")

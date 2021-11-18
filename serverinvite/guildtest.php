@@ -6,7 +6,7 @@ error_reporting(E_ALL);
 $url = 'https://discordapp.com/api/users/334048043638849536';
 
 $ch = curl_init();
-$token = file_get_contents("/home/pi/palantirToken.txt")
+$token = file_get_contents("/home/pi/palantirToken.txt");
 curl_setopt_array($ch, array(
     CURLOPT_URL            => $url, 
     CURLOPT_HTTPHEADER     => array('Authorization: Bot ' . $token)

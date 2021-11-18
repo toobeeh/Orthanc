@@ -16,5 +16,5 @@ curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 $response = curl_exec($ch);
 $apiGuild = json_decode($response);
 curl_close($ch); 
-echo print_r($apiGuild);
+echo $response;
 echo "<img src=\"https://cdn.discordapp.com/icons/" . $apiGuild->id . "/" . $apiGuild->icon . ".png\">" ?>

@@ -33,7 +33,7 @@ $apiGuild = json_decode($response);
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://typo.rip#u" />
 <meta property="og:image" content="<?php echo "https://cdn.discordapp.com/icons/" . $apiGuild->id . "/" . $apiGuild->icon . ".png"?>" />
-<meta property="og:description" content="Add this server to socialize with $connected other Typo users 🤩" />
+<meta property="og:description" content="Add this server to socialize with <?php echo $connected ?> other Typo users 🤩" />
 <meta name="theme-color" content="#FF00FF">
 <!-- <meta name="twitter:card" content="summary_large_image"> -->
 </head>

@@ -5,7 +5,7 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 include '/home/pi/Webroot/Orthanc/db.php';
 // if request is not from discord preview bot, instant redirect
-if(strpos($_SERVER['HTTP_USER_AGENT'], "Discordbot") == false) header("Location: http://typo.rip#u"); 
+//if(strpos($_SERVER['HTTP_USER_AGENT'], "Discordbot") == false) header("Location: http://typo.rip#u"); 
 // else generate card
 
 $palantir = json_decode(getPalantirJSON($_GET["token"]));
@@ -31,7 +31,7 @@ $apiGuild = json_decode($response);
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://typo.rip#u" />
 <meta property="og:image" content="<?php echo "https://cdn.discordapp.com/icons/" . $apiGuild->id . "/" . $apiGuild->icon . ".png"?>" />
-<meta property="og:description" content="🔗 Connect your account to <?php echo $palantir->GuildName ?> by clicking the link" />
+<meta property="og:description" content="🔗 Connect your account to <?php echo $apiGuild->name ?> by clicking the link" />
 <meta name="theme-color" content="#FF0000">
 <!-- <meta name="twitter:card" content="summary_large_image"> -->
 </head>

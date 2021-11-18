@@ -3,6 +3,10 @@
 ini_set('display_errors', 1); 
 ini_set('display_startup_errors', 1); 
 error_reporting(E_ALL);
+// disable cache
+header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+header("Cache-Control: post-check=0, pre-check=0", false);
+header("Pragma: no-cache");
 include '/home/pi/Webroot/Orthanc/db.php';
 // if request is not from discord preview bot, instant redirect
 //if(strpos($_SERVER['HTTP_USER_AGENT'], "Discordbot") == false) header("Location: http://typo.rip#u"); 
@@ -33,7 +37,7 @@ $apiGuild = json_decode($response);
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://typo.rip#u" />
 <meta property="og:image" content="<?php echo "https://cdn.discordapp.com/icons/" . $apiGuild->id . "/" . $apiGuild->icon . ".png"?>" />
-<meta property="og:description" content="Add this server to socialize with <?php echo $connected ?> other Typo users 🤩" />
+<meta property="og:description" content="Add this server to socialize with <?php echo $count ?> other Typo users 🤩" />
 <meta name="theme-color" content="#FF00FF">
 <!-- <meta name="twitter:card" content="summary_large_image"> -->
 </head>

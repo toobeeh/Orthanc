@@ -7,9 +7,6 @@ header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
 header("Cache-Control: post-check=0, pre-check=0", false);
 header("Pragma: no-cache");
 include '/home/pi/Webroot/Orthanc/db.php';
-// if request is not from discord preview bot, instant redirect
-if(strpos($_SERVER['HTTP_USER_AGENT'], "Discordbot") == false) header("Location: http://typo.rip#guild?invite=" . $_GET["invite"]); 
-// else generate card
 
 $palantir = json_decode(getPalantirJSON($_GET["invite"]));
 $count = getConnectedCount($palantir->GuildID);
@@ -25,6 +22,11 @@ curl_setopt_array($ch, array(
 ));
 $response = curl_exec($ch);
 $apiGuild = json_decode($response);
+$icon = "https://cdn.discordapp.com/icons/" . $apiGuild->id . "/" . $apiGuild->icon . ".png";
+// if request is not from discord preview bot, instant redirect
+// else generate card
+if(strpos($_SERVER['HTTP_USER_AGENT'], "Discordbot") == false) 
+    header("Location: http://typo.rip#guild?invite=" . $_GET["invite"] . "&icon=" . $icon . "&name=" . $apiGuild->name . "&count=" . $count); 
 ?>
 <!DOCTYPE html>
 <html>
@@ -35,7 +37,7 @@ $apiGuild = json_decode($response);
 <meta property="og:title"  content="🥳 Click here to connect <?php echo $apiGuild->name ?>" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://typo.rip#u" />
-<meta property="og:image" content="<?php echo "https://cdn.discordapp.com/icons/" . $apiGuild->id . "/" . $apiGuild->icon . ".png"?>" />
+<meta property="og:image" content="<?php echo $icon?>" />
 <meta property="og:description" content="Add this server to socialize with <?php echo $count ?> other Typo users 🤩" />
 <meta name="theme-color" content="#FF00FF">
 <!-- <meta name="twitter:card" content="summary_large_image"> -->

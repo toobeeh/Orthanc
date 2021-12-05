@@ -35,7 +35,7 @@ if ($oauth2->isRedirected() === false) { // Did the client already logged in ?
         $return = $login ? true : false;
         if(!$return){ // find unique login
             do{
-                $login = mt_rand(0,999999);
+                $login = mt_rand(0,99999999);
             }
             while(getMemberJSON($login));
             addMember($login, $username, $id);

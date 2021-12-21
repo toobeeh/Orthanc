@@ -15,7 +15,7 @@ if(isset($_GET["create"])){
     $id = $_SESSION["id"];
     $username = $_SESSION["username"];
     do{
-        $login = mt_rand(0,999999);
+        $login = mt_rand(0,9999999999);
     }
     while(getMemberJSON($login));
     addMember($login, $username, $id, isset($_GET["join"]));

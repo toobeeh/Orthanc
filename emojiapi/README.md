@@ -20,3 +20,6 @@ probably exceeds php max execution time, enough emojis anyway
 - scrape animated amojis  
 `https://tobeh.host/Orthanc/emojiapi/?anim&add=name`  
 everything the same as above  
+
+All emojis are stored in a json file, which is fetched from the skribbltypo client used for its custom emojis.  
+`https://tobeh.host/Orthanc/emojiapi/all.json`

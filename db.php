@@ -208,6 +208,104 @@ function setSubmissionVotes($login, $vote1, $vote2){
     $res = $_sql->execute();
 }
 
+
+// -------------------------------------
+//              Table: Sprites
+// -------------------------------------
+
+function getEventDrops(){
+    // get all eventdrops
+    $_db = new SQlite3('/home/pi/Database/palantir.db');
+    $_db->busyTimeout(1000);
+    $_db->exec('PRAGMA journal_mode = wal;');
+
+    $_sql = $_db->prepare("SELECT * FROM EventDrops LEFT JOIN Events ON EventDrops.EventID = Events.EventID");
+    $_result = $_sql->execute();
+    
+    $_return = array();
+    while($_row = $_result->fetchArray()) 
+        array_push($_return, 
+            array("EventDropID"=>$_row["EventDropID"],"EventID"=>$_row["EventID"],"Name"=>$_row["Name"],"URL"=>$_row["URL"],"EventName"=>$_row["EventName"])
+        );
+    $_db->close();
+    return json_encode($_return);
+}
+
+function getSprites(){
+    // get all online sprites
+    // sprites are written into the db by palantir. the member table stores the sprites
+    $_db = new SQlite3('/home/pi/Database/palantir.db');
+    $_db->busyTimeout(1000);
+    $_db->exec('PRAGMA journal_mode = wal;');
+
+    // remove entries older than 10s to avoid big data
+    ($_db->prepare("DELETE FROM OnlineSprites WHERE Date < datetime('now', '-10 seconds')"))->execute();
+
+    $_sql = $_db->prepare("SELECT * FROM OnlineSprites");
+    $_result = $_sql->execute();
+    
+    $_return = array();
+    while($_row = $_result->fetchArray()) 
+        array_push($_return, 
+            array("LobbyKey"=>$_row["LobbyKey"],"LobbyPlayerID"=>$_row["LobbyPlayerID"],"Sprite"=>$_row["Sprite"])
+        );
+
+    $_db->close();
+    return json_encode($_return);
+}
+
+
+function getAvailableSprites(){
+    $_db = new SQlite3('/home/pi/Database/palantir.db');
+    $_db->busyTimeout(1000);
+    $_db->exec('PRAGMA journal_mode = wal;');
+
+    $_sql = $_db->prepare("SELECT * FROM Sprites");
+    $_result = $_sql->execute();
+    
+    $_return = array();
+    while($_row = $_result->fetchArray()) 
+        array_push($_return, 
+            array("ID"=>$_row["ID"],"Name"=>$_row["Name"],"URL"=>$_row["URL"],"Cost"=>$_row["Cost"],"Special"=>$_row["Special"],"EventDropID"=>$_row["EventDropID"],"Artist"=>$_row["Artist"])
+        );
+
+    $_db->close();
+    return json_encode($_return);
+}
+
+function getScenes(){
+    $_db = new SQlite3('/home/pi/Database/palantir.db');
+    $_db->busyTimeout(1000);
+    $_db->exec('PRAGMA journal_mode = wal;');
+
+    $_sql = $_db->prepare("SELECT * FROM Scenes");
+    $_result = $_sql->execute();
+    
+    $_return = array();
+    while($_row = $_result->fetchArray()) 
+        array_push($_return, 
+            array("ID"=>$_row["ID"],"Name"=>$_row["Name"],"URL"=>$_row["URL"],"Artist"=>$_row["Artist"],"Color"=>$_row["Color"], "GuessedColor"=>$_row["GuessedColor"])
+        );
+
+    $_db->close();
+    return json_encode($_return);
+}
+
+function getSpriteByGifName($_gif){
+    $_db = new SQlite3('/home/pi/Database/palantir.db');
+    $_db->busyTimeout(1000);
+    $_db->exec('PRAGMA journal_mode = wal;');
+
+    $_result = $_db->query('SELECT * FROM Sprites WHERE URL LIKE "%'.$_gif.'%" ');
+    
+    if($_row = $_result->fetchArray())
+        $_return = array("ID"=>$_row["ID"],"Name"=>$_row["Name"],"URL"=>$_row["URL"],"Cost"=>$_row["Cost"],"Special"=>$_row["Special"],"EventDropID"=>$_row["EventDropID"]);
+
+    $_db->close();
+    return $_return;
+}
+
+
 /**
  * Generate a random string, using a cryptographically secure 
  * pseudorandom number generator (random_int)

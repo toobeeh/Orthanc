@@ -47,7 +47,7 @@ function getMemberLogin($_id){
     $_sql = $_db->prepare('SELECT Login FROM "Members" WHERE json_extract(Member, "$.UserID") LIKE ?');
     $_sql->bindParam(1, $_id);
     $_result = $_sql->execute();
-    if($_row = $_result->fetchArray()) $_return = $_row['Login'];
+    if($_result && $_row = $_result->fetchArray()) $_return = $_row['Login'];
     else $_return = false;
     $_db->close();
     return $_return;

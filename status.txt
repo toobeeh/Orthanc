@@ -1,0 +1,1 @@
+Check out all the other features and bot commands on <a href='https://typo.rip/ '>typo.rip</a> or join the <a href='https://discord.gg/pAapmUmWAM'> Typo & Palantir Discord test server</a>!<br/><br/>Typo Update:<br/><ul><li>New Pressure Mode: Color Brightness & Color Degree (toggle in the popup)</li><li>Fixed wrong drawer when posting past images in discord</li></ul>

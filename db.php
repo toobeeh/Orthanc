@@ -21,6 +21,21 @@ function getMemberJSON($_login){
     return $_return;
 }
 
+// Get Member sprite data
+function getFullMemberData($_login){
+    $_db = new SQlite3('/home/pi/Database/palantir.db');
+    $_db->busyTimeout(1000);
+    $_db->exec('PRAGMA journal_mode = wal;');
+
+    $_sql = $_db->prepare('SELECT * FROM Members WHERE Login = ?');
+    $_sql->bindParam(1, $_login);
+    $_result = $_sql->execute();
+    if($_row = $_result->fetchArray()) $_return =  json_encode($_row);
+    else $_return = false;
+    $_db->close();
+    return $_return;
+}
+
 // Check if members has row with login
 function addMember($_login, $_username, $_id, $_join){
     $_db = new SQlite3('/home/pi/Database/palantir.db');

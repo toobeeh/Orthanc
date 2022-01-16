@@ -327,9 +327,10 @@ function logTypoPost($login, $url){
     $_db->busyTimeout(1000);
     $_db->exec('PRAGMA journal_mode = wal;');
 
-    $_sql = $_db->prepare("INSERT INTO posts VALUES(?,?)");
+    $_sql = $_db->prepare("INSERT INTO posts VALUES(?,?,?)");
     $_sql->bindParam(1, $url);
     $_sql->bindParam(2, $login);
+    $_sql->bindParam(3, date(DATE_RFC2822));
     $res = $_sql->execute();
 }
 

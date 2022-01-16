@@ -320,6 +320,19 @@ function getSpriteByGifName($_gif){
     return $_return;
 }
 
+// Typoposts db
+
+function logTypoPost($login, $url){
+    $_db = new SQlite3('/home/pi/Database/typoPosts.db');
+    $_db->busyTimeout(1000);
+    $_db->exec('PRAGMA journal_mode = wal;');
+
+    $_sql = $_db->prepare("INSERT INTO posts VALUES(?,?)");
+    $_sql->bindParam(1, $url);
+    $_sql->bindParam(2, $login);
+    $res = $_sql->execute();
+}
+
 
 /**
  * Generate a random string, using a cryptographically secure 

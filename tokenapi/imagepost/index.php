@@ -28,7 +28,7 @@
     else {
         // generate random image name
         $name = substr(str_shuffle(str_repeat($x='0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', ceil(10/strlen($x)) )),1,10);
-        $file = fopen( "/home/pi/Webroot/files/typoPosts/" . $name . ".png", 'wb' ); 
+        $file = fopen( "/home/pi/Webroot/files/typoPost/" . $name . ".png", 'wb' ); 
         
         // split data uri and write base64 string
         $data = explode( ',', $image );

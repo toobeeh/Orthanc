@@ -330,7 +330,8 @@ function logTypoPost($login, $url){
     $_sql = $_db->prepare("INSERT INTO posts VALUES(?,?,?)");
     $_sql->bindParam(1, $url);
     $_sql->bindParam(2, $login);
-    $_sql->bindParam(3, date(DATE_RFC2822));
+    $date = date(DATE_RFC2822);
+    $_sql->bindParam(3, $date);
     $res = $_sql->execute();
 }
 

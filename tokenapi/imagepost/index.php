@@ -15,11 +15,9 @@
     $accessToken = isset($_POST['accessToken']) ? $_POST['accessToken'] : false;
     $userLogin = getMemberLoginByToken($accessToken);
 
-    $guildToken = isset($_POST['guildToken']) ? $_POST['guildToken'] : false;
-    $guild = getPalantirJSON($guildToken);
     $image = isset($_POST['image']) ? $_POST['image'] : false;
 
-    if(!$userLogin || !$guild) {
+    if(!$userLogin) {
         header("HTTP/1.1 401 Unauthorized");
         exit;
     }

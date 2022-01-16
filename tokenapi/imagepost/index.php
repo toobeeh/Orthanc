@@ -38,7 +38,7 @@
         // log post in db
         logTypoPost($userLogin, $name);
 
-        $return = "https://typo.rip/files/typoPost/" . $name . ".png";
+        $return = "https://tobeh.host/files/typoPost/" . $name . ".png";
     } 
 
     echo $return;

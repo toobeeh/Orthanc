@@ -27,7 +27,8 @@
             'Scenes' => $user->Scenes,
             'Sprites' => $user->Sprites,
             'Emoji' => $user->Emoji,
-            'Flag' => $user->Flag
+            'Flag' => $user->Flag,
+            'Streamcode' => $user->Streamcode
         ), JSON_FORCE_OBJECT);
     }
 

@@ -48,7 +48,8 @@ function getMemberLogin($_id){
     $_db = new PDO('mysql:host=localhost;dbname=palantir', 'orthanc');
 
     $_sql = $_db->prepare('SELECT Login FROM "Members" WHERE json_extract(Member, "$.UserID") LIKE ?');
-    $_sql->bindParam(1, "%" . $_id . "%");
+    $id = "%" . $_id . "%";
+    $_sql->bindParam(1, $id);
     $_result = $_sql->execute();
     if($_result && $_row = $_sql->fetch()) $_return = $_row['Login'];
     else $_return = false;
@@ -268,7 +269,8 @@ function getSpriteByGifName($_gif){
     $_db = new PDO('mysql:host=localhost;dbname=palantir', 'orthanc');
 
     $_result = $_db->query('SELECT * FROM Sprites WHERE URL LIKE ? ');
-    $_sql->bindParam(1, "%" . $_gif . "%");
+    $gif = "%" . $_gif . "%";
+    $_sql->bindParam(1, $gif);
     
     if($_row = $_sql->fetch())
         $_return = array("ID"=>$_row["ID"],"Name"=>$_row["Name"],"URL"=>$_row["URL"],"Cost"=>$_row["Cost"],"Special"=>$_row["Special"],"EventDropID"=>$_row["EventDropID"]);

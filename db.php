@@ -13,7 +13,7 @@ function getMemberJSON($_login){
     $_sql = $_db->prepare('SELECT * FROM Members WHERE Login = ?');
     $_sql->bindParam(1, $_login, PDO::PARAM_INT);
     $_result = $_sql->execute();
-    if($_row = $sql->fetch()) $_return = $_row['Member'];
+    if($_row = $_sql->fetch()) $_return = $_row['Member'];
     else $_return = false;
     return $_return;
 }
@@ -25,7 +25,7 @@ function getFullMemberData($_login){
     $_sql = $_db->prepare('SELECT * FROM Members WHERE Login = ?');
     $_sql->bindParam(1, $_login, PDO::PARAM_INT);
     $_result = $_sql->execute();
-    if($_row = $sql->fetch()) $_return = json_encode($_row);
+    if($_row = $_sql->fetch()) $_return = json_encode($_row);
     else $_return = false;
     return $_return;
 }

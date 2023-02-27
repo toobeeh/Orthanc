@@ -47,7 +47,7 @@ function addMember($_login, $_username, $_id, $_join){
 function getMemberLogin($_id){
     $_db = new PDO('mysql:host=localhost;dbname=palantir', 'orthanc');
 
-    $_sql = $_db->prepare('SELECT Login FROM "Members" WHERE json_extract(Member, "$.UserID") LIKE ?');
+    $_sql = $_db->prepare('SELECT Login FROM "Members" WHERE json_extract(Member, '$.UserID') LIKE ?');
     $id = "%" . $_id . "%";
     $_sql->bindParam(1, $id);
     $_result = $_sql->execute();

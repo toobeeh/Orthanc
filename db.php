@@ -210,7 +210,6 @@ function getEventDrops(){
         array_push($_return, 
             array("EventDropID"=>$_row["EventDropID"],"EventID"=>$_row["EventID"],"Name"=>$_row["Name"],"URL"=>$_row["URL"],"EventName"=>$_row["EventName"])
         );
-    $_db->close();
     return json_encode($_return);
 }
 

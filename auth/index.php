@@ -160,7 +160,7 @@ if($showConfirmationPage === false):?>
             This makes it easier for you to start;<br> join <a href="https://discord.link/typo" target="_blank">the server</a> to see tutorials &amp; news!
         </div>
         <h3><input id="confirm" type="button" value="Create Account & log in"></h3>
-        <div class="lds-heart"><div></div></div>
+        <!--<div class="lds-heart"><div></div></div>-->
         
         <script>
             document.querySelector("#confirm").addEventListener("click", ()=>{

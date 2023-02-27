@@ -48,7 +48,7 @@ function getMemberLogin($_id){
     $_db = new PDO('mysql:host=localhost;dbname=palantir', 'orthanc');
 
     $_sql = $_db->prepare('SELECT Login FROM "Members" WHERE json_extract(Member, "$.UserID") LIKE ?');
-    $_sql->bindParam(1, $_id);
+    $_sql->bindParam(1, "%" . $_id . "%");
     $_result = $_sql->execute();
     if($_result && $_row = $_sql->fetch()) $_return = $_row['Login'];
     else $_return = false;
@@ -59,7 +59,7 @@ function getMemberLogin($_id){
 function getMemberLoginByToken($_token){
     $_db = new PDO('mysql:host=localhost;dbname=palantir', 'orthanc');
 
-    $_sql = $_db->prepare('SELECT Login FROM "AccessTokens" WHERE AccessToken LIKE ? AND CreatedAt > date("now", "-365 day")');
+    $_sql = $_db->prepare('SELECT Login FROM "AccessTokens" WHERE AccessToken = ? AND CreatedAt > DATE_ADD(CURRENT_TIMESTAMP, INTERVAL -356 DAY)');
     $_sql->bindParam(1, $_token);
     $_result = $_sql->execute();
     if($_row = $_sql->fetch()) $_return = $_row['Login'];
@@ -71,7 +71,7 @@ function getMemberLoginByToken($_token){
 function getAccessTokenByLogin($login){
     $_db = new PDO('mysql:host=localhost;dbname=palantir', 'orthanc');
 
-    $_sql = $_db->prepare('SELECT AccessToken FROM "AccessTokens" WHERE Login LIKE ? AND CreatedAt > date("now", "-365 day")');
+    $_sql = $_db->prepare('SELECT AccessToken FROM "AccessTokens" WHERE Login = ? AND CreatedAt > DATE_ADD(CURRENT_TIMESTAMP, INTERVAL -356 DAY)');
     $_sql->bindParam(1, $login);
     $_result = $_sql->execute();
     if($_row = $_sql->fetch()) $_return = $_row['AccessToken'];
@@ -219,7 +219,7 @@ function getSprites(){
     $_db = new PDO('mysql:host=localhost;dbname=palantir', 'orthanc');
 
     // remove entries older than 10s to avoid big data
-    ($_db->prepare("DELETE FROM OnlineSprites WHERE Date < datetime('now', '-10 seconds')"))->execute();
+    ($_db->prepare("DELETE FROM OnlineSprites WHERE Date < DATE_ADD(CURRENT_TIMESTAMP, INTERVAL -10 SECOND)"))->execute();
 
     $_sql = $_db->prepare("SELECT * FROM OnlineSprites");
     $_result = $_sql->execute();
@@ -267,7 +267,8 @@ function getScenes(){
 function getSpriteByGifName($_gif){
     $_db = new PDO('mysql:host=localhost;dbname=palantir', 'orthanc');
 
-    $_result = $_db->query('SELECT * FROM Sprites WHERE URL LIKE "%'.$_gif.'%" ');
+    $_result = $_db->query('SELECT * FROM Sprites WHERE URL LIKE ? ');
+    $_sql->bindParam(1, "%" . $_gif . "%");
     
     if($_row = $_sql->fetch())
         $_return = array("ID"=>$_row["ID"],"Name"=>$_row["Name"],"URL"=>$_row["URL"],"Cost"=>$_row["Cost"],"Special"=>$_row["Special"],"EventDropID"=>$_row["EventDropID"]);

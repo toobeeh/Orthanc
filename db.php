@@ -8,39 +8,31 @@
 
 // Check if members has row with login
 function getMemberJSON($_login){
-    $_db = new SQlite3('/home/pi/Database/palantir.db');
-    $_db->busyTimeout(1000);
-    $_db->exec('PRAGMA journal_mode = wal;');
+    $_db = new PDO('mysql:host=localhost;dbname=palantir', 'orthanc');
 
     $_sql = $_db->prepare('SELECT * FROM Members WHERE Login = ?');
     $_sql->bindParam(1, $_login);
     $_result = $_sql->execute();
-    if($_row = $_result->fetchArray()) $_return = $_row['Member'];
+    if($_row = $sql->fetch()) $_return = $_row['Member'];
     else $_return = false;
-    $_db->close();
     return $_return;
 }
 
 // Get Member sprite data
 function getFullMemberData($_login){
-    $_db = new SQlite3('/home/pi/Database/palantir.db');
-    $_db->busyTimeout(1000);
-    $_db->exec('PRAGMA journal_mode = wal;');
+    $_db = new PDO('mysql:host=localhost;dbname=palantir', 'orthanc');
 
     $_sql = $_db->prepare('SELECT * FROM Members WHERE Login = ?');
     $_sql->bindParam(1, $_login);
     $_result = $_sql->execute();
-    if($_row = $_result->fetchArray()) $_return =  json_encode($_row);
+    if($_row = $sql->fetch()) $_return = json_encode($_row);
     else $_return = false;
-    $_db->close();
     return $_return;
 }
 
 // Check if members has row with login
 function addMember($_login, $_username, $_id, $_join){
-    $_db = new SQlite3('/home/pi/Database/palantir.db');
-    $_db->busyTimeout(1000);
-    $_db->exec('PRAGMA journal_mode = wal;');
+    $_db = new PDO('mysql:host=localhost;dbname=palantir', 'orthanc');
 
     $palantirJSON = $_join === true ? getPalantirJSON("79177353") : "";
 
@@ -49,60 +41,47 @@ function addMember($_login, $_username, $_id, $_join){
     $json = '{"UserID":"' . $_id . '","UserName":"' . $_username . '","UserLogin":"' . $_login . '","Guilds":[' . $palantirJSON . ']}';
     $_sql->bindParam(2, $json);
     $_result = $_sql->execute();
-    
-    $_db->close();
 }
 
 // Get login by id
 function getMemberLogin($_id){
-    $_db = new SQlite3('/home/pi/Database/palantir.db');
-    $_db->busyTimeout(1000);
-    $_db->exec('PRAGMA journal_mode = wal;');
+    $_db = new PDO('mysql:host=localhost;dbname=palantir', 'orthanc');
 
     $_sql = $_db->prepare('SELECT Login FROM "Members" WHERE json_extract(Member, "$.UserID") LIKE ?');
     $_sql->bindParam(1, $_id);
     $_result = $_sql->execute();
-    if($_result && $_row = $_result->fetchArray()) $_return = $_row['Login'];
+    if($_result && $_row = $_sql->fetch()) $_return = $_row['Login'];
     else $_return = false;
-    $_db->close();
     return $_return;
 }
 
 // Get login by token
 function getMemberLoginByToken($_token){
-    $_db = new SQlite3('/home/pi/Database/palantir.db');
-    $_db->busyTimeout(1000);
-    $_db->exec('PRAGMA journal_mode = wal;');
+    $_db = new PDO('mysql:host=localhost;dbname=palantir', 'orthanc');
 
     $_sql = $_db->prepare('SELECT Login FROM "AccessTokens" WHERE AccessToken LIKE ? AND CreatedAt > date("now", "-365 day")');
     $_sql->bindParam(1, $_token);
     $_result = $_sql->execute();
-    if($_row = $_result->fetchArray()) $_return = $_row['Login'];
+    if($_row = $_sql->fetch()) $_return = $_row['Login'];
     else $_return = false;
-    $_db->close();
     return $_return;
 }
 
 // Get token by login
 function getAccessTokenByLogin($login){
-    $_db = new SQlite3('/home/pi/Database/palantir.db');
-    $_db->busyTimeout(1000);
-    $_db->exec('PRAGMA journal_mode = wal;');
+    $_db = new PDO('mysql:host=localhost;dbname=palantir', 'orthanc');
 
     $_sql = $_db->prepare('SELECT AccessToken FROM "AccessTokens" WHERE Login LIKE ? AND CreatedAt > date("now", "-365 day")');
     $_sql->bindParam(1, $login);
     $_result = $_sql->execute();
-    if($_row = $_result->fetchArray()) $_return = $_row['AccessToken'];
+    if($_row = $_sql->fetch()) $_return = $_row['AccessToken'];
     else $_return = false;
-    $_db->close();
     return $_return;
 }
 
 // create a new access token for a login
 function createAccessToken($_login){
-    $_db = new SQlite3('/home/pi/Database/palantir.db');
-    $_db->busyTimeout(1000);
-    $_db->exec('PRAGMA journal_mode = wal;');
+    $_db = new PDO('mysql:host=localhost;dbname=palantir', 'orthanc');
 
     do{
         $token = random_str();
@@ -117,36 +96,29 @@ function createAccessToken($_login){
     $_sql->bindParam(1, $_login);
     $_sql->bindParam(2, $token);
     $_result = $_sql->execute();
-    $_db->close();
     return $token;
 }
 
 // Set member Json (for example to add new guild)
 function setMemberJSON($_login, $_json){
-    $_db = new SQlite3('/home/pi/Database/palantir.db');
-    $_db->busyTimeout(1000);
-    $_db->exec('PRAGMA journal_mode = wal;');
+    $_db = new PDO('mysql:host=localhost;dbname=palantir', 'orthanc');
 
     $_sql = $_db->prepare('UPDATE Members SET Member = ? WHERE Login = ?');
     $_sql->bindParam(1, $_json);
     $_sql->bindParam(2, $_login);
     $_result = $_sql->execute();
-    $_db->close();
     return $_result;
 }
 
 function getConnectedCount($_guildID){
-    $_db = new SQlite3('/home/pi/Database/palantir.db');
-    $_db->busyTimeout(1000);
-    $_db->exec('PRAGMA journal_mode = wal;');
+    $_db = new PDO('mysql:host=localhost;dbname=palantir', 'orthanc');
 
     $_sql = $_db->prepare('SELECT Count(*) as Count FROM Members WHERE Member LIKE ?');
     $id = "%" . $_guildID . "%";
     $_sql->bindParam(1, $id);
     $_result = $_sql->execute();
-    if($_row = $_result->fetchArray()) $_return = $_row['Count'];
+    if($_row = $_sql->fetch()) $_return = $_row['Count'];
     else $_return = false;
-    $_db->close();
     return $_return;
 }
 
@@ -157,16 +129,13 @@ function getConnectedCount($_guildID){
 // Get palantir from obersve token
 // Table is read-only, as only palantir bot listens to discord commands to modify settings
 function getPalantirJSON($_observeToken){
-    $_db = new SQlite3('/home/pi/Database/palantir.db');
-    $_db->busyTimeout(1000);
-    $_db->exec('PRAGMA journal_mode = wal;');
+    $_db = new PDO('mysql:host=localhost;dbname=palantir', 'orthanc');
 
     $_sql = $_db->prepare('SELECT * FROM Palantiri WHERE Token = ?');
     $_sql->bindParam(1, $_observeToken);
     $_result = $_sql->execute();
-    if($_row = $_result->fetchArray()) $_return = $_row['Palantir'];
+    if($_row = $_sql->fetch()) $_return = $_row['Palantir'];
     else $_return = false;
-    $_db->close();
     return $_return;
 }
 
@@ -230,15 +199,13 @@ function setSubmissionVotes($login, $vote1, $vote2){
 
 function getEventDrops(){
     // get all eventdrops
-    $_db = new SQlite3('/home/pi/Database/palantir.db');
-    $_db->busyTimeout(1000);
-    $_db->exec('PRAGMA journal_mode = wal;');
+    $_db = new PDO('mysql:host=localhost;dbname=palantir', 'orthanc');
 
     $_sql = $_db->prepare("SELECT * FROM EventDrops LEFT JOIN Events ON EventDrops.EventID = Events.EventID");
     $_result = $_sql->execute();
     
     $_return = array();
-    while($_row = $_result->fetchArray()) 
+    while($_row = $_sql->fetch()) 
         array_push($_return, 
             array("EventDropID"=>$_row["EventDropID"],"EventID"=>$_row["EventID"],"Name"=>$_row["Name"],"URL"=>$_row["URL"],"EventName"=>$_row["EventName"])
         );
@@ -249,9 +216,7 @@ function getEventDrops(){
 function getSprites(){
     // get all online sprites
     // sprites are written into the db by palantir. the member table stores the sprites
-    $_db = new SQlite3('/home/pi/Database/palantir.db');
-    $_db->busyTimeout(1000);
-    $_db->exec('PRAGMA journal_mode = wal;');
+    $_db = new PDO('mysql:host=localhost;dbname=palantir', 'orthanc');
 
     // remove entries older than 10s to avoid big data
     ($_db->prepare("DELETE FROM OnlineSprites WHERE Date < datetime('now', '-10 seconds')"))->execute();
@@ -260,72 +225,60 @@ function getSprites(){
     $_result = $_sql->execute();
     
     $_return = array();
-    while($_row = $_result->fetchArray()) 
+    while($_row = $_sql->fetch()) 
         array_push($_return, 
             array("LobbyKey"=>$_row["LobbyKey"],"LobbyPlayerID"=>$_row["LobbyPlayerID"],"Sprite"=>$_row["Sprite"])
         );
 
-    $_db->close();
     return json_encode($_return);
 }
 
 
 function getAvailableSprites(){
-    $_db = new SQlite3('/home/pi/Database/palantir.db');
-    $_db->busyTimeout(1000);
-    $_db->exec('PRAGMA journal_mode = wal;');
+    $_db = new PDO('mysql:host=localhost;dbname=palantir', 'orthanc');
 
     $_sql = $_db->prepare("SELECT * FROM Sprites");
     $_result = $_sql->execute();
     
     $_return = array();
-    while($_row = $_result->fetchArray()) 
+    while($_row = $_sql->fetch()) 
         array_push($_return, 
             array("ID"=>$_row["ID"],"Name"=>$_row["Name"],"URL"=>$_row["URL"],"Cost"=>$_row["Cost"],"Special"=>$_row["Special"],"Rainbow"=>$_row["Rainbow"],"EventDropID"=>$_row["EventDropID"],"Artist"=>$_row["Artist"])
         );
 
-    $_db->close();
     return json_encode($_return);
 }
 
 function getScenes(){
-    $_db = new SQlite3('/home/pi/Database/palantir.db');
-    $_db->busyTimeout(1000);
-    $_db->exec('PRAGMA journal_mode = wal;');
+    $_db = new PDO('mysql:host=localhost;dbname=palantir', 'orthanc');
 
     $_sql = $_db->prepare("SELECT * FROM Scenes");
     $_result = $_sql->execute();
     
     $_return = array();
-    while($_row = $_result->fetchArray()) 
+    while($_row = $_sql->fetch()) 
         array_push($_return, 
             array("ID"=>$_row["ID"],"Name"=>$_row["Name"],"URL"=>$_row["URL"],"Artist"=>$_row["Artist"],"Color"=>$_row["Color"], "GuessedColor"=>$_row["GuessedColor"])
         );
 
-    $_db->close();
     return json_encode($_return);
 }
 
 function getSpriteByGifName($_gif){
-    $_db = new SQlite3('/home/pi/Database/palantir.db');
-    $_db->busyTimeout(1000);
-    $_db->exec('PRAGMA journal_mode = wal;');
+    $_db = new PDO('mysql:host=localhost;dbname=palantir', 'orthanc');
 
     $_result = $_db->query('SELECT * FROM Sprites WHERE URL LIKE "%'.$_gif.'%" ');
     
-    if($_row = $_result->fetchArray())
+    if($_row = $_sql->fetch())
         $_return = array("ID"=>$_row["ID"],"Name"=>$_row["Name"],"URL"=>$_row["URL"],"Cost"=>$_row["Cost"],"Special"=>$_row["Special"],"EventDropID"=>$_row["EventDropID"]);
 
-    $_db->close();
     return $_return;
 }
 
 // Typoposts db
 
 function logTypoPost($login, $url){
-    $_db = new SQlite3('/home/pi/Database/typoPosts.db');
-    $_db->busyTimeout(1000);
-    $_db->exec('PRAGMA journal_mode = wal;');
+    $_db = new PDO('mysql:host=localhost;dbname=palantir', 'orthanc');
 
     $_sql = $_db->prepare("INSERT INTO posts VALUES(?,?,?)");
     $_sql->bindParam(1, $url);

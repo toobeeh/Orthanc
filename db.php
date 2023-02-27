@@ -11,7 +11,7 @@ function getMemberJSON($_login){
     $_db = new PDO('mysql:host=localhost;dbname=palantir', 'orthanc');
 
     $_sql = $_db->prepare('SELECT * FROM Members WHERE Login = ?');
-    $_sql->bindParam(1, $_login);
+    $_sql->bindParam(1, $_login, PDO::PARAM_INT);
     $_result = $_sql->execute();
     if($_row = $sql->fetch()) $_return = $_row['Member'];
     else $_return = false;
@@ -23,7 +23,7 @@ function getFullMemberData($_login){
     $_db = new PDO('mysql:host=localhost;dbname=palantir', 'orthanc');
 
     $_sql = $_db->prepare('SELECT * FROM Members WHERE Login = ?');
-    $_sql->bindParam(1, $_login);
+    $_sql->bindParam(1, $_login, PDO::PARAM_INT);
     $_result = $_sql->execute();
     if($_row = $sql->fetch()) $_return = json_encode($_row);
     else $_return = false;
@@ -37,9 +37,9 @@ function addMember($_login, $_username, $_id, $_join){
     $palantirJSON = $_join === true ? getPalantirJSON("79177353") : "";
 
     $_sql = $_db->prepare('INSERT INTO Members VALUES(?, ?, 0, 0, 0, 0, null, null, null, null, "", "")');
-    $_sql->bindParam(1, $_login);
+    $_sql->bindParam(1, $_login, PDO::PARAM_INT);
     $json = '{"UserID":"' . $_id . '","UserName":"' . $_username . '","UserLogin":"' . $_login . '","Guilds":[' . $palantirJSON . ']}';
-    $_sql->bindParam(2, $json);
+    $_sql->bindParam(2, $json, PDO::PARAM_STR);
     $_result = $_sql->execute();
 }
 
@@ -49,7 +49,7 @@ function getMemberLogin($_id){
 
     $_sql = $_db->prepare('SELECT Login FROM "Members" WHERE json_extract(Member, \'$.UserID\') LIKE ?');
     $id = "%" . $_id . "%";
-    $_sql->bindParam(1, $id);
+    $_sql->bindParam(1, $id, PDO::PARAM_STR);
     $_result = $_sql->execute();
     if($_result && $_row = $_sql->fetch()) $_return = $_row['Login'];
     else $_return = false;
@@ -61,7 +61,7 @@ function getMemberLoginByToken($_token){
     $_db = new PDO('mysql:host=localhost;dbname=palantir', 'orthanc');
 
     $_sql = $_db->prepare('SELECT Login FROM "AccessTokens" WHERE AccessToken = ? AND CreatedAt > DATE_ADD(CURRENT_TIMESTAMP, INTERVAL -356 DAY)');
-    $_sql->bindParam(1, $_token);
+    $_sql->bindParam(1, $_token, PDO::PARAM_STR);
     $_result = $_sql->execute();
     if($_row = $_sql->fetch()) $_return = $_row['Login'];
     else $_return = false;
@@ -73,7 +73,7 @@ function getAccessTokenByLogin($login){
     $_db = new PDO('mysql:host=localhost;dbname=palantir', 'orthanc');
 
     $_sql = $_db->prepare('SELECT AccessToken FROM "AccessTokens" WHERE Login = ? AND CreatedAt > DATE_ADD(CURRENT_TIMESTAMP, INTERVAL -356 DAY)');
-    $_sql->bindParam(1, $login);
+    $_sql->bindParam(1, $login, PDO::PARAM_INT);
     $_result = $_sql->execute();
     if($_row = $_sql->fetch()) $_return = $_row['AccessToken'];
     else $_return = false;
@@ -90,12 +90,12 @@ function createAccessToken($_login){
     while(getMemberLoginByToken($token));
 
     $_sql = $_db->prepare("DELETE FROM AccessTokens WHERE Login = ?");
-    $_sql->bindParam(1, $_login);
+    $_sql->bindParam(1, $_login, PDO::PARAM_INT);
     $_sql->execute();
     
     $_sql = $_db->prepare('INSERT INTO AccessTokens (Login, AccessToken) VALUES (?, ?)');
-    $_sql->bindParam(1, $_login);
-    $_sql->bindParam(2, $token);
+    $_sql->bindParam(1, $_login, PDO::PARAM_INT);
+    $_sql->bindParam(2, $token, PDO::PARAM_STR);
     $_result = $_sql->execute();
     return $token;
 }
@@ -105,8 +105,8 @@ function setMemberJSON($_login, $_json){
     $_db = new PDO('mysql:host=localhost;dbname=palantir', 'orthanc');
 
     $_sql = $_db->prepare('UPDATE Members SET Member = ? WHERE Login = ?');
-    $_sql->bindParam(1, $_json);
-    $_sql->bindParam(2, $_login);
+    $_sql->bindParam(1, $_json, PDO::PARAM_STR);
+    $_sql->bindParam(2, $_login, PDO::PARAM_INT);
     $_result = $_sql->execute();
     return $_result;
 }
@@ -116,7 +116,7 @@ function getConnectedCount($_guildID){
 
     $_sql = $_db->prepare('SELECT Count(*) as Count FROM Members WHERE Member LIKE ?');
     $id = "%" . $_guildID . "%";
-    $_sql->bindParam(1, $id);
+    $_sql->bindParam(1, $id, PDO::PARAM_STR);
     $_result = $_sql->execute();
     if($_row = $_sql->fetch()) $_return = $_row['Count'];
     else $_return = false;
@@ -133,7 +133,7 @@ function getPalantirJSON($_observeToken){
     $_db = new PDO('mysql:host=localhost;dbname=palantir', 'orthanc');
 
     $_sql = $_db->prepare('SELECT * FROM Palantiri WHERE Token = ?');
-    $_sql->bindParam(1, $_observeToken);
+    $_sql->bindParam(1, $_observeToken, PDO::PARAM_INT);
     $_result = $_sql->execute();
     if($_row = $_sql->fetch()) $_return = $_row['Palantir'];
     else $_return = false;

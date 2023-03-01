@@ -8,7 +8,7 @@
 
 // Check if members has row with login
 function getMemberJSON($_login){
-    $_db = new PDO('mysql:host=localhost;dbname=palantir', 'orthanc');
+    $_db = new PDO('mysql:host=108.61.190.186;dbname=palantir', 'orthanc');
 
     $_sql = $_db->prepare('SELECT * FROM Members WHERE Login = ?');
     $_sql->bindParam(1, $_login, PDO::PARAM_INT);

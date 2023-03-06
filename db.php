@@ -36,7 +36,7 @@ function addMember($_login, $_username, $_id, $_join){
 
     $palantirJSON = $_join === true ? getPalantirJSON("79177353") : "";
 
-    $_sql = $_db->prepare('INSERT INTO Members VALUES(?, ?, 0, 0, 0, 0, null, null, null, null, "", "")');
+    $_sql = $_db->prepare('INSERT INTO Members VALUES(?, ?, 0, "", 0, 0, null, null, null, "", "", NULL)');
     $_sql->bindParam(1, $_login, PDO::PARAM_INT);
     $json = '{"UserID":"' . $_id . '","UserName":"' . $_username . '","UserLogin":"' . $_login . '","Guilds":[' . $palantirJSON . ']}';
     $_sql->bindParam(2, $json, PDO::PARAM_STR);

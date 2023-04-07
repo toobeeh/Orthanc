@@ -31,6 +31,6 @@ $options = [
 $context = stream_context_create($options);
 $result = file_get_contents($url, false, $context);
 
-echo $result; // This will output the URL of the newly created paste
+echo "kek" . $result; // This will output the URL of the newly created paste
 
 ?>

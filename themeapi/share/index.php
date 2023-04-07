@@ -8,6 +8,7 @@ $api_paste_private 		= '1'; // 0=public 1=unlisted 2=private
 $api_paste_name			= 'Typo Theme Post'; // name or title of your paste
 $api_paste_expire_date 		= 'N';
 $api_paste_format 		= 'json';
+$api_user_key 			= ''; // if an invalid or expired api_user_key is used, an error will spawn. If no api_user_key is used, a guest paste will be created
 $api_paste_name			= urlencode($api_paste_name);
 $api_paste_code			= urlencode($api_paste_code);
 

@@ -2,31 +2,35 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 'On');
 
-$api_key = file_get_contents('/home/pi/pastebin_apikey');
-$api_url = 'https://pastebin.com/api/api_post.php';
+$api_dev_key = file_get_contents('/home/pi/pastebin_apikey');
+$api_paste_code = $_POST['theme']; // Get the code from the POST body
+$api_paste_private = "0"; // 0 = public, 1 = unlisted, 2 = private
+$api_paste_name = "Typo Theme Share"; // Use a default name if no name is specified
+$api_paste_expire_date = "N"; // N = never, 10M = 10 minutes, 1H = 1 hour, 1D = 1 day, 1W = 1 week, 2W = 2 weeks, 1M = 1 month
+$api_paste_format = ""; // Let Pastebin detect the format automatically
 
-$code = file_get_contents('php://input');
+$url = "https://pastebin.com/api/api_post.php";
 
-// Set the parameters for the API request
-$params = array(
-  'api_dev_key' => $api_key,
-  'api_option' => 'paste',
-  'api_paste_code' => $code,
-);
+$data = [
+    'api_dev_key' => $api_dev_key,
+    'api_paste_code' => $api_paste_code,
+    'api_paste_private' => $api_paste_private,
+    'api_paste_name' => $api_paste_name,
+    'api_paste_expire_date' => $api_paste_expire_date,
+    'api_paste_format' => $api_paste_format
+];
 
-// Use cURL to make the API request
-$curl = curl_init($api_url);
-curl_setopt($curl, CURLOPT_POST, true);
-curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($params));
-curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-$response = curl_exec($curl);
-curl_close($curl);
+$options = [
+    'http' => [
+        'header' => "Content-type: application/x-www-form-urlencoded\r\n",
+        'method' => 'POST',
+        'content' => http_build_query($data)
+    ]
+];
 
-// Display the link to the uploaded code
-if (strpos($response, 'https://pastebin.com/') === 0) {
-  echo '{link:"' . $response . '"}';
-} else {
-    echo "Failed :("
-}
+$context = stream_context_create($options);
+$result = file_get_contents($url, false, $context);
+
+echo $result; // This will output the URL of the newly created paste
 
 ?>

@@ -2,7 +2,7 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 'On');
 
-$api_dev_key = file_get_contents('/home/pi/pastebin_apikey');
+$api_dev_key = trim(file_get_contents('/home/pi/pastebin_apikey'));
 $api_paste_code = $_POST['theme']; // Get the code from the POST body
 $api_paste_private 		= '1'; // 0=public 1=unlisted 2=private
 $api_paste_name			= 'Typo Theme Post'; // name or title of your paste

@@ -5,7 +5,7 @@ ini_set('display_errors', 'On');
 $api_key = file_get_contents('/home/pi/pastebin_apikey');
 $api_url = 'https://pastebin.com/api/api_post.php';
 
-$code = $_POST['theme'];
+$code = file_get_contents('php://input');
 
 // Set the parameters for the API request
 $params = array(

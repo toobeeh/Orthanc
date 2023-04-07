@@ -148,6 +148,18 @@ function getThemeShare($id){
     return $_return;
 }
 
+// get all public themes
+function getPublicThemes(){
+    $_db = new PDO('mysql:host=typodb.tobeh.host;dbname=palantir', 'orthanc');
+
+    $_sql = $_db->prepare("SELECT UserThemes.ID as id, Downloads as downloads, Version as version, JSON_UNQUOTE(JSON_EXTRACT(Theme, '$.meta.name')) AS name, JSON_UNQUOTE(JSON_EXTRACT(Theme, '$.meta.author')) AS author FROM UserThemes LEFT JOIN ThemeShares ON UserThemes.ID = ThemeShares.ID;");
+    $_sql->execute();
+
+    $result = $_sql->fetchAll(PDO::FETCH_ASSOC);
+    header('Content-Type: application/json');
+    echo json_encode($result);
+}
+
 // -------------------------------------
 //              Table: Palantiri
 // -------------------------------------

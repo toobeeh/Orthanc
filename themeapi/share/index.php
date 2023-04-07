@@ -8,16 +8,14 @@ $api_paste_private = "0"; // 0 = public, 1 = unlisted, 2 = private
 $api_paste_name = "Typo Theme Share"; // Use a default name if no name is specified
 $api_paste_expire_date = "N"; // N = never, 10M = 10 minutes, 1H = 1 hour, 1D = 1 day, 1W = 1 week, 2W = 2 weeks, 1M = 1 month
 $api_paste_format = "JSON"; // Let Pastebin detect the format automatically
+$api_paste_option = "paste";
 
 $url = "https://pastebin.com/api/api_post.php";
 
 $data = [
     'api_dev_key' => $api_dev_key,
     'api_paste_code' => $api_paste_code,
-    'api_paste_private' => $api_paste_private,
-    'api_paste_name' => $api_paste_name,
-    'api_paste_expire_date' => $api_paste_expire_date,
-    'api_paste_format' => $api_paste_format
+    'api_paste_option' => $api_paste_option
 ];
 
 echo $data;

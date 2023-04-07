@@ -123,6 +123,31 @@ function getConnectedCount($_guildID){
     return $_return;
 }
 
+// create a new shared theme
+function createThemeShare($_theme){
+    $_db = new PDO('mysql:host=typodb.tobeh.host;dbname=palantir', 'orthanc');
+
+    $id = random_str(8);
+
+    $_sql = $_db->prepare("INSERT INTO ThemeShares VALUES(?, ?)");
+    $_sql->bindParam(1, $id, PDO::PARAM_STR);
+    $_sql->bindParam(1, $_theme, PDO::PARAM_STR);
+    $_sql->execute();
+    return $id;
+}
+
+// get a shared theme
+function getThemeShare($id){
+    $_db = new PDO('mysql:host=typodb.tobeh.host;dbname=palantir', 'orthanc');
+
+    $_sql = $_db->prepare("SELECT * FROM ThemeShares WHERE ID = ?");
+    $_sql->bindParam(1, $id, PDO::PARAM_STR);
+    $_sql->execute();
+    if($_row = $_sql->fetch()) $_return = $_row['Theme'];
+    else $_return = false;
+    return $_return;
+}
+
 // -------------------------------------
 //              Table: Palantiri
 // -------------------------------------

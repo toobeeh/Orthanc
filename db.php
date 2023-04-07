@@ -160,6 +160,15 @@ function getPublicThemes(){
     echo json_encode($result);
 }
 
+// get all public themes
+function incrementDownload($id){
+    $_db = new PDO('mysql:host=typodb.tobeh.host;dbname=palantir', 'orthanc');
+
+    $_sql = $_db->prepare("UPDATE UserThemes SET Downloads = Downloads+1 WHERE ID = ?");
+    $_sql->bindParam(1, $id, PDO::PARAM_STR);
+    $_sql->execute();
+}
+
 // -------------------------------------
 //              Table: Palantiri
 // -------------------------------------

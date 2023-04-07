@@ -26,7 +26,7 @@ curl_close($curl);
 if (strpos($response, 'https://pastebin.com/') === 0) {
   echo '{link:"' . $response . '"}';
 } else {
-    die();
+    echo "Failed :("
 }
 
 ?>

@@ -131,7 +131,7 @@ function createThemeShare($_theme){
 
     $_sql = $_db->prepare("INSERT INTO ThemeShares VALUES(?, ?)");
     $_sql->bindParam(1, $id, PDO::PARAM_STR);
-    $_sql->bindParam(1, $_theme, PDO::PARAM_STR);
+    $_sql->bindParam(2, $_theme, PDO::PARAM_STR);
     $_sql->execute();
     return $id;
 }

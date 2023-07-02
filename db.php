@@ -8,7 +8,7 @@
 
 // Check if members has row with login
 function getMemberJSON($_login){
-    $_db = new PDO('mysql:host=typodb.tobeh.host;dbname=palantir', 'orthanc');
+    $_db = new PDO('mysql:host=mariadb.typo.rip;dbname=palantir', 'orthanc');
 
     $_sql = $_db->prepare('SELECT * FROM Members WHERE Login = ?');
     $_sql->bindParam(1, $_login, PDO::PARAM_INT);
@@ -20,7 +20,7 @@ function getMemberJSON($_login){
 
 // Get Member sprite data
 function getFullMemberData($_login){
-    $_db = new PDO('mysql:host=typodb.tobeh.host;dbname=palantir', 'orthanc');
+    $_db = new PDO('mysql:host=mariadb.typo.rip;dbname=palantir', 'orthanc');
 
     $_sql = $_db->prepare('SELECT * FROM Members WHERE Login = ?');
     $_sql->bindParam(1, $_login, PDO::PARAM_INT);
@@ -32,7 +32,7 @@ function getFullMemberData($_login){
 
 // Check if members has row with login
 function addMember($_login, $_username, $_id, $_join){
-    $_db = new PDO('mysql:host=typodb.tobeh.host;dbname=palantir', 'orthanc');
+    $_db = new PDO('mysql:host=mariadb.typo.rip;dbname=palantir', 'orthanc');
 
     $palantirJSON = $_join === true ? getPalantirJSON("79177353") : "";
 
@@ -45,7 +45,7 @@ function addMember($_login, $_username, $_id, $_join){
 
 // Get login by id
 function getMemberLogin($_id){
-    $_db = new PDO('mysql:host=typodb.tobeh.host;dbname=palantir', 'orthanc');
+    $_db = new PDO('mysql:host=mariadb.typo.rip;dbname=palantir', 'orthanc');
 
     $_sql = $_db->prepare('SELECT Login FROM "Members" WHERE json_extract(Member, \'$.UserID\') LIKE ?');
     $id = "%" . $_id . "%";
@@ -58,7 +58,7 @@ function getMemberLogin($_id){
 
 // Get login by token
 function getMemberLoginByToken($_token){
-    $_db = new PDO('mysql:host=typodb.tobeh.host;dbname=palantir', 'orthanc');
+    $_db = new PDO('mysql:host=mariadb.typo.rip;dbname=palantir', 'orthanc');
 
     $_sql = $_db->prepare('SELECT Login FROM "AccessTokens" WHERE AccessToken = ? AND CreatedAt > DATE_ADD(CURRENT_TIMESTAMP, INTERVAL -356 DAY)');
     $_sql->bindParam(1, $_token, PDO::PARAM_STR);
@@ -70,7 +70,7 @@ function getMemberLoginByToken($_token){
 
 // Get token by login
 function getAccessTokenByLogin($login){
-    $_db = new PDO('mysql:host=typodb.tobeh.host;dbname=palantir', 'orthanc');
+    $_db = new PDO('mysql:host=mariadb.typo.rip;dbname=palantir', 'orthanc');
 
     $_sql = $_db->prepare('SELECT AccessToken FROM "AccessTokens" WHERE Login = ? AND CreatedAt > DATE_ADD(CURRENT_TIMESTAMP, INTERVAL -356 DAY)');
     $_sql->bindParam(1, $login, PDO::PARAM_INT);
@@ -82,7 +82,7 @@ function getAccessTokenByLogin($login){
 
 // create a new access token for a login
 function createAccessToken($_login){
-    $_db = new PDO('mysql:host=typodb.tobeh.host;dbname=palantir', 'orthanc');
+    $_db = new PDO('mysql:host=mariadb.typo.rip;dbname=palantir', 'orthanc');
 
     do{
         $token = random_str();
@@ -102,7 +102,7 @@ function createAccessToken($_login){
 
 // Set member Json (for example to add new guild)
 function setMemberJSON($_login, $_json){
-    $_db = new PDO('mysql:host=typodb.tobeh.host;dbname=palantir', 'orthanc');
+    $_db = new PDO('mysql:host=mariadb.typo.rip;dbname=palantir', 'orthanc');
 
     $_sql = $_db->prepare('UPDATE Members SET Member = ? WHERE Login = ?');
     $_sql->bindParam(1, $_json, PDO::PARAM_STR);
@@ -112,7 +112,7 @@ function setMemberJSON($_login, $_json){
 }
 
 function getConnectedCount($_guildID){
-    $_db = new PDO('mysql:host=typodb.tobeh.host;dbname=palantir', 'orthanc');
+    $_db = new PDO('mysql:host=mariadb.typo.rip;dbname=palantir', 'orthanc');
 
     $_sql = $_db->prepare('SELECT Count(*) as Count FROM Members WHERE Member LIKE ?');
     $id = "%" . $_guildID . "%";
@@ -125,7 +125,7 @@ function getConnectedCount($_guildID){
 
 // create a new shared theme
 function createThemeShare($_theme){
-    $_db = new PDO('mysql:host=typodb.tobeh.host;dbname=palantir', 'orthanc');
+    $_db = new PDO('mysql:host=mariadb.typo.rip;dbname=palantir', 'orthanc');
 
     $id = random_str(8);
 
@@ -138,7 +138,7 @@ function createThemeShare($_theme){
 
 // get a shared theme
 function getThemeShare($id){
-    $_db = new PDO('mysql:host=typodb.tobeh.host;dbname=palantir', 'orthanc');
+    $_db = new PDO('mysql:host=mariadb.typo.rip;dbname=palantir', 'orthanc');
 
     $_sql = $_db->prepare("SELECT * FROM ThemeShares WHERE ID = ?");
     $_sql->bindParam(1, $id, PDO::PARAM_STR);
@@ -150,7 +150,7 @@ function getThemeShare($id){
 
 // get all public themes
 function getPublicThemes(){
-    $_db = new PDO('mysql:host=typodb.tobeh.host;dbname=palantir', 'orthanc');
+    $_db = new PDO('mysql:host=mariadb.typo.rip;dbname=palantir', 'orthanc');
 
     $_sql = $_db->prepare("SELECT UserThemes.ID as id, Downloads as downloads, Version as version, JSON_UNQUOTE(JSON_EXTRACT(Theme, '$.meta.name')) AS name, JSON_UNQUOTE(JSON_EXTRACT(Theme, '$.meta.author')) AS author FROM UserThemes LEFT JOIN ThemeShares ON UserThemes.ID = ThemeShares.ID;");
     $_sql->execute();
@@ -162,7 +162,7 @@ function getPublicThemes(){
 
 // get all public themes
 function incrementDownload($id){
-    $_db = new PDO('mysql:host=typodb.tobeh.host;dbname=palantir', 'orthanc');
+    $_db = new PDO('mysql:host=mariadb.typo.rip;dbname=palantir', 'orthanc');
 
     $_sql = $_db->prepare("UPDATE UserThemes SET Downloads = Downloads+1 WHERE ID = ?");
     $_sql->bindParam(1, $id, PDO::PARAM_STR);
@@ -176,7 +176,7 @@ function incrementDownload($id){
 // Get palantir from obersve token
 // Table is read-only, as only palantir bot listens to discord commands to modify settings
 function getPalantirJSON($_observeToken){
-    $_db = new PDO('mysql:host=typodb.tobeh.host;dbname=palantir', 'orthanc');
+    $_db = new PDO('mysql:host=mariadb.typo.rip;dbname=palantir', 'orthanc');
 
     $_sql = $_db->prepare('SELECT * FROM Palantiri WHERE Token = ?');
     $_sql->bindParam(1, $_observeToken, PDO::PARAM_INT);
@@ -246,7 +246,7 @@ function setSubmissionVotes($login, $vote1, $vote2){
 
 function getEventDrops(){
     // get all eventdrops
-    $_db = new PDO('mysql:host=typodb.tobeh.host;dbname=palantir', 'orthanc');
+    $_db = new PDO('mysql:host=mariadb.typo.rip;dbname=palantir', 'orthanc');
 
     $_sql = $_db->prepare("SELECT * FROM EventDrops LEFT JOIN Events ON EventDrops.EventID = Events.EventID");
     $_result = $_sql->execute();
@@ -262,7 +262,7 @@ function getEventDrops(){
 function getSprites(){
     // get all online sprites
     // sprites are written into the db by palantir. the member table stores the sprites
-    $_db = new PDO('mysql:host=typodb.tobeh.host;dbname=palantir', 'orthanc');
+    $_db = new PDO('mysql:host=mariadb.typo.rip;dbname=palantir', 'orthanc');
 
     // remove entries older than 10s to avoid big data
     ($_db->prepare("DELETE FROM OnlineSprites WHERE Date < DATE_ADD(CURRENT_TIMESTAMP, INTERVAL -10 SECOND)"))->execute();
@@ -281,7 +281,7 @@ function getSprites(){
 
 
 function getAvailableSprites(){
-    $_db = new PDO('mysql:host=typodb.tobeh.host;dbname=palantir', 'orthanc');
+    $_db = new PDO('mysql:host=mariadb.typo.rip;dbname=palantir', 'orthanc');
 
     $_sql = $_db->prepare("SELECT * FROM Sprites");
     $_result = $_sql->execute();
@@ -296,7 +296,7 @@ function getAvailableSprites(){
 }
 
 function getScenes(){
-    $_db = new PDO('mysql:host=typodb.tobeh.host;dbname=palantir', 'orthanc');
+    $_db = new PDO('mysql:host=mariadb.typo.rip;dbname=palantir', 'orthanc');
 
     $_sql = $_db->prepare("SELECT * FROM Scenes");
     $_result = $_sql->execute();
@@ -311,7 +311,7 @@ function getScenes(){
 }
 
 function getSpriteByGifName($_gif){
-    $_db = new PDO('mysql:host=typodb.tobeh.host;dbname=palantir', 'orthanc');
+    $_db = new PDO('mysql:host=mariadb.typo.rip;dbname=palantir', 'orthanc');
 
     $_result = $_db->query('SELECT * FROM Sprites WHERE URL LIKE ? ');
     $gif = "%" . $_gif . "%";
@@ -326,7 +326,7 @@ function getSpriteByGifName($_gif){
 // Typoposts db
 
 function logTypoPost($login, $url){
-    $_db = new PDO('mysql:host=typodb.tobeh.host;dbname=palantir', 'orthanc');
+    $_db = new PDO('mysql:host=mariadb.typo.rip;dbname=palantir', 'orthanc');
 
     $_sql = $_db->prepare("INSERT INTO posts VALUES(?,?,?)");
     $_sql->bindParam(1, $url);

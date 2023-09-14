@@ -1,4 +1,8 @@
 <?php
+ // OUTDATED - now integrated in tirith
+header('Location: https://www.typo.rip/auth');
+exit();
+
 session_start();
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);

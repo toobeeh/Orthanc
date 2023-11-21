@@ -60,7 +60,7 @@ function getMemberLogin($_id){
 function getMemberLoginByToken($_token){
     $_db = new PDO('mysql:host=mariadb.typo.rip;dbname=palantir', 'orthanc');
 
-    $_sql = $_db->prepare('SELECT Login FROM "AccessTokens" WHERE AccessToken = ? AND CreatedAt > DATE_ADD(CURRENT_TIMESTAMP, INTERVAL -356 DAY)');
+    $_sql = $_db->prepare('SELECT Login FROM "AccessTokens" WHERE AccessToken = ?');
     $_sql->bindParam(1, $_token, PDO::PARAM_STR);
     $_result = $_sql->execute();
     if($_row = $_sql->fetch()) $_return = $_row['Login'];
@@ -72,7 +72,7 @@ function getMemberLoginByToken($_token){
 function getAccessTokenByLogin($login){
     $_db = new PDO('mysql:host=mariadb.typo.rip;dbname=palantir', 'orthanc');
 
-    $_sql = $_db->prepare('SELECT AccessToken FROM "AccessTokens" WHERE Login = ? AND CreatedAt > DATE_ADD(CURRENT_TIMESTAMP, INTERVAL -356 DAY)');
+    $_sql = $_db->prepare('SELECT AccessToken FROM "AccessTokens" WHERE Login = ?');
     $_sql->bindParam(1, $login, PDO::PARAM_INT);
     $_result = $_sql->execute();
     if($_row = $_sql->fetch()) $_return = $_row['AccessToken'];

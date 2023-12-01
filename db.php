@@ -283,7 +283,7 @@ function getSprites(){
 function getAvailableSprites(){
     $_db = new PDO('mysql:host=mariadb.typo.rip;dbname=palantir', 'orthanc');
 
-    $_sql = $_db->prepare("SELECT * FROM Sprites");
+    $_sql = $_db->prepare("SELECT * FROM Sprites WHERE Sprites.EventDropID NOT IN (SELECT EventDropID FROM EventDrops LEFT JOIN Events ON Events.EventID = EventDrops.EventID WHERE Events.Progressive = 1");
     $_result = $_sql->execute();
     
     $_return = array();
